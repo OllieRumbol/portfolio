@@ -1,10 +1,27 @@
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Home from './home/Home';
+import Container from 'react-bootstrap/Container';
 import '../style/App.css';
+import Pdf from '../assets/Oliver Bourne CV.pdf';
 
-function App() {
+export default function App() {
+
   return (
-    <div>
-    </div>
+    <Router>
+        <main>
+          <Switch>
+            <Route path="/" exact component={() => <Home />} />
+            <Route path="/cv" exact component={pdf} />
+          </Switch>
+        </main>
+    </Router>
   );
 }
 
-export default App;
+function pdf() {
+  return(
+    <div>
+      <embed src={Pdf} className="full-height" />
+    </div>
+  );
+}
