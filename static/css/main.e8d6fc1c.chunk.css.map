@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/style/App.css"],"names":[],"mappings":"AAAA,mBACE,eAAgB,CAChB,qBAAuB,CACvB,QACF,CAEA,aACE,UAAW,CACX,qBACF","file":"main.e8d6fc1c.chunk.css","sourcesContent":["html, body, div, main {\n  max-height: 100%;\n  height: 100% !important;\n  margin: 0;\n}\n\n.full-height {\n  width: 100%;\n  height: 100% !important;\n}\n"]}
