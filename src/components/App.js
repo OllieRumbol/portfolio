@@ -3,8 +3,6 @@ import Home from './home/Home';
 import Cv from './cv/Cv';
 import Container from 'react-bootstrap/Container';
 import '../style/App.css';
-import '../style/bootstrap.min.css';
-import Pdf from '../assets/Oliver Bourne CV.pdf';
 
 export default function App() {
 
@@ -17,13 +15,5 @@ export default function App() {
         </Switch>
       </main>
     </Router>
-  );
-}
-
-function pdf() {
-  return (
-    <div>
-      <embed src={Pdf} className="full-height" />
-    </div>
   );
 }
