@@ -1,5 +1,7 @@
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Home from './home/Home';
+import Home from './Home';
+import About from './About';
+import Projects from './Projects';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -12,7 +14,7 @@ export default function App() {
 
   return (
     <Router>
-      <Container fluid className="grey">
+      <Container fluid className="grey border-bottom border-success">
         <ButtonToolbar className="right">
           <Link to="/">
             <ButtonGroup className="m-2">
@@ -22,6 +24,11 @@ export default function App() {
           <Link to="/about">
             <ButtonGroup className="m-2">
               <Button variant="success">About</Button>
+            </ButtonGroup>
+          </Link>
+          <Link to="/projects">
+            <ButtonGroup className="m-2">
+              <Button variant="success">Projects</Button>
             </ButtonGroup>
           </Link>
           <ButtonGroup className="m-2">
@@ -35,6 +42,8 @@ export default function App() {
       <main className="fullSize">
         <Switch>
           <Route path="/" exact component={() => <Home />} />
+          <Route path="/about" exact component={() => <About />} />
+          <Route path="/projects" exact component={() => <Projects />} />
           <Route path="/cv" exact component={Cv} />
         </Switch>
       </main>

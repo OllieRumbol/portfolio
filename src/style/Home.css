@@ -1,0 +1,15 @@
+.header{
+    color: #aaa;
+    text-align: center;
+}
+
+.title{
+    font-size: calc(3rem + 7vw);
+    font-weight: 350;
+    line-height: 1.2;
+}
+
+.green{
+    background-color: #198754;
+    opacity: 1 !important;
+}
