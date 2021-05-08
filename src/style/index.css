@@ -1,0 +1,11 @@
+html,
+body {
+  max-height: 100%;
+  height: 100%;
+  background-color: #282c34 !important;
+}
+
+#root {
+  max-height: 100%;
+  height: 100%;
+}

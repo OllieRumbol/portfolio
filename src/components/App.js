@@ -1,18 +1,45 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './home/Home';
-import Cv from './cv/Cv';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Pdf from '../assets/Oliver Bourne CV.pdf';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 
 export default function App() {
 
   return (
     <Router>
-      <main>
+      <Container fluid className="grey">
+        <ButtonToolbar className="right">
+          <Link to="/">
+            <ButtonGroup className="m-2">
+              <Button variant="success">Home</Button>
+            </ButtonGroup>
+          </Link>
+          <Link to="/about">
+            <ButtonGroup className="m-2">
+              <Button variant="success">About</Button>
+            </ButtonGroup>
+          </Link>
+          <ButtonGroup className="m-2">
+            <a href="https://github.com/OllieRumbol" target="_blank" rel="noreferrer" className="btn btn-success">GitHub</a>
+          </ButtonGroup>
+          <ButtonGroup className="m-2">
+            <a href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/" target="_blank" rel="noreferrer" className="btn btn-success">LinkedIn</a>
+          </ButtonGroup>
+        </ButtonToolbar>
+      </Container>
+      <main className="fullSize">
         <Switch>
           <Route path="/" exact component={() => <Home />} />
-          <Route path="/cv" exact component={() => <Cv />} />
+          <Route path="/cv" exact component={Cv} />
         </Switch>
       </main>
     </Router>
   );
 }
+
+const Cv = () => <embed src={Pdf} className="fullSize" />;
