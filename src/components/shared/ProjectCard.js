@@ -4,13 +4,13 @@ import '../../style/ProjectCard.css';
 export default function ProjectCard(props) {
 
     return (
-        <div>
-            <Card className='border-success'>
+        <div className='m-5'>
+            <Card className='border-success cardAll'>
                 <Card.Header className='cardHeader'><h2>{props.title}</h2></Card.Header>
                 <Card.Body className='cardBody'>
                     <Card.Text>
                         <div>
-                            <img src={props.image} alt={props.imageAlt} />
+                            <img src={props.image} alt={props.title} />
                         </div>
                         <div>
                             <h5>Description</h5>
@@ -21,7 +21,7 @@ export default function ProjectCard(props) {
                             <p>{props.technology}</p>
                         </div>
                         <div>
-                            <a href={props.site} target="_blank" rel="noreferrer" class='btn btn-success'>Link to site</a>
+                            <a href={props.site} target="_blank" rel="noreferrer" class='btn btn-success'>{props.buttonText}</a>
                         </div>
                     </Card.Text>
                 </Card.Body>
