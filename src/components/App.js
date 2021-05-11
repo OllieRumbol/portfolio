@@ -2,11 +2,11 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './Home';
 import AboutMe from './AboutMe';
 import Projects from './Projects';
+import Cv from './Cv';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Pdf from '../assets/Oliver Bourne CV.pdf';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 
@@ -44,11 +44,9 @@ export default function App() {
           <Route path="/" exact component={() => <Home />} />
           <Route path="/aboutMe" exact component={() => <AboutMe />} />
           <Route path="/projects" exact component={() => <Projects />} />
-          <Route path="/cv" exact component={Cv} />
+          <Route path="/cv" exact component={() => <Cv />}/>
         </Switch>
       </main>
     </Router>
   );
 }
-
-const Cv = () => <embed src={Pdf} className="fullSize" />;
