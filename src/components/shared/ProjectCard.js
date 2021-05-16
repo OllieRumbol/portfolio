@@ -21,7 +21,7 @@ export default function ProjectCard(props) {
                             <p>{props.technology}</p>
                         </div>
                         <div>
-                            <a href={props.site} target="_blank" rel="noreferrer" class='btn btn-success'>{props.buttonText}</a>
+                            <a href={props.site} target="_blank" rel="noreferrer" className='btn btn-success'>{props.buttonText}</a>
                         </div>
                     </Card.Text>
                 </Card.Body>

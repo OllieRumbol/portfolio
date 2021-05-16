@@ -10,6 +10,61 @@ export default function AboutMe() {
         <h1 className='colour display-1'>About Me</h1>
       </div>
       <div>
+        <h4 className='colour display-4 text-success'>Technical Experience</h4>
+      </div>
+      <div>
+        <h6 className='colour display-6'>June 2020 – Now: Junior Software Developer at PageSuite</h6>
+      </div>
+      <div className='colour fs-4'>
+        <ul>
+          <li>
+            <span>
+              Client team: Joining the client team was a big mix up in the company. We focused on the custom work within the company so,
+              we created custom modals, managed IAPs, login and payment integrations, Oauth gateway pages, JSON and XML automations. As
+              a backend developer, we were also involved with project management, client calls and bug master. At PageSuite we used C#
+              with .Net and AWS infrastructure.
+            </span>
+          </li>
+          <li>
+            <span>
+              Backend team: When I first joined the company teams were split up into technologies. Backend developers were the closes
+              thing PageSuite had to a full stack developer. We built automation's, integrations, feed wrappers anything the company needed
+              for the apps and frontend to work the client data for digital publishing.
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h6 className='colour display-6'>Aug 2018 – Sep 2019: Software Developer at AXA PPP</h6>
+      </div>
+      <div className='colour fs-4'>
+        <ul>
+          <li>
+            <span>
+              PMA team: Was a tool used by the provider team to manage information with all types of providers. This could be a small
+              specialist or a major hospital. PMA was a huge 8 year project (4 years when I joined) and included a variety of tools
+              that were built using .Net MVC and jQuery.
+            </span>
+          </li>
+          <li>
+            <span>
+              PACE team: This was the first agile team I join at AXA PPP where I was one of two .Net developers so a lot was
+              expected of me. Pace was an in house tool for gathering marketing consent across the business. It had an Angular frontend
+              and a .Net API with a variety of automations and databases behind it. The IBM tool MDM played a huge part in the project.
+              I worked on both the frontend and backend of the application along with fully automated testing using MS Test, Specflow
+              and selenium.
+            </span>
+          </li>
+          <li>
+            <span>
+              AXA PPP: Uses Azure and .Net as its main infrastructure and had 8 agile teams. I really enjoyed working in an open
+              plan office and learning from other developers.
+            </span>
+          </li>
+        </ul>
+      </div>
+      <hr className='green' />
+      <div>
         <h4 className='colour display-4 text-success'>Education</h4>
       </div>
       <div>
@@ -32,15 +87,15 @@ export default function AboutMe() {
             <li><span>Software developer at AXA PPP</span></li>
           </ul>
           <li className='fw-bolder'><span>Second year <span className="badge bg-success">74%</span></span></li>
-            <ul>
-              <li><span>Software Engineering</span></li>
-              <li><span>Algorithms, Correctness and Efficiency</span></li>
-              <li><span>Theory of Computing</span></li>
-              <li><span>Operating Systems and Architecture</span></li>
-              <li><span>Database Systems</span></li>
-              <li><span>Web Development</span></li>
-              <li><span>Functional and Concurrent Programming</span></li>
-            </ul>
+          <ul>
+            <li><span>Software Engineering</span></li>
+            <li><span>Algorithms, Correctness and Efficiency</span></li>
+            <li><span>Theory of Computing</span></li>
+            <li><span>Operating Systems and Architecture</span></li>
+            <li><span>Database Systems</span></li>
+            <li><span>Web Development</span></li>
+            <li><span>Functional and Concurrent Programming</span></li>
+          </ul>
           <li className='fw-bolder'><span>First year <span className="badge bg-success">72%</span></span></li>
           <ul>
             <li><span>Introduction to Object-Oriented Programming</span></li>
