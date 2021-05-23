@@ -2,6 +2,7 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './Home';
 import AboutMe from './AboutMe';
 import Projects from './Projects';
+import Articles from './Articles';
 import Cv from './Cv';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -31,6 +32,11 @@ export default function App() {
               <Button variant="success">Projects</Button>
             </ButtonGroup>
           </Link>
+          <Link to="/articles">
+            <ButtonGroup className="m-2">
+              <Button variant="success">Articles</Button>
+            </ButtonGroup>
+          </Link>
           <ButtonGroup className="m-2">
             <a href="https://github.com/OllieRumbol" target="_blank" rel="noreferrer" className="btn btn-success">GitHub</a>
           </ButtonGroup>
@@ -44,6 +50,7 @@ export default function App() {
           <Route path="/" exact component={() => <Home />} />
           <Route path="/aboutMe" exact component={() => <AboutMe />} />
           <Route path="/projects" exact component={() => <Projects />} />
+          <Route path="/articles" exact component={() => <Articles />} />
           <Route path="/cv" exact component={() => <Cv />}/>
         </Switch>
       </main>

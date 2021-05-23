@@ -13,7 +13,7 @@ export default function AboutMe() {
         <h4 className='colour display-4 text-success'>Technical Experience</h4>
       </div>
       <div>
-        <h6 className='colour display-6'>June 2020 – Now: Junior Software Developer at PageSuite</h6>
+        <h6 className='colour display-6'>June 2020 – Now: Backend Developer at PageSuite</h6>
       </div>
       <div className='colour fs-4'>
         <ul>

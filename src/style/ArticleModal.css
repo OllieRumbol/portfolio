@@ -1,0 +1,11 @@
+.modal-header{
+    border-bottom: 1px solid #198754 !important;
+}
+
+.modal-footer{
+    border-top: 1px solid #198754 !important;
+}
+
+.modalWhole{
+    background-color: #32383e;
+}
