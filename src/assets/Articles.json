@@ -3,12 +3,12 @@
       "id": 1,
       "headline": "How to start a react project",
       "snippet": "Create a verbose and well structured React infrastructure as a solid foundation for any React web application.",
-      "body": "<p>React is a simple but powerful JS library used to create single-page web applications.  React is built by Facebook and full documentation can be found <a href='https://reactjs.org/'>here</a>. The React library provides a whole host of useful tools. Tools include but not limited to JSX, virtual DOM, one-way binding, state management and component design.</p> <p>This article illustrates some basic steps developers new to react can take to ensure their React project has a solid base for future development. I will show how the React app can be deployed using GitHub pages as well as some other useful tools. Before starting anything its a good idea to create a GitHub repo and clone it locally</p><h3>1. Dependencies</h3><p></p><h3>2. Refactor</h3><p></p><h3>3. Routing</h3><p></p><h3>4. Hosting</h3><p></p><h3>5. CI/CD</h3><p></p>"
+      "body": "/articles/article1.html"
     },
     {
       "id": 2,
       "headline": "It's time we talk about your technical debt.",
       "snippet": "Technical debt can cause huge problems both for organisations and the developers working for them. It's time to address it. ",
-      "body": "<p>Software engineering is now a part of many companies, not just tech companies. Companies such as finance, insurance, logistics retail, and so much more. </p>"
+      "body": "/articles/article2.html"
     }
   ]

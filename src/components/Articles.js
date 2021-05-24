@@ -10,8 +10,8 @@ export default function Articles() {
     const [showArticleModal, setShowArticleModal] = useState(false);
     const [articleToRead, setArticleToRead] = useState(null);
 
-    const readArticle = (id) => {
-        let articles = GetArticles();
+    const readArticle = async (id) => {
+        let articles = await GetArticles();
         let article = articles.filter(article => {
             return article.id === id;
         })[0];
@@ -22,21 +22,25 @@ export default function Articles() {
     }
 
     useEffect(() => {
-        let articles = GetArticles();
+        async function CreateArticleCards() {
+            let articles = await GetArticles();
 
-        setArticleCards(articles.map((article, index) => {
-            return (
-                <div className="col pb-3">
-                    <ArticleCard
-                        key={index}
-                        id={article.id}
-                        headline={article.headline}
-                        snippet={article.snippet}
-                        readArticle={readArticle}
-                    />
-                </div>
-            )
-        }))
+            setArticleCards(articles.map((article, index) => {
+                return (
+                    <div className="col pb-3">
+                        <ArticleCard
+                            key={index}
+                            id={article.id}
+                            headline={article.headline}
+                            snippet={article.snippet}
+                            readArticle={readArticle}
+                        />
+                    </div>
+                )
+            }))
+        }
+
+        CreateArticleCards()
     }, []);
 
     return (
