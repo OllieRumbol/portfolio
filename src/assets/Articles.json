@@ -1,14 +1,14 @@
 [
-    {
-      "id": 1,
-      "headline": "How to start a react project",
-      "snippet": "Create a verbose and well structured React infrastructure as a solid foundation for any React web application.",
-      "body": "/articles/article1.html"
-    },
-    {
-      "id": 2,
-      "headline": "It's time we talk about your technical debt.",
-      "snippet": "Technical debt can cause huge problems both for organisations and the developers working for them. It's time to address it. ",
-      "body": "/articles/article2.html"
-    }
-  ]
+  {
+    "id": 1,
+    "headline": "How to start a react project",
+    "snippet": "Create a verbose and well structured React infrastructure as a solid foundation for any React web application.",
+    "body": "/articles/article1.html"
+  },
+  {
+    "id": 2,
+    "headline": "It's time we talk about your technical debt.",
+    "snippet": "Technical debt can cause huge problems both for organisations and the developers working for them. It's time to address it. ",
+    "body": "/articles/article2.html"
+  }
+]

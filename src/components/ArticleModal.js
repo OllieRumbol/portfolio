@@ -5,8 +5,12 @@ import '../style/ArticleModal.css';
 import '../style/Shared.css';
 
 export default function ArticleModal(props) {
-    const headline = props.article !== null ? props.article.headline : '';
-    const body = props.article !== null ? props.article.body : '';
+    const article = props.articles.filter(article => {
+        return article.id === props.id;
+    })[0];
+    const headline = article !== undefined ? article.headline : '';
+    const body = article !== undefined ? article.body : '';
+
 
     const handleClose = () => props.setShow(false);
 

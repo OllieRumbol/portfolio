@@ -8,24 +8,20 @@ import '../style/Shared.css';
 export default function Articles() {
     const [articleCards, setArticleCards] = useState(null);
     const [showArticleModal, setShowArticleModal] = useState(false);
-    const [articleToRead, setArticleToRead] = useState(null);
+    const [articles, setArticles] = useState([]);
+    const [id, setId] = useState(0)
 
-    const readArticle = async (id) => {
-        let articles = await GetArticles();
-        let article = articles.filter(article => {
-            return article.id === id;
-        })[0];
-
-        setArticleToRead(article);
-
+    function readArticle(id) {
+        setId(id)
         setShowArticleModal(true);
     }
 
     useEffect(() => {
         async function CreateArticleCards() {
-            let articles = await GetArticles();
+            let articles1 = await GetArticles();
+            setArticles(articles1);
 
-            setArticleCards(articles.map((article, index) => {
+            setArticleCards(articles1.map((article, index) => {
                 return (
                     <div className="col pb-3">
                         <ArticleCard
@@ -41,7 +37,7 @@ export default function Articles() {
         }
 
         CreateArticleCards()
-    }, []);
+    }, [])
 
     return (
         <Container fluid className='p-4'>
@@ -52,7 +48,8 @@ export default function Articles() {
             <ArticleModal
                 show={showArticleModal}
                 setShow={setShowArticleModal}
-                article={articleToRead}
+                articles={articles}
+                id={id}
             />
             <div className="row row-cols-1 row-cols-md-3">
                 {articleCards}

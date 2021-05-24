@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button';
 import '../style/ArticleCard.css';
 
 export default function ArticleCard(props) {
-    const click = () => {
-        props.readArticle(props.id);    
+
+    function click(){
+        props.readArticle(props.id);
     }
 
     return (
