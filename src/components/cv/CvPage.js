@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { isMobile } from 'react-device-detect';
-import Pdf from '../assets/Oliver Bourne CV.pdf';
-import '../style/Cv.css';
+import Pdf from '../../assets/Oliver Bourne CV.pdf';
+import '../../style/Cv.css';
 
-export default function Cv() {
+export default function CvPage() {
     const history = useHistory();
 
     useEffect(() => {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import ArticleCard from './ArticleCard';
 import ArticleModal from './ArticleModal';
 import Container from 'react-bootstrap/Container';
-import { GetArticles } from '../backend/ArticleService';
-import '../style/Shared.css';
+import { GetArticles } from '../../backend/ArticleService';
+import '../../style/Shared.css';
 
-export default function Articles() {
+export default function ArticlesPage() {
     const [articleCards, setArticleCards] = useState(null);
     const [showArticleModal, setShowArticleModal] = useState(false);
     const [articles, setArticles] = useState([]);
@@ -18,14 +18,13 @@ export default function Articles() {
 
     useEffect(() => {
         async function CreateArticleCards() {
-            let articles1 = await GetArticles();
-            setArticles(articles1);
+            let tempArticles = await GetArticles();
+            setArticles(tempArticles);
 
-            setArticleCards(articles1.map((article, index) => {
+            setArticleCards(tempArticles.map((article, index) => {
                 return (
-                    <div className="col pb-3">
+                    <div className="col pb-3" key={index}>
                         <ArticleCard
-                            key={index}
                             id={article.id}
                             headline={article.headline}
                             snippet={article.snippet}

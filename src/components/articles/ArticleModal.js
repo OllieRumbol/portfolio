@@ -1,16 +1,13 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ReactHtmlParser from 'react-html-parser';
-import '../style/ArticleModal.css';
-import '../style/Shared.css';
+import '../../style/ArticleModal.css';
+import '../../style/Shared.css';
 
 export default function ArticleModal(props) {
-    const article = props.articles.filter(article => {
-        return article.id === props.id;
-    })[0];
+    const article = props.articles.find(article => article.id === props.id);
     const headline = article !== undefined ? article.headline : '';
     const body = article !== undefined ? article.body : '';
-
 
     const handleClose = () => props.setShow(false);
 

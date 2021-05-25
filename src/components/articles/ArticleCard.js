@@ -1,10 +1,10 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import '../style/ArticleCard.css';
+import '../../style/ArticleCard.css';
 
 export default function ArticleCard(props) {
 
-    function click(){
+    const click = () => {
         props.readArticle(props.id);
     }
 

@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container';
-import '../style/Shared.css';
-import '../style/AboutMe.css';
+import '../../style/Shared.css';
+import '../../style/AboutMe.css';
 
-export default function AboutMe() {
+export default function AboutMePage() {
 
   return (
     <Container fluid className='p-4'>

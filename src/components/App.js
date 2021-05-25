@@ -1,9 +1,9 @@
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Home from './Home';
-import AboutMe from './AboutMe';
-import Projects from './Projects';
-import Articles from './Articles';
-import Cv from './Cv';
+import HomePage from './home/HomePage';
+import AboutMePage from './aboutMe/AboutMePage';
+import ProjectsPage from './projects/ProjectsPage';
+import ArticlesPage from './articles/ArticlesPage';
+import CvPage from './cv/CvPage';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -45,15 +45,13 @@ export default function App() {
           </ButtonGroup>
         </ButtonToolbar>
       </Container>
-      <main className="fullSize">
-        <Switch>
-          <Route path="/" exact component={() => <Home />} />
-          <Route path="/aboutMe" exact component={() => <AboutMe />} />
-          <Route path="/projects" exact component={() => <Projects />} />
-          <Route path="/articles" exact component={() => <Articles />} />
-          <Route path="/cv" exact component={() => <Cv />}/>
-        </Switch>
-      </main>
+      <Switch>
+        <Route path="/" exact component={() => <HomePage />} />
+        <Route path="/aboutMe" exact component={() => <AboutMePage />} />
+        <Route path="/projects" exact component={() => <ProjectsPage />} />
+        <Route path="/articles" exact component={() => <ArticlesPage />} />
+        <Route path="/cv" exact component={() => <CvPage />} />
+      </Switch>
     </Router>
   );
 }

@@ -1,8 +1,8 @@
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
-import '../style/Home.css';
+import '../../style/Home.css';
 
-export default function Home() {
+export default function HomePage() {
 
   return (
     <div className='p-4'>

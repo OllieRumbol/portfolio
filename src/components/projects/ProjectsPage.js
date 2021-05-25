@@ -1,12 +1,12 @@
-import ProjectCard from './shared/ProjectCard';
+import ProjectCard from './ProjectCard';
 import Container from 'react-bootstrap/Container';
-import '../style/Shared.css';
-import '../style/Projects.css';
-import DraughtsGameImage from '../assets/DraughtsGame.PNG';
-import Modal from '../assets/Modal.png';
-import TreeCalculator from '../assets/TreeCalculator.PNG';
+import '../../style/Shared.css';
+import '../../style/Projects.css';
+import DraughtsGameImage from '../../assets/DraughtsGame.PNG';
+import Modal from '../../assets/Modal.png';
+import TreeCalculator from '../../assets/TreeCalculator.PNG';
 
-export default function Projects() {
+export default function ProjectsPage() {
 
   return (
     <Container fluid className='p-4'>
