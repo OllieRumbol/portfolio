@@ -11,19 +11,100 @@
     useful tools. Before starting anything its a good idea to create a GitHub repo and clone it locally
 </p>
 <h3>1. Dependencies</h3>
-<p></p>
+<p>
+    There is a great tool for starting a new react project and is actually recommend by Facebook themselves. Its called 
+    create-react-app and a link to docs can be found
+    <a href='https://reactjs.org/docs/create-a-new-react-app.html#create-react-app'>here</a>. A simple 
+    <code>npx create-react-app <i>project name</i></code> is all it takes to create a new project. Then a <code>npm start</code>
+    wil run your project in node.
+</p>
 <h3>2. Refactor</h3>
-<p></p>
+<p>
+    The create-react-app is a great tool and installs all the dependencies you need to start a project. However it does
+    create a lot of assets that you don't need and doesn't create the clearest project structure, especially in the src
+    folder. Before the project goes any further its good idea to take sometime and delete all unwanted files and restructure 
+    the src folder. I like to add the following folders in the src folder to create a very clear structure.
+    <ul>
+        <li><span>components</span></li>
+        <li><span>style</span></li>
+        <li><span>assets</span></li>
+        <li><span>tests</span></li>
+        <li><span>hocks (optional)</span></li>
+        <li><span>store (optional)</span></li>
+        <li><span>backend (optional)</span></li>
+    </ul> 
+</p>
 <h3>3. Routing</h3>
 <p>
     Its at this point in your project you want to starting thinking abut routing. This is because its easier to do it
-    now than later on on your project when you have your components are already laid out and to make changes would
+    now than later on in your project when you have your components are already laid out and to make changes would
     involve pushing them further down in your tree.
 </p>
 <p>
-    React has a good package called react-router-dom that can help you do this
+    I like to add routing at the highest component in the tree. React has a good package called react-router-dom
+    that can help you do this. Below is a small guide to help to get started.
 </p>
+<ol>
+    <li><span>Install package</span></li>
+    <ul>
+        <li>
+            <code>
+                npm install react react-dom
+            </code>
+        </li>
+    </ul>
+    <li><span>Add imports</span></li>
+    <ul>
+        <li>
+            <code>
+                import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
+            </code>
+        </li>
+    </ul>
+    <li><span>Add Router tags which will contain both 'Link' and 'Route' tags</span></li>
+    <ul>
+        <li>
+            <code>
+                &lt;Router&gt;
+                <br />
+                ...
+                <br />
+                &lt;/Router&gt;
+            </code>
+        </li>
+    </ul>
+    <li><span>Add link elements with a 'to' attribute</span></li>
+    <ul>
+        <li>
+            <code>
+                &lt;Link to='/..'&gt;...&lt;Link&gt;
+            </code>
+        </li>
+    </ul>
+    <li>
+        <span>
+            Add routes with 'path' and 'component' attributes. Notice the 'to' and 'path' attributes will match thus
+            loading that component on the page. All routes are contained in switch tags.
+        </span>
+    </li>
+    <ul>
+        <li>
+            <code>
+                &lt;Switch&gt;
+                <br />
+                    &lt;Route path="/..." exact component={() => ...} /&gt;
+                <br />
+                &lt;/Switch&gt;
+            </code>
+        </li>
+    </ul>
+</ol>
 <h3>4. Hosting</h3>
-<p></p>
+<p>
+    Hosting makes a big difference to a project and there a variety of ways to do it. Github provides a free hosting
+    services for static pages call 'GitHub Pages'.
+</p>
 <h3>5. CI/CD</h3>
-<p></p>
+<p>
+    In all my experience as a developer creating a CI/CD pipeline is by far the most useful code I have ever written.
+</p>
