@@ -1,38 +1,40 @@
 <p>
     React is a simple but powerful JS library used to create single-page web applications. React is built by Facebook
-    and
-    full documentation can be found <a href='https://reactjs.org/'>here</a>. The React library provides a whole host of
+    and full documentation can be found <a href='https://reactjs.org/'>here</a>. The React library provides a whole host
+    of
     useful tools. Tools include but not limited to JSX, virtual DOM, one-way binding, state management and component
     design.
 </p>
 <p>
     This article illustrates some basic steps developers new to react can take to ensure their React project has a solid
     base for future development. I will show how the React app can be deployed using GitHub pages as well as some other
-    useful tools. Before starting anything its a good idea to create a GitHub repo and clone it locally
+    useful tools like CI/CD. Before starting anything its a good idea to create a GitHub repo and clone it locally.
 </p>
 <h3>1. Dependencies</h3>
 <p>
-    There is a great tool for starting a new react project and is actually recommend by Facebook themselves. Its called 
+    There is a great tool for starting a new react project and is actually recommend by Facebook themselves. Its called
     create-react-app and a link to docs can be found
-    <a href='https://reactjs.org/docs/create-a-new-react-app.html#create-react-app'>here</a>. A simple 
-    <code>npx create-react-app <i>project name</i></code> is all it takes to create a new project. Then a <code>npm start</code>
+    <a href='https://reactjs.org/docs/create-a-new-react-app.html#create-react-app'>here</a>. A simple
+    <code>npx create-react-app <i>project name</i></code> is all it takes to create a new project. Then a
+    <code>npm start</code>
     wil run your project in node.
 </p>
 <h3>2. Refactor</h3>
 <p>
     The create-react-app is a great tool and installs all the dependencies you need to start a project. However it does
     create a lot of assets that you don't need and doesn't create the clearest project structure, especially in the src
-    folder. Before the project goes any further its good idea to take sometime and delete all unwanted files and restructure 
+    folder. Before the project goes any further its good idea to take sometime and delete all unwanted files and
+    restructure
     the src folder. I like to add the following folders in the src folder to create a very clear structure.
-    <ul>
-        <li><span>components</span></li>
-        <li><span>style</span></li>
-        <li><span>assets</span></li>
-        <li><span>tests</span></li>
-        <li><span>hocks (optional)</span></li>
-        <li><span>store (optional)</span></li>
-        <li><span>backend (optional)</span></li>
-    </ul> 
+<ul>
+    <li><span>components</span></li>
+    <li><span>style</span></li>
+    <li><span>assets</span></li>
+    <li><span>tests</span></li>
+    <li><span>hocks (optional)</span></li>
+    <li><span>store (optional)</span></li>
+    <li><span>backend (optional)</span></li>
+</ul>
 </p>
 <h3>3. Routing</h3>
 <p>
@@ -101,10 +103,136 @@
 </ol>
 <h3>4. Hosting</h3>
 <p>
-    Hosting makes a big difference to a project and there a variety of ways to do it. Github provides a free hosting
-    services for static pages call 'GitHub Pages'.
+    Hosting makes a big difference to a project and there are variety of ways to do it. Github provides a free hosting
+    services for static pages call 'GitHub Pages'. Adding GitHub pages to your project it actually a simple task, just
+    follow
+    the steps below.
+<ol>
+    <li><span>Install package</span></li>
+    <ul>
+        <li>
+            <code>
+                    npm install gh-pages
+                </code>
+        </li>
+    </ul>
+    <li><span>Add url to package.json</span></li>
+    <ul>
+        <li>
+            <code>
+                    "homepage":"<i>home url</i>"
+                </code>
+        </li>
+    </ul>
+    <li><span>Add scripts to package.json</span></li>
+    <ul>
+        <li>
+            <code>
+                    "predeploy": "npm run build",
+                    <br />
+                    "deploy":"gh-pages -d build"
+                </code>
+        </li>
+    </ul>
+    <li><span>Run the following command to deploy</span></li>
+    <ul>
+        <li>
+            <code>
+                    npm deploy
+                </code>
+        </li>
+    </ul>
+</ol>
 </p>
 <h3>5. CI/CD</h3>
 <p>
     In all my experience as a developer creating a CI/CD pipeline is by far the most useful code I have ever written.
+    It makes deploying your code a breeze. All developers have to do is commit to master branch or whatever branch you
+    want.
+</p>
+<ol>
+    <li><span>Create folder at root level github/workflows and add main_deploy.yml file</span></li>
+    <li><span>Add secrets to the repo in GitHub, never add secrets in code</span></li>
+    <li><span>Create pipeline in YAML</span></li>
+    <ul>
+        <li>
+            <code>name: MainDeployCI</code>
+            <br />
+            <code>on:</code>
+            <br />
+            <div class="indent1">
+                <code>push:</code>    
+            </div>
+            <div class="indent2">
+                <code>branch:</code>
+            </div>
+            <div class="indent3">
+                <code>- main</code>
+            </div>
+            <br />
+            <code>jobs:</code>
+            <div class="indent1">
+                <code>build:</code>
+            </div>
+            <div class="indent2">
+                <code>runs-on: ubuntu-latest</code>
+            </div>
+            <div class="indent2">
+                <code>strategy:</code>
+            </div>
+            <div class="indent3">
+                <code>matrix:</code>
+            </div>
+            <div class="indent4">
+                <code>node-version: [12.x]</code>
+            </div>
+            <div class="indent2">
+                <code>steps:</code>
+            </div>
+            <div class="indent3">
+                <code>- uses: actions/checkout@v1</code>
+            </div>
+            <div class="indent3">
+                <code>- name: Use Node.js ${{ matrix.node-version }}</code>
+            </div>
+            <div class="indent4">
+                <code>uses: actions/setup-node@v1</code>
+            </div>
+            <div class="indent4">
+                <code>with:</code>
+            </div>
+            <div class="indent5">
+                <code>node-version: ${{ matrix.node-version }}</code>
+            </div>
+            <div class="indent3">
+                <code>- name: Install Packages</code>
+            </div>
+            <div class="indent4">
+                <code>run: npm install</code>
+            </div>
+            <div class="indent3">
+                <code>- name: Deploy to GH Pages</code>
+            </div>
+            <div class="indent4">
+                <code>run: |</code>
+            </div>
+            <div class="indent5">
+                <code>git config --global user.email ${{ secrets.EMAIL }}</code>
+            </div>
+            <div class="indent5">
+                <code>git config --global user.name ${{ secrets.USERNAME }}</code>
+            </div>
+            <div class="indent5">
+                <code>git remote set-url origin https://${{ secrets.TOKEN }}@github.com/${{ secrets.USERNAME }}/portfolio.git</code>
+            </div>
+            <div class="indent5">
+                <code>npm run deploy</code>
+            </div>
+        </li>
+    </ul>
+</ol>
+<h3>Summary</h3>
+<p>
+    If you have completed the above 5 steps successfully your React project is in a really great place going forward.
+
 </p>

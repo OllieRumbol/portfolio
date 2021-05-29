@@ -1,11 +1,31 @@
-.modal-header{
-    border-bottom: 1px solid #198754 !important;
+.modal-header {
+  border-bottom: 1px solid #198754 !important;
 }
 
-.modal-footer{
-    border-top: 1px solid #198754 !important;
+.modal-footer {
+  border-top: 1px solid #198754 !important;
 }
 
-.modalWhole{
-    background-color: #32383e;
+.modalWhole {
+  background-color: #32383e;
+}
+
+.indent1 {
+  text-indent: 1em;
+}
+
+.indent2 {
+  text-indent: 2em;
+}
+
+.indent3 {
+  text-indent: 3em;
+}
+
+.indent4 {
+  text-indent: 4em;
+}
+
+.indent5 {
+  text-indent: 5em;
 }
