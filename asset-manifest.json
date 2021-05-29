@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.710f8f98.chunk.css",
+    "main.css": "/portfolio/static/css/main.701bc140.chunk.css",
     "main.js": "/portfolio/static/js/main.1b9f049d.chunk.js",
     "main.js.map": "/portfolio/static/js/main.1b9f049d.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.76232b81.js",
@@ -10,7 +10,7 @@
     "static/js/2.8d2a85e3.chunk.js.map": "/portfolio/static/js/2.8d2a85e3.chunk.js.map",
     "index.html": "/portfolio/index.html",
     "static/css/2.800be05e.chunk.css.map": "/portfolio/static/css/2.800be05e.chunk.css.map",
-    "static/css/main.710f8f98.chunk.css.map": "/portfolio/static/css/main.710f8f98.chunk.css.map",
+    "static/css/main.701bc140.chunk.css.map": "/portfolio/static/css/main.701bc140.chunk.css.map",
     "static/js/2.8d2a85e3.chunk.js.LICENSE.txt": "/portfolio/static/js/2.8d2a85e3.chunk.js.LICENSE.txt",
     "static/media/DraughtsGame.231405ab.PNG": "/portfolio/static/media/DraughtsGame.231405ab.PNG",
     "static/media/Modal.00377416.png": "/portfolio/static/media/Modal.00377416.png",
@@ -21,7 +21,7 @@
     "static/js/runtime-main.76232b81.js",
     "static/css/2.800be05e.chunk.css",
     "static/js/2.8d2a85e3.chunk.js",
-    "static/css/main.710f8f98.chunk.css",
+    "static/css/main.701bc140.chunk.css",
     "static/js/main.1b9f049d.chunk.js"
   ]
 }
