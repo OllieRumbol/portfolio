@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ArticleCard from './ArticleCard';
 import ArticleModal from './ArticleModal';
 import Container from 'react-bootstrap/Container';
 import { GetArticles } from '../../backend/ArticleService';
+import { MyContext } from '../../backend/MyProvider';
 import '../../style/Shared.css';
 
 export default function ArticlesPage() {
     const [articleCards, setArticleCards] = useState(null);
     const [showArticleModal, setShowArticleModal] = useState(false);
-    const [articles, setArticles] = useState([]);
-    const [id, setId] = useState(0)
+    const [id, setId] = useState(0);
+    const context = useContext(MyContext);
 
     function readArticle(id) {
         setId(id)
@@ -17,11 +18,21 @@ export default function ArticlesPage() {
     }
 
     useEffect(() => {
-        async function CreateArticleCards() {
-            let tempArticles = await GetArticles();
-            setArticles(tempArticles);
+        async function GetCachedArticlesOrFetchArticles() {
+            if (context.articles.length !== 0) {
+                return context.articles;
+            }
+            else {
+                let tempArticles = await GetArticles();
+                context.setArticles(tempArticles);
+                return tempArticles;
+            }
+        }
 
-            setArticleCards(tempArticles.map((article, index) => {
+        async function CreateArticleCards() {
+            let articles = await GetCachedArticlesOrFetchArticles();
+
+            setArticleCards(articles.map((article, index) => {
                 return (
                     <div className="col pb-3" key={index}>
                         <ArticleCard
@@ -36,7 +47,7 @@ export default function ArticlesPage() {
         }
 
         CreateArticleCards()
-    }, [])
+    }, [context])
 
     return (
         <Container fluid className='p-4'>
@@ -47,7 +58,6 @@ export default function ArticlesPage() {
             <ArticleModal
                 show={showArticleModal}
                 setShow={setShowArticleModal}
-                articles={articles}
                 id={id}
             />
             <div className="row row-cols-1 row-cols-md-3">
