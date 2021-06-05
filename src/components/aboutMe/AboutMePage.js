@@ -131,6 +131,11 @@ export default function AboutMePage() {
                   <li>
                     <span>Newtonsoft</span>
                   </li>
+                  <li>
+                    <span>
+                      Automated testing: MS Test, X-Unit, N-Unit, Selenium, SpecFlow
+                    </span>
+                  </li>
                 </ul>
               </li>
             </ul>
