@@ -4,14 +4,14 @@
 }
 
 .title{
-    font-size: calc(3rem + 7vw);
+    font-size: calc(2rem + 6vw);
     font-weight: 350;
     line-height: 1.2;
 }
 
 .subTitle{
-    font-size: calc(1.5rem + 5.5vw);
-    font-weight: 350;
+    font-size: calc(1rem + 5vw);
+    font-weight: 300;
     line-height: 1.2;
 }
 

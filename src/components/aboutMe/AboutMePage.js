@@ -20,16 +20,18 @@ export default function AboutMePage() {
           <li>
             <span>
               Client team: Joining the client team was a big mix up in the company. We focused on the custom work within the company so,
-              we created custom modals, managed IAPs, login and payment integrations, Oauth gateway pages, JSON and XML automations. As
-              a backend developer, we were also involved with project management, client calls and bug master. At PageSuite we used C#
-              with .Net and AWS infrastructure.
+              we created custom modals, managed IAPs, login and payment integrations, Oauth gateway pages, JSON and XML automations along
+              with one off projects for clients all over the world. As a backend developer, we were also involved with project management,
+              client calls, bug master and on call support. At PageSuite we used C# with .Net 5, .Net Core, .Net Framework, JS with Node
+              and AWS infrastructure.
             </span>
           </li>
           <li>
             <span>
               Backend team: When I first joined the company teams were split up into technologies. Backend developers were the closes
-              thing PageSuite had to a full stack developer. We built automation's, integrations, feed wrappers anything the company needed
-              for the apps and frontend to work the client data for digital publishing.
+              thing PageSuite had to a full stack developers. We built automation's, integrations, feed wrappers anything the company needed
+              for the apps and frontend to work the client data for digital publishing. PageSuite can sometimes be as agile as a waterfall, which
+              is something im trying to always improve in the company.
             </span>
           </li>
         </ul>
@@ -62,6 +64,134 @@ export default function AboutMePage() {
             </span>
           </li>
         </ul>
+      </div>
+      <hr className='green' />
+      <div>
+        <h4 className='colour display-4 text-success'>Skills</h4>
+      </div>
+      <div className='colour fs-4'>
+        <p>
+          I'm always excited to learn new libraries, frameworks, tools and languages to help improve my skills as a developer and create
+          the best projects I can. Below is a list of skills I have used so far.
+        </p>
+        <div className='row row-cols-1 row-cols-md-4'>
+          <div className='col'>
+            <ul>
+              <li>
+                <span>Languages</span>
+                <ul>
+                  <li>
+                    <span>C#</span>
+                  </li>
+                  <li>
+                    <span>LINQ</span>
+                  </li>
+                  <li>
+                    <span>Java</span>
+                  </li>
+                  <li>
+                    <span>Python</span>
+                  </li>
+                  <li>
+                    <span>HTML, CSS, JS</span>
+                  </li>
+                  <li>
+                    <span>TypeScript</span>
+                  </li>
+                  <li>
+                    <span>Go</span>
+                  </li>
+                  <li>
+                    <span>Erlang</span>
+                  </li>
+                  <li>
+                    <span>SQL</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className='col'>
+            <ul>
+              <li>
+                <span>Libraries and frameworks</span>
+                <ul>
+                  <li>
+                    <span>Angular, Vue, React</span>
+                  </li>
+                  <li>
+                    <span>.Net 5, .Net Core, .Net Framework (MVC and Web Forms)</span>
+                  </li>
+                  <li>
+                    <span>Bootstrap</span>
+                  </li>
+                  <li>
+                    <span>Entity Framework</span>
+                  </li>
+                  <li>
+                    <span>Newtonsoft</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className='col'>
+            <ul>
+              <li>
+                <span>Cloud Services/ Deployments</span>
+                <ul>
+                  <li>
+                    <span>Azure</span>
+                  </li>
+                  <li>
+                    <span>Aws</span>
+                  </li>
+                  <li>
+                    <span>Github actions and pages</span>
+                  </li>
+                  <li>
+                    <span>IIS</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div><div className='col'>
+            <ul>
+              <li>
+                <span>Tools</span>
+                <ul>
+                  <li>
+                    <span>Visual studio</span>
+                  </li>
+                  <li>
+                    <span>VS Code</span>
+                  </li>
+                  <li>
+                    <span>LINQ Pad</span>
+                  </li>
+                  <li>
+                    <span>Net Beans</span>
+                  </li>
+                  <li>
+                    <span>IntelliJ</span>
+                  </li>
+                  <li>
+                    <span>Postman</span>
+                  </li>
+                  <li>
+                    <span>Git</span>
+                  </li>
+                  <li>
+                    <span>Git Fork</span>
+                  </li>
+                  <li>
+                    <span>Chocolatey</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <hr className='green' />
       <div>
@@ -114,7 +244,7 @@ export default function AboutMePage() {
       </div>
       <div className='colour fs-4'>
         <ul>
-          <li><span>3 A Levels: Computing (C), Geography (C), BTEC ICT Double Distinction*</span></li>
+          <li><span>3 A Levels: Computing (C), Geography (C), IT BTEC (Double Distinction Star)</span></li>
           <li><span>12 GCSEs and 2 BTECs from A* - C</span></li>
         </ul>
       </div>
