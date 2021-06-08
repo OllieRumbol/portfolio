@@ -1,6 +1,10 @@
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import '../../style/Home.css';
+import '../../style/Shared.css';
 
 export default function HomePage() {
 
@@ -18,6 +22,65 @@ export default function HomePage() {
           </h5>
         </Container>
       </Jumbotron>
+      <div>
+        <h4 className='colour display-4 text-success'>Testimonials</h4>
+      </div>
+      <div>
+        <Accordion defaultActiveKey="0">
+          <Card className='cardColour colour'>
+            <Card.Header className='text-center'>
+              <Accordion.Toggle className='fs-5' as={Button} variant="success" eventKey="0">
+                From Benjamin Loveridge-Rowe, Software Engineer at PageSuite
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>
+                <p className='fs-5'>
+                  Oli is a hardworking, dedicated and highly talented developer who always brings innovative solutions to the team.
+                </p>
+                <p className='fs-5'>
+                  Thanks to his passion for writing clean, maintainable code, working on his projects is always an absolute pleasure.
+                  He is a quick learner, and is never afraid to pick up something new, which enables him to diversify his skill set
+                  quickly and easily.
+                </p>
+                <p className='fs-5'>
+                  Always looking for the best way to push a project forward, Oli embraces modern technologies and frameworks to ensure
+                  the end product is as polished and efficient as it can be, always using the right tool for the job.
+                </p>
+                <p className='fs-5'>
+                  Oli is very adept at foreseeing potential hurdles in a project, which allows him to plan with confidence knowing what
+                  issues we may face along the way, and how best to overcome them.
+                </p>
+                <p className='fs-5'>
+                  I’ve had the pleasure of working with him every day for some time now, and hope I can continue to do so for a long
+                  time to come.
+                </p>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card className='cardColour colour'>
+            <Card.Header className='text-center'>
+              <Accordion.Toggle className='fs-5' as={Button} variant="success" eventKey="1">
+                From Augustine Lau, Flutter Developer at PageSuite
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="1">
+              <Card.Body>
+                <p className='fs-5'>
+                  It’s been an absolute pleasure working with Oliver. He is a very competent and highly skilled backend developer
+                  who has excellent problem solving and communication skills. He has taken an overwhelming amount of additional
+                  responsibilities outside of what you would expect from a junior developer, he really goes above and beyond.
+                </p>
+                <p className='fs-5'>
+                  I have worked with Oliver on many projects. He has an excellent ability to adapt to different situations, coming up
+                  with very effective and logical solutions to short sighted problems that has occurred numerous times in past projects.
+                  Oliver would be an extremely valuable asset of any team he joins.
+                </p>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
+      </div>
     </div>
   );
 }

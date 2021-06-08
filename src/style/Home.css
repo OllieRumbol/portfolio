@@ -23,3 +23,7 @@
 .carousel-control-prev, .carousel-control-next {
     display: none !important;
 }
+
+.cardColour{
+    background-color: #32383e !important;
+}
