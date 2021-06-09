@@ -46,7 +46,7 @@ export default function ProjectsPage() {
           BIDMAS logic (Brackets, Indices, Division, Multiplication, Addition, Subtraction) and can deal with all sort of 
           calculations +, -, *, /, !, √, powers and brackets. Validation does occur before creating a tree for example dividing 
           by 0 or missing out numbers.'
-        technology='A .Net Core console application has been used with .Net standard class libraries and MS unit tests.'
+        technology='A .NET Core console application has been used with .NET standard class libraries and MS unit tests.'
         site='https://github.com/OllieRumbol/TreeCalculator'
         image={TreeCalculator}
         buttonText='Link to repo' />

@@ -22,7 +22,7 @@ export default function AboutMePage() {
               Client team: Joining the client team was a big mix up in the company. We focused on the custom work within the company so,
               we created custom modals, managed IAPs, login and payment integrations, Oauth gateway pages, JSON and XML automations along
               with one off projects for clients all over the world. As a backend developer, we were also involved with project management,
-              client calls, bug master and on call support. At PageSuite we used C# with .Net 5, .Net Core, .Net Framework, JS with Node
+              client calls, bug master and on call support. At PageSuite we used C# with .NET 5, .NET Core, .NET Framework, JS with Node
               and AWS infrastructure.
             </span>
           </li>
@@ -45,21 +45,21 @@ export default function AboutMePage() {
             <span>
               PMA team: Was a tool used by the provider team to manage information with all types of providers. This could be a small
               specialist or a major hospital. PMA was a huge 8 year project (4 years when I joined) and included a variety of tools
-              that were built using .Net MVC and jQuery.
+              that were built using .NET MVC and jQuery.
             </span>
           </li>
           <li>
             <span>
-              PACE team: This was the first agile team I join at AXA PPP where I was one of two .Net developers so a lot was
+              PACE team: This was the first agile team I join at AXA PPP where I was one of two .NET developers so a lot was
               expected of me. Pace was an in house tool for gathering marketing consent across the business. It had an Angular frontend
-              and a .Net API with a variety of automations and databases behind it. The IBM tool MDM played a huge part in the project.
+              and a .NET API with a variety of automations and databases behind it. The IBM tool MDM played a huge part in the project.
               I worked on both the frontend and backend of the application along with fully automated testing using MS Test, Specflow
               and selenium.
             </span>
           </li>
           <li>
             <span>
-              AXA PPP: Uses Azure and .Net as its main infrastructure and had 8 agile teams. I really enjoyed working in an open
+              AXA PPP: Uses Azure and .NET as its main infrastructure and had 8 agile teams. I really enjoyed working in an open
               plan office and learning from other developers.
             </span>
           </li>
@@ -120,7 +120,7 @@ export default function AboutMePage() {
                     <span>Angular, Vue, React</span>
                   </li>
                   <li>
-                    <span>.Net 5, .Net Core, .Net Framework (MVC and Web Forms)</span>
+                    <span>.NET 5, .NET Core, .NET Framework (MVC and Web Forms)</span>
                   </li>
                   <li>
                     <span>Bootstrap</span>
