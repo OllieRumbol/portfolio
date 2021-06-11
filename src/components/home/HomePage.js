@@ -28,14 +28,25 @@ export default function HomePage() {
       <div>
         <h6 className='colour display-6'>.NET 5</h6>
       </div>
-      <div>
-
+      <div className='colour fs-5'>
+        <p>
+          Its been really interesting to see how Microsoft's .NET library has evolved over the years. Grown from Framework (Web Forms and
+          MVC), .NET Core and now .NET 5. I can create well designed web resources with ease using the powerful C# language and OOP design 
+          pattern. Deployments are as easy as clicking your fingers with Visual Studio and Azure.
+        </p>
       </div>
       <div>
         <h6 className='colour display-6'>React</h6>
       </div>
-      <div>
-
+      <div className='colour fs-5'>
+        <p>
+          There are a variety of frontend frameworks out there. Angular, Vue, Ember, Backbone just to name a few. So why do I like React the 
+          most? I have used a few of the frameworks mention earlier and using any framework is better than just writing HTMl, CSS and JS on 
+          its own. These tools create a far more well structured and adaptable technical solution. React has a whole host of useful tools.
+          JSX, virtual DOM, one-way binding, state management and component design. However I like React because of its simplicity. Each
+          component is just a simple JS file that returns HTML, no need to transpile it. React hooks make state even easier to manage and 
+          huge array of third party libraries for testing, routing and creative design. 
+        </p>
       </div>
       <hr className='green' />
       <div>
