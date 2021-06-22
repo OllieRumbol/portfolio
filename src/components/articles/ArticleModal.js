@@ -16,10 +16,10 @@ export default function ArticleModal(props) {
     const handleClose = () => props.setShow(false);
 
     return (
-        <Modal show={props.show} size="lg" centered>
+        <Modal show={props.show} size="xl" centered>
             <div className='modalWhole colour'>
                 <Modal.Header>
-                    <Modal.Title className='display-4'>{headline}</Modal.Title>
+                    <Modal.Title className='display-4 fw-bold'>{headline}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='fs-5'>{ReactHtmlParser(body)}</Modal.Body>
                 <Modal.Footer>
