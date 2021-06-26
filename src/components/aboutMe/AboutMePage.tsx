@@ -1,8 +1,9 @@
+import { FunctionComponent } from 'react';
 import Container from 'react-bootstrap/Container';
 import '../../style/Shared.css';
 import '../../style/AboutMe.css';
 
-export default function AboutMePage() {
+const AboutMePage: FunctionComponent = () => {
 
   return (
     <Container fluid className='p-4'>
@@ -256,3 +257,5 @@ export default function AboutMePage() {
     </Container>
   );
 }
+
+export default AboutMePage;

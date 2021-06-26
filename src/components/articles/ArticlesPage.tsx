@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, FunctionComponent } from "react";
 import ArticleCard from './ArticleCard';
 import ArticleModal from './ArticleModal';
 import Container from 'react-bootstrap/Container';
 import { GetArticles } from '../../backend/ArticleService';
 import { MyContext } from '../../backend/MyProvider';
 import '../../style/Shared.css';
+import { ContextType, Article } from "../../type.d";
 
-export default function ArticlesPage() {
-    const [articleCards, setArticleCards] = useState(null);
-    const [showArticleModal, setShowArticleModal] = useState(false);
-    const [id, setId] = useState(0);
-    const context = useContext(MyContext);
+const ArticlesPage: FunctionComponent = () => {
+    const [articleCards, setArticleCards] = useState<JSX.Element[]>([]);
+    const [showArticleModal, setShowArticleModal] = useState<boolean>(false);
+    const [id, setId] = useState<number>(0);
+    const context = useContext(MyContext) as ContextType;
 
-    function readArticle(id) {
+    function readArticle(id: number) {
         setId(id)
         setShowArticleModal(true);
     }
@@ -23,16 +24,16 @@ export default function ArticlesPage() {
                 return context.articles;
             }
             else {
-                let tempArticles = await GetArticles();
+                let tempArticles: Article[] = await GetArticles();
                 context.setArticles(tempArticles);
                 return tempArticles;
             }
         }
 
         async function CreateArticleCards() {
-            let articles = await GetCachedArticlesOrFetchArticles();
+            let articles: Article[] = await GetCachedArticlesOrFetchArticles();
 
-            setArticleCards(articles.map((article, index) => {
+            setArticleCards(articles.map((article: Article, index: number) => {
                 return (
                     <div className="col pb-3" key={index}>
                         <ArticleCard
@@ -66,3 +67,5 @@ export default function ArticlesPage() {
         </Container>
     )
 }
+
+export default ArticlesPage

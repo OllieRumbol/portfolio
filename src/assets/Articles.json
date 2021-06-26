@@ -8,7 +8,13 @@
   {
     "id": 2,
     "headline": "It's time we talk about your technical debt.",
-    "snippet": "Technical debt can cause huge problems both for organisations and the developers working for them. It's time to address it. ",
+    "snippet": "Technical debt can cause huge problems both for organisations and the developers working for them. It's time to address it.",
     "body": "/articles/article2.html"
+  },
+  {
+    "id": 3,
+    "headline": "What BDD can do for you",
+    "snippet": "Why you should care about BDD and the positive impact it can have for you business",
+    "body": "/articles/article3.html"
   }
 ]

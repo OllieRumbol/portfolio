@@ -1,7 +1,17 @@
+import { FunctionComponent } from 'react';
 import Card from 'react-bootstrap/Card';
 import '../../style/ProjectCard.css';
 
-export default function ProjectCard(props) {
+interface IProjectCardProps {
+    title: string
+    image: string
+    description: string
+    technology: string
+    site: string
+    buttonText: string
+}
+
+const ProjectCard: FunctionComponent<IProjectCardProps> = (props) => {
 
     return (
         <div className='m-5'>
@@ -29,3 +39,5 @@ export default function ProjectCard(props) {
         </div>
     );
 }
+
+export default ProjectCard;
