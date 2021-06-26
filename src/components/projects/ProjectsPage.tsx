@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react';
 import ProjectCard from './ProjectCard';
 import Container from 'react-bootstrap/Container';
 import '../../style/Shared.css';
@@ -6,7 +7,7 @@ import DraughtsGameImage from '../../assets/DraughtsGame.PNG';
 import Modal from '../../assets/Modal.png';
 import TreeCalculator from '../../assets/TreeCalculator.PNG';
 
-export default function ProjectsPage() {
+const ProjectPage: FunctionComponent = () => {
 
   return (
     <Container fluid className='p-4'>
@@ -52,11 +53,13 @@ export default function ProjectsPage() {
         buttonText='Link to repo' />
       <div className='m-5'>
         <h5 className='projectText'>
-          After my first year of university, I built all sorts of applications in Java to help develop my foundation knowledge as a 
-          developer. Such as clocks, calculators, text editors, track archery scoring, track table tennis matches, encoding and 
+          After my first year of university, I built all sorts of applications in Java to help develop my foundation knowledge as a
+          developer. Such as clocks, calculators, text editors, track archery scoring, track table tennis matches, encoding and
           decoding messages, binary converters, code breakers and traffic light systems.
         </h5>
       </div>
     </Container>
   );
 }
+
+export default ProjectPage;

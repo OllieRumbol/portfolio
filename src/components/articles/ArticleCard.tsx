@@ -1,8 +1,16 @@
+import React, { FunctionComponent } from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import '../../style/ArticleCard.css';
 
-export default function ArticleCard(props) {
+interface ArticleCardProps {
+    id: number
+    headline: string
+    snippet: string
+    readArticle: (id: number) => void
+}
+
+const ArticleCard: FunctionComponent<ArticleCardProps> = (props) => {
 
     const click = () => {
         props.readArticle(props.id);
@@ -18,3 +26,5 @@ export default function ArticleCard(props) {
         </Card>
     )
 }
+
+export default ArticleCard
