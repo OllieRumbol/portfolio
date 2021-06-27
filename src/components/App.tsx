@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import HomePage from './home/HomePage';
 import AboutMePage from './aboutMe/AboutMePage';
@@ -13,7 +12,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 
-const App: FunctionComponent = () => {
+const App = () => {
 
   return (
     <MyProvider>

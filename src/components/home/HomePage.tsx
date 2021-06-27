@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
@@ -7,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import '../../style/Home.css';
 import '../../style/Shared.css';
 
-const HomePage: FunctionComponent = () => {
+const HomePage = () => {
 
   return (
     <div className='p-4'>

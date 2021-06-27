@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, FunctionComponent } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ArticleCard from './ArticleCard';
 import ArticleModal from './ArticleModal';
 import Container from 'react-bootstrap/Container';
@@ -6,9 +6,10 @@ import { GetArticles } from '../../backend/ArticleService';
 import { MyContext } from '../../backend/MyProvider';
 import '../../style/Shared.css';
 import { ContextType, Article } from "../../type.d";
+import { ReactElement } from "react";
 
-const ArticlesPage: FunctionComponent = () => {
-    const [articleCards, setArticleCards] = useState<JSX.Element[]>([]);
+const ArticlesPage = () => {
+    const [articleCards, setArticleCards] = useState<ReactElement[]>([]);
     const [showArticleModal, setShowArticleModal] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
     const context = useContext(MyContext) as ContextType;

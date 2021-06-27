@@ -1,9 +1,13 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { ReactChild, useState } from "react";
 import { ContextType, Article } from "../type.d";
 
 export const MyContext = React.createContext<ContextType | []>([]);
 
-const MyProvider: FunctionComponent = (props) => {
+type ProviderProps = {
+    children: ReactChild
+}
+
+const MyProvider = (props: ProviderProps) => {
     const [articles, setArticles] = useState<Article[]>([]);
 
     return (

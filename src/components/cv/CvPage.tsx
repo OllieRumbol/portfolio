@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { isMobile } from 'react-device-detect';
 import Pdf from '../../assets/Oliver Bourne CV.pdf';
 import '../../style/Cv.css';
 
-const CvPage: FunctionComponent = () => {
+const CvPage = () => {
     const history = useHistory();
 
     useEffect(() => {

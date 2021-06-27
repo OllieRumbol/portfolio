@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { useContext } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ReactHtmlParser from 'react-html-parser';
@@ -7,17 +7,14 @@ import '../../style/ArticleModal.css';
 import '../../style/Shared.css';
 import { ContextType, Article } from "../../type.d";
 
-interface ArticleModalProps {
+type ArticleModalProps = {
     id: number
     show: boolean
     setShow: (show: boolean) => void
 }
 
-const ArticleModal: FunctionComponent<ArticleModalProps> = (props) => {
+const ArticleModal = (props: ArticleModalProps) => {
     const context = useContext(MyContext) as ContextType;
-
-    console.log()
-
     const article: Article | undefined = context.articles.find(article => article.id === props.id);
     const headline: string = article !== undefined ? article.headline : '';
     const body: string = article !== undefined ? article.body : '';

@@ -1,8 +1,7 @@
-import { FunctionComponent } from 'react';
 import Card from 'react-bootstrap/Card';
 import '../../style/ProjectCard.css';
 
-interface IProjectCardProps {
+type ProjectCardProps = {
     title: string
     image: string
     description: string
@@ -11,7 +10,7 @@ interface IProjectCardProps {
     buttonText: string
 }
 
-const ProjectCard: FunctionComponent<IProjectCardProps> = (props) => {
+const ProjectCard = (props: ProjectCardProps) => {
 
     return (
         <div className='m-5'>
