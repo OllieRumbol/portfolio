@@ -1,16 +1,15 @@
-import React, { FunctionComponent } from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import '../../style/ArticleCard.css';
 
-interface ArticleCardProps {
+type ArticleCardProps = {
     id: number
     headline: string
     snippet: string
     readArticle: (id: number) => void
 }
 
-const ArticleCard: FunctionComponent<ArticleCardProps> = (props) => {
+const ArticleCard = (props: ArticleCardProps) => {
 
     const click = () => {
         props.readArticle(props.id);

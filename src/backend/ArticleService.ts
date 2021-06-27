@@ -1,7 +1,9 @@
 import Articles from '../assets/Articles.json';
 import { Article } from '../type.d';
 
-export async function GetArticles() {
+export { GetArticles }
+
+const GetArticles = async() => {
     let resultArticles: Article[] = [];
 
     for (const article of Articles) {

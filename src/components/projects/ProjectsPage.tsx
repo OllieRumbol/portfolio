@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import ProjectCard from './ProjectCard';
 import Container from 'react-bootstrap/Container';
 import '../../style/Shared.css';
@@ -7,7 +6,7 @@ import DraughtsGameImage from '../../assets/DraughtsGame.PNG';
 import Modal from '../../assets/Modal.png';
 import TreeCalculator from '../../assets/TreeCalculator.PNG';
 
-const ProjectPage: FunctionComponent = () => {
+const ProjectPage = () => {
 
   return (
     <Container fluid className='p-4'>

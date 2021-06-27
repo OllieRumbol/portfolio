@@ -1,9 +1,8 @@
-import { FunctionComponent } from 'react';
 import Container from 'react-bootstrap/Container';
 import '../../style/Shared.css';
 import '../../style/AboutMe.css';
 
-const AboutMePage: FunctionComponent = () => {
+const AboutMePage = () => {
 
   return (
     <Container fluid className='p-4'>
