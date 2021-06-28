@@ -88,10 +88,30 @@ const HomePage = () => {
           <Card className='cardColour colour'>
             <Card.Header className='text-center'>
               <Accordion.Toggle className='fs-5' as={Button} variant="success" eventKey="1">
-                From Augustine Lau, Flutter Developer at PageSuite
+                From Mark Tanner, Senior Software Engineer at PageSuite
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="1">
+              <Card.Body>
+                <p className='fs-5'>
+                  The first thing that comes to mind when describing Ollie is his passion. He really cares about what he is working on 
+                  and will always fight to make his projects as good as they possibly can be. Ollie has a great understanding of C# & 
+                  .Net, as well as amazing frontend skills, especially in vue.js.
+                </p>
+                <p className='fs-5'>
+                Ollie is hardworking, loyal, highly intelligence but also very humble, he will always be the first to admit when he is 
+                wrong. His communication skills are top notch and he makes friends with everyone he meets.
+                </p>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card className='cardColour colour'>
+            <Card.Header className='text-center'>
+              <Accordion.Toggle className='fs-5' as={Button} variant="success" eventKey="2">
+                From Augustine Lau, Flutter Developer at PageSuite
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="2">
               <Card.Body>
                 <p className='fs-5'>
                   It’s been an absolute pleasure working with Oliver. He is a very competent and highly skilled backend developer
