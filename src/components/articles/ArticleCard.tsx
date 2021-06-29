@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import '../../style/ArticleCard.css';
+import '../../style/Shared.css';
 
 type ArticleCardProps = {
     id: number
@@ -16,8 +16,8 @@ const ArticleCard = (props: ArticleCardProps) => {
     }
 
     return (
-        <Card className='p-0'>
-            <Card.Body className='cardBody'>
+        <Card className='p-0 cardOutline' bg='dark'>
+            <Card.Body className='colour'>
                 <Card.Title className='display-4 text-center'>{props.headline}</Card.Title>
                 <Card.Text className='fs-4'>{props.snippet}</Card.Text>
                 <Button variant="success" onClick={click}>Read more</Button>

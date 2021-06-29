@@ -1,7 +1,6 @@
 import ProjectCard from './ProjectCard';
 import Container from 'react-bootstrap/Container';
 import '../../style/Shared.css';
-import '../../style/Projects.css';
 import DraughtsGameImage from '../../assets/DraughtsGame.PNG';
 import Modal from '../../assets/Modal.png';
 import TreeCalculator from '../../assets/TreeCalculator.PNG';
@@ -10,14 +9,10 @@ const ProjectPage = () => {
 
   return (
     <Container fluid className='p-4'>
-      <div className='center p-1'>
-        <h1 className='colour display-1'>Projects</h1>
-      </div>
-      <div className='m-5'>
-        <h5 className='projectText'>
-          Over the years I have built many projects to help develop my skills as a developer using all sorts of technology, libraries, frameworks and tools.
-        </h5>
-      </div>
+      <h1 className='text-center p-1 colour display-1'>Projects</h1>
+      <p className='m-5 colour fs-4'>
+        Over the years I have built many projects to help develop my skills as a developer using all sorts of technology, libraries, frameworks and tools.
+      </p>
       <ProjectCard
         title='Draughts Game'
         description='A draughts game built that offers players both two-player and single-player modes with a range of difficulty levels.
@@ -50,13 +45,11 @@ const ProjectPage = () => {
         site='https://github.com/OllieRumbol/TreeCalculator'
         image={TreeCalculator}
         buttonText='Link to repo' />
-      <div className='m-5'>
-        <h5 className='projectText'>
-          After my first year of university, I built all sorts of applications in Java to help develop my foundation knowledge as a
-          developer. Such as clocks, calculators, text editors, track archery scoring, track table tennis matches, encoding and
-          decoding messages, binary converters, code breakers and traffic light systems.
-        </h5>
-      </div>
+      <p className='m-5 colour fs-4'>
+        After my first year of university, I built all sorts of applications in Java to help develop my foundation knowledge as a
+        developer. Such as clocks, calculators, text editors, track archery scoring, track table tennis matches, encoding and
+        decoding messages, binary converters, code breakers and traffic light systems.
+      </p>
     </Container>
   );
 }

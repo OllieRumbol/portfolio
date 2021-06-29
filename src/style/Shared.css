@@ -1,7 +1,7 @@
-.center{
-    text-align: center;
-}
-
 .colour{
     color: #aaa;
+}
+
+.cardOutline{
+    box-shadow: 0px 1px 4px 0.5px #198754;
 }

@@ -53,9 +53,7 @@ const ArticlesPage = () => {
 
     return (
         <Container fluid className='p-4'>
-            <div className='center p-1'>
-                <h1 className='colour display-1'>Articles</h1>
-            </div>
+            <h1 className='text-center p-1 colour display-1'>Articles</h1>
             <hr className='green' />
             <ArticleModal
                 show={showArticleModal}
