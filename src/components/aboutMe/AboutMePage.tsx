@@ -1,6 +1,5 @@
 import Container from 'react-bootstrap/Container';
 import '../../style/Shared.css';
-import '../../style/AboutMe.css';
 
 const AboutMePage = () => {
 
