@@ -27,7 +27,7 @@ const ArticleModal = (props: ArticleModalProps) => {
                 <Modal.Header>
                     <Modal.Title className='display-4 fw-bold'>{headline}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className='fs-5'>{ReactHtmlParser(body)}</Modal.Body>
+                <Modal.Body className='fs-4'>{ReactHtmlParser(body)}</Modal.Body>
                 <Modal.Footer>
                     <Button variant='success' onClick={handleClose}>Close</Button>
                 </Modal.Footer>

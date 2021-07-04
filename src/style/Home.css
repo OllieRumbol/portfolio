@@ -1,29 +1,26 @@
-.header{
-    color: #aaa;
-    text-align: center;
+.header {
+  color: #aaa;
+  text-align: center;
 }
 
-.title{
-    font-size: calc(2rem + 6vw);
-    font-weight: 350;
-    line-height: 1.2;
+.title {
+  font-size: calc(2rem + 6vw);
+  font-weight: 350;
+  line-height: 1.2;
 }
 
-.subTitle{
-    font-size: calc(1rem + 5vw);
-    font-weight: 300;
-    line-height: 1.2;
+.subTitle {
+  font-size: calc(1rem + 5vw);
+  font-weight: 300;
+  line-height: 1.2;
 }
 
-.green{
-    background-color: #198754;
-    opacity: 1 !important;
+.green {
+  background-color: #198754;
+  opacity: 1 !important;
 }
 
-.carousel-control-prev, .carousel-control-next {
-    display: none !important;
-}
-
-.cardColour{
-    background-color: #32383e !important;
+.carousel-control-prev,
+.carousel-control-next {
+  display: none !important;
 }
