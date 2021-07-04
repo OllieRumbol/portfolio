@@ -10,7 +10,7 @@ const ProjectPage = () => {
   return (
     <Container fluid className='p-4'>
       <h1 className='text-center p-1 colour display-1'>Projects</h1>
-      <p className='m-5 colour fs-4'>
+      <p className='colour fs-4'>
         Over the years I have built many projects to help develop my skills as a developer using all sorts of technology, libraries, frameworks and tools.
       </p>
       <ProjectCard
@@ -24,6 +24,7 @@ const ProjectPage = () => {
         site='https://ollierumbol.github.io/draughtsgame/#/'
         image={DraughtsGameImage}
         buttonText='Link to site' />
+        <br></br>
       <ProjectCard
         title='Dynamic Vue Modal'
         description='The idea of this project was to mix and match old and new technologies. Companies sometimes have so much technical 
@@ -35,6 +36,7 @@ const ProjectPage = () => {
         site='https://github.com/OllieRumbol/Dynamic-Vue'
         image={Modal}
         buttonText='Link to repo' />
+        <br></br>
       <ProjectCard
         title='Tree Calculator'
         description='This program solves calculations by creating a tree from an equation and then solving a tree. It follows the 
@@ -45,7 +47,8 @@ const ProjectPage = () => {
         site='https://github.com/OllieRumbol/TreeCalculator'
         image={TreeCalculator}
         buttonText='Link to repo' />
-      <p className='m-5 colour fs-4'>
+      <br></br>
+      <p className='colour fs-4'>
         After my first year of university, I built all sorts of applications in Java to help develop my foundation knowledge as a
         developer. Such as clocks, calculators, text editors, track archery scoring, track table tennis matches, encoding and
         decoding messages, binary converters, code breakers and traffic light systems.
