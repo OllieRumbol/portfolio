@@ -7,8 +7,20 @@ const AboutMePage = () => {
     <Container fluid className='p-4'>
       <h1 className='text-center colour display-1'>About Me</h1>
       <h4 className='colour display-4 text-success'>Technical Experience</h4>
-      <h6 className='colour display-6'>June 2020 – Now: Backend Developer at PageSuite</h6>
+      <h6 className='colour display-6'>June 2020 – Now: Technical Lead at PageSuite</h6>
       <ul>
+        <li>
+          <span className='colour fs-4'>
+            Backend team: Backend team: In the middle of 2021 PageSuite reformed the backend team. At the end of 2021, I was promoted 
+            from backend developer to technical lead. In the back half of 2021, my job was slightly different. I was still coding and 
+            building new products but I went on more sales calls, more scoping meetings and more planning meetings. As a more 
+            experienced developer, I created more generic solutions instead of just building what was needed. The best of which was 
+            the generic SSO gateway that allowed third parties or custom SSO solutions to integrate with all products at PageSuite. 
+            This new SSO solution enabled developers to integrate with nearly any SSO in hours instead of days. Another replaceability 
+            I picked up over the year was that when the team lead of backend and infrastructure was on holiday or off ill, I had the 
+            honour of leading the backend team.
+          </span>
+        </li>
         <li>
           <span className='colour fs-4'>
             Client team: Joining the client team was a big mix up in the company. We focused on the custom work within the company so,
@@ -133,7 +145,7 @@ const AboutMePage = () => {
                   <span>Azure</span>
                 </li>
                 <li>
-                  <span>Aws</span>
+                  <span>AWS</span>
                 </li>
                 <li>
                   <span>Github actions and pages</span>
