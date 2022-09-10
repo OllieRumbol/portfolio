@@ -1,19 +1,18 @@
-import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import HomePage from './home/HomePage';
-import AboutMePage from './aboutMe/AboutMePage';
-import ProjectsPage from './projects/ProjectsPage';
-import ArticlesPage from './articles/ArticlesPage';
-import CvPage from './cv/CvPage';
-import MyProvider from '../backend/MyProvider';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/App.css';
+import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
+import HomePage from "./home/HomePage";
+import AboutMePage from "./aboutMe/AboutMePage";
+import ProjectsPage from "./projects/ProjectsPage";
+import ArticlesPage from "./articles/ArticlesPage";
+import CvPage from "./cv/CvPage";
+import MyProvider from "../backend/MyProvider";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../style/App.css";
 
 const App = () => {
-
   return (
     <MyProvider>
       <Router>
@@ -40,10 +39,24 @@ const App = () => {
               </ButtonGroup>
             </Link>
             <ButtonGroup className="m-2">
-              <a href="https://github.com/OllieRumbol" target="_blank" rel="noreferrer" className="btn btn-success">GitHub</a>
+              <a
+                href="https://github.com/OllieRumbol"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-success"
+              >
+                GitHub
+              </a>
             </ButtonGroup>
             <ButtonGroup className="m-2">
-              <a href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/" target="_blank" rel="noreferrer" className="btn btn-success">LinkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-success"
+              >
+                LinkedIn
+              </a>
             </ButtonGroup>
           </ButtonToolbar>
         </Container>
@@ -57,6 +70,6 @@ const App = () => {
       </Router>
     </MyProvider>
   );
-}
+};
 
 export default App;
