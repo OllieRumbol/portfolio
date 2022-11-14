@@ -4,6 +4,7 @@ import "../../style/Shared.css";
 import DraughtsGameImage from "../../assets/DraughtsGame.PNG";
 import Modal from "../../assets/Modal.png";
 import TreeCalculator from "../../assets/TreeCalculator.PNG";
+import JWTValidator from "../../assets/JWTValidator.png";
 
 const ProjectPage = () => {
   return (
@@ -24,7 +25,7 @@ const ProjectPage = () => {
         technology="This was my first project I release as a nuget library and shared with other developers. Its built using C# and .NET 6. 
         The are a varity of different aspect to this project, builder design pattern, try get methods, generic extension methods and unit tests."
         site="https://www.nuget.org/packages/JWTValidator"
-        image={""}
+        image={JWTValidator}
         buttonText="Link to library"
       />
       <br></br>
