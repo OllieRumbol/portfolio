@@ -100,30 +100,36 @@ const AboutMePage = () => {
       <ul>
         <li>
           <span className="colour fs-4">
-            PMA team: Was a tool used by the provider team to manage information
-            with all different types of providers. This could be a small
-            specialist or a major hospital. PMA was a huge 8 year project (4
-            years when I joined) and included a variety of tools that were built
-            using .NET MVC and jQuery.
+            <b>PMA Team</b>: Provider Management Application (PMA) is a web tool
+            that is used by the provider team to manage information across
+            different types of providers. This could be a small specialist or
+            major private hospitals. PMA was a huge 8-year project (4 years when
+            I joined) and included a variety of tools that were built using .NET
+            MVC and jQuery. Towards the end of my time at AXA PPP I built a POC
+            around how using a frontend framework like React could improve the
+            performance and developer productivity.
           </span>
         </li>
         <li>
           <span className="colour fs-4">
-            PACE team: This was the first agile team I join at AXA PPP where I
-            was one of two .NET developers so a lot was expected of me. Pace was
-            an in house tool for gathering marketing consent across the
-            business. It had an Angular frontend and a .NET API with a variety
-            of automations and databases behind it. The IBM tool MDM played a
-            huge part in the project. I worked on both the frontend and backend
-            of the application along with fully automated testing using MS Test,
-            Specflow and selenium.
+            <b>PACE Team</b>: This was the first agile team I join at AXA PPP
+            where I was one of two .NET developers so a lot was expected of me.
+            Pace was an in-house tool for gathering marketing consent across
+            different products in the business. It had an Angular frontend and a
+            .NET API with a variety of automations and databases behind it. The
+            IBM tool MDM played a huge part in the project to help match
+            different instances of a person together. I worked on both the
+            frontend and backend of the application along with fully automated
+            BDD and unit testing using MS Test, Specflow and Selenium.
           </span>
         </li>
         <li>
           <span className="colour fs-4">
-            AXA PPP: Uses Azure and .NET as its main infrastructure and had 8
-            agile teams. I really enjoyed working in an open plan office and
-            learning from other developers.
+            <b>AXA PPP</b>: AXA PPP is a huge player in the private health
+            insurance business. The business heavily uses Azure and .NET as its
+            main infrastructure technologies and had 8 agile teams. I really
+            enjoyed working in an open-plan office and learning from other
+            developers.
           </span>
         </li>
       </ul>
@@ -138,7 +144,9 @@ const AboutMePage = () => {
         <div className="col">
           <ul className="fs-4">
             <li>
-              <span>Languages</span>
+              <span>
+                <b>Languages</b>
+              </span>
               <ul>
                 <li>
                   <span>C#</span>
@@ -174,7 +182,9 @@ const AboutMePage = () => {
         <div className="col">
           <ul className="fs-4">
             <li>
-              <span>Libraries and frameworks</span>
+              <span>
+                <b>Libraries and frameworks</b>
+              </span>
               <ul>
                 <li>
                   <span>Angular, Vue, React</span>
@@ -206,7 +216,9 @@ const AboutMePage = () => {
         <div className="col">
           <ul className="fs-4">
             <li>
-              <span>Cloud Services/ Deployments</span>
+              <span>
+                <b>Cloud Services/ Deployments</b>
+              </span>
               <ul>
                 <li>
                   <span>Azure</span>
@@ -227,7 +239,9 @@ const AboutMePage = () => {
         <div className="col">
           <ul className="fs-4">
             <li>
-              <span>Tools</span>
+              <span>
+                <b>Tools</b>
+              </span>
               <ul>
                 <li>
                   <span>Visual studio</span>
@@ -269,7 +283,7 @@ const AboutMePage = () => {
       <ul className="colour fs-4">
         <li className="fw-bolder">
           <span>
-            Final year <span className="badge bg-success">73%</span>
+            Final Year <span className="badge bg-success">73%</span>
           </span>
         </li>
         <ul>
@@ -297,7 +311,7 @@ const AboutMePage = () => {
         </ul>
         <li className="fw-bolder">
           <span>
-            Industry year <span className="badge bg-success">81%</span>
+            Industry Year <span className="badge bg-success">81%</span>
           </span>
         </li>
         <ul>
@@ -307,7 +321,7 @@ const AboutMePage = () => {
         </ul>
         <li className="fw-bolder">
           <span>
-            Second year <span className="badge bg-success">74%</span>
+            Second Year <span className="badge bg-success">74%</span>
           </span>
         </li>
         <ul>
@@ -335,7 +349,7 @@ const AboutMePage = () => {
         </ul>
         <li className="fw-bolder">
           <span>
-            First year <span className="badge bg-success">72%</span>
+            First Year <span className="badge bg-success">72%</span>
           </span>
         </li>
         <ul>
@@ -372,12 +386,14 @@ const AboutMePage = () => {
       <ul className="colour fs-4">
         <li>
           <span>
-            3 A Levels: Computing (C), Geography (C), IT BTEC (Double
+            <b>3 A Levels</b>: Computing (C), Geography (C), IT BTEC (Double
             Distinction Star)
           </span>
         </li>
         <li>
-          <span>12 GCSEs and 2 BTECs from A* - C</span>
+          <span>
+            <b>12 GCSEs and 2 BTECs</b> from A* - C
+          </span>
         </li>
       </ul>
     </Container>
