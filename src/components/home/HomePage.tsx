@@ -27,7 +27,7 @@ const HomePage = () => {
       <h4 className="colour display-4 text-success">
         Current Favourite Technology
       </h4>
-      <h6 className="colour display-6">.NET 5</h6>
+      <h6 className="colour display-6 fw-bold">.NET 5</h6>
       <p className="colour fs-4">
         Its been really interesting to see how Microsoft's .NET library has
         evolved over the years. Grown from Framework (Web Forms and MVC), .NET
@@ -35,7 +35,7 @@ const HomePage = () => {
         using the powerful C# language and OOP design pattern. Deployments are
         as easy as clicking your fingers with Visual Studio and Azure.
       </p>
-      <h6 className="colour display-6">React</h6>
+      <h6 className="colour display-6 fw-bold">React</h6>
       <p className="colour fs-4">
         There are a variety of frontend frameworks out there. Angular, Vue,
         Ember, Backbone just to name a few. So why do I like React the most? I
