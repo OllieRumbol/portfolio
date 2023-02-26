@@ -7,7 +7,28 @@ const AboutMePage = () => {
       <h1 className="text-center colour display-1">About Me</h1>
       <h4 className="colour display-4 text-success">Technical Experience</h4>
       <h6 className="colour display-6">
-        June 2020 – Now: Backend Team Lead at PageSuite
+        March 2023 – Now: Full Stack Developer at Logistics UK
+      </h6>
+      <ul>
+        <li>
+          <span className="colour fs-4">Lo</span>
+        </li>
+        <li>
+          <span className="colour fs-4">
+            I have been involved in a few different teams at PageSuite but my
+            work has always been very backend focused. I have also spent a large
+            amount of time taking on responsibilities of the job position above
+            mine.
+            <ul>
+              <li>
+                <span className="colour fs-4">example</span>
+              </li>
+            </ul>
+          </span>
+        </li>
+      </ul>
+      <h6 className="colour display-6">
+        June 2020 – Mach 2023: Backend Team Lead at PageSuite
       </h6>
       <ul>
         <li>
@@ -275,6 +296,40 @@ const AboutMePage = () => {
           </ul>
         </div>
       </div>
+      <hr className="green" />
+      <h4 className="colour display-4 text-success">Certification</h4>
+      <p className="colour fs-4">
+        I think it's important to remember just because I have finished
+        university a few years ago that doesn't mean I stop that formal
+        education process. I'm really passionate about learning and can't wait
+        to learn new things and grow my knowledge base. In 2023 I reflected on
+        my professional career. I have used cloud technologies since day one.
+        Azure at AXA PPP and AWS at PageSuite. It's time for me to cermet that
+        knowledge and prove it to myself. So I have decided as I have such a
+        passion for C# and .NET it makes sense to start formal certification
+        with Azure. I want to achieve the following certifications in my career
+        but this list could change over time.
+      </p>
+      <ul className="colour fs-4">
+        <li>
+          <span>Azure Fundamentals <span className="badge bg-success">In Progress</span></span>
+        </li>
+        <li>
+          <span>Azure Data Fundamentals</span>
+        </li>
+        <li>
+          <span>Azure Administrator</span>
+        </li>
+        <li>
+          <span>Azure Developer</span>
+        </li>
+        <li>
+          <span>Azure Solution Architect</span>
+        </li>
+        <li>
+          <span>Azure DevOps Engineer</span>
+        </li>
+      </ul>
       <hr className="green" />
       <h4 className="colour display-4 text-success">Education</h4>
       <h6 className="colour display-6">
