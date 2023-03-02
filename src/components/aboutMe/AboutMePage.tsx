@@ -11,17 +11,11 @@ const AboutMePage = () => {
       </h6>
       <ul>
         <li>
-          <span className="colour fs-4">Lo</span>
-        </li>
-        <li>
           <span className="colour fs-4">
-            I have been involved in a few different teams at PageSuite but my
-            work has always been very backend focused. I have also spent a large
-            amount of time taking on responsibilities of the job position above
-            mine.
+            Coming soon ...
             <ul>
               <li>
-                <span className="colour fs-4">example</span>
+                <span className="colour fs-4"></span>
               </li>
             </ul>
           </span>
@@ -312,7 +306,10 @@ const AboutMePage = () => {
       </p>
       <ul className="colour fs-4">
         <li>
-          <span>Azure Fundamentals <span className="badge bg-success">In Progress</span></span>
+          <span>
+            Azure Fundamentals{" "}
+            <span className="badge bg-success">In Progress</span>
+          </span>
         </li>
         <li>
           <span>Azure Data Fundamentals</span>
