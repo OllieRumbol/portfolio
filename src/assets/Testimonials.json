@@ -1,0 +1,38 @@
+[
+    {
+        "fromName": "Jonathon Wigmore",
+        "jobTitle": "Senior Account Manager",
+        "company": "PageSuite",
+        "body": "/testimonials/testimonial1.html"
+    },
+    {
+        "fromName": "Kevin Barclay",
+        "jobTitle": "Backend Developer",
+        "company": "PageSuite",
+        "body": "/testimonials/testimonial2.html"
+    },
+    {
+        "fromName": "Kieran Wrenn",
+        "jobTitle": "Software Engineer",
+        "company": "PageSuite",
+        "body": "/testimonials/testimonial3.html"
+    },
+    {
+        "fromName": "Benjamin Loveridge-Rowe",
+        "jobTitle": "Backend Developer",
+        "company": "PageSuite",
+        "body": "/testimonials/testimonial4.html"
+    },
+    {
+        "fromName": "Mark Tanner",
+        "jobTitle": "Software Engineer",
+        "company": "PageSuite",
+        "body": "/testimonials/testimonial5.html"
+    },
+    {
+        "fromName": "Augustine Lau",
+        "jobTitle": "Flutter Developer",
+        "company": "PageSuite",
+        "body": "/testimonials/testimonial6.html"
+    }
+]
