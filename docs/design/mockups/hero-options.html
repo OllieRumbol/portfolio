@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Title section options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f3;
+    --surface: #ffffff;
+    --raised: #f4f6f3;
+    --line: #e2e6e1;
+    --ink: #0c1410;
+    --muted: #5a665f;
+    --green: #15803d;
+    --green-soft: #e3f3e8;
+    --on-green: #ffffff;
+    --glow: rgba(21, 128, 61, 0.14);
+    --shadow: 0 1px 2px rgba(12, 20, 16, 0.04), 0 12px 32px -16px rgba(12, 20, 16, 0.12);
+    --sq-dark: #15803d;
+    --sq-light: #e3f3e8;
+  }
+  :root[data-theme="dark"] {
+    --bg: #090c0a;
+    --surface: #111512;
+    --raised: #171c18;
+    --line: #232a25;
+    --ink: #eef3ef;
+    --muted: #98a59d;
+    --green: #4ade80;
+    --green-soft: #12301f;
+    --on-green: #06240f;
+    --glow: rgba(74, 222, 128, 0.12);
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+    --sq-dark: #1c6b3c;
+    --sq-light: #1b231e;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(900px 480px at 85% -120px, var(--glow), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 8px; }
+  .wrap { max-width: 1136px; margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: "Geist Mono", ui-monospace, Consolas, monospace; }
+
+  /* Navigation */
+  .bar {
+    position: sticky; top: 0; z-index: 5;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; margin-right: auto; }
+  .mark { width: 26px; height: 26px; border-radius: 8px; background: var(--green); color: var(--on-green); display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; }
+  .links { display: flex; gap: 24px; }
+  .links a { text-decoration: none; color: var(--muted); font-size: 0.95rem; font-weight: 500; }
+  .links a:hover { color: var(--ink); }
+  .icon-button {
+    width: 38px; height: 38px; border-radius: 10px; cursor: pointer;
+    display: grid; place-items: center; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .icon-button svg { width: 18px; height: 18px; }
+  @media (max-width: 640px) { .links { display: none; } }
+
+  /* Buttons */
+  .button {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 46px; padding: 0 20px; border-radius: 12px;
+    font-weight: 600; font-size: 0.97rem; text-decoration: none;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  .button.primary { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .button:hover { filter: brightness(1.05); }
+
+  /* Hero */
+  .hero { padding: clamp(48px, 8vw, 104px) 0 clamp(40px, 6vw, 80px); display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1000px) { .hero { grid-template-columns: minmax(0, 1fr) 420px; gap: 64px; } }
+
+  /* A real pull request, shown as evidence of the way of working */
+  .pr { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; }
+  .pr-head { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--line); font-size: 0.875rem; color: var(--muted); }
+  .pr-head .repo { margin-right: auto; }
+  .merged { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 0.8rem; background: var(--green-soft); color: var(--green); }
+  .merged svg { width: 13px; height: 13px; }
+  .pr-body { padding: 20px; }
+  .pr-title { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 8px; color: var(--ink); }
+  .branch { display: inline-block; font-size: 0.78rem; padding: 3px 8px; border-radius: 6px; background: var(--raised); border: 1px solid var(--line); color: var(--muted); }
+  .commits { list-style: none; margin: 20px 0 0; padding: 0; }
+  .commits li { position: relative; padding: 0 0 18px 30px; font-size: 0.93rem; line-height: 1.4; }
+  .commits li:last-child { padding-bottom: 0; }
+  .commits li::before { content: ""; position: absolute; left: 9px; top: 20px; bottom: -2px; width: 2px; background: var(--line); }
+  .commits li:last-child::before { display: none; }
+  .commits .tick { position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: var(--on-green); display: grid; place-items: center; }
+  .commits .tick svg { width: 11px; height: 11px; }
+  .commits small { display: block; color: var(--muted); font-size: 0.82rem; }
+  .pr-foot { padding: 14px 20px; border-top: 1px solid var(--line); background: var(--raised); font-size: 0.85rem; color: var(--muted); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px 6px 10px; border-radius: 999px;
+    font-size: 0.875rem; font-weight: 500; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-soft); }
+  h1 {
+    font-size: clamp(2.3rem, 5.2vw, 3.9rem); font-weight: 600;
+    line-height: 1.04; letter-spacing: -0.035em;
+    margin: 24px 0 24px; max-width: 16ch;
+  }
+  h1 span { display: block; color: var(--muted); }
+  .hero p { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--muted); max-width: 56ch; margin: 0 0 32px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Cards */
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; padding-bottom: 96px; }
+  .card {
+    grid-column: span 12; min-width: 0;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 24px;
+    padding: 28px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  @media (min-width: 900px) {
+    .c7 { grid-column: span 7; } .c5 { grid-column: span 5; }
+    .c4 { grid-column: span 4; } .c8 { grid-column: span 8; }
+  }
+  .card .kicker { font-size: 0.875rem; font-weight: 500; color: var(--green); margin: 0 0 6px; }
+  h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 8px; }
+  h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 4px; }
+  .card p { margin: 0; color: var(--muted); }
+  .card .link { margin-top: auto; padding-top: 24px; font-weight: 600; font-size: 0.95rem; color: var(--ink); text-decoration: none; }
+  .card .link:hover { color: var(--green); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .tag { font-size: 0.8rem; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: var(--raised); border: 1px solid var(--line); color: var(--muted); }
+
+  /* How I work: five steps, joined by one line */
+  .steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; }
+  .steps::before { content: ""; position: absolute; top: 15px; left: 10%; right: 10%; height: 2px; background: var(--line); }
+  .steps::after { content: ""; position: absolute; top: 15px; left: 10%; width: 80%; height: 2px; background: var(--green); transform-origin: left; animation: draw 1.6s 0.3s ease-out both; }
+  @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) { .steps::after { animation: none; } html { scroll-behavior: auto; } }
+  .steps li { text-align: center; font-size: 0.9rem; font-weight: 500; position: relative; z-index: 1; }
+  .node { width: 32px; height: 32px; margin: 0 auto 12px; border-radius: 50%; background: var(--green); color: var(--on-green); display: grid; place-items: center; box-shadow: 0 0 0 6px var(--surface); }
+  .node svg { width: 16px; height: 16px; }
+  @media (max-width: 560px) {
+    .steps { grid-template-columns: 1fr; gap: 14px; }
+    .steps::before, .steps::after { display: none; }
+    .steps li { display: flex; align-items: center; gap: 12px; text-align: left; }
+    .node { margin: 0; box-shadow: none; }
+  }
+
+  /* Experience timeline */
+  .timeline { list-style: none; margin: 24px 0 0; padding: 0; }
+  .timeline li { position: relative; padding: 0 0 22px 28px; }
+  .timeline li::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: -8px; width: 2px; background: var(--line); }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li:last-child::before { display: none; }
+  .timeline li::after { content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--muted); }
+  .timeline li.now::after { background: var(--green); border-color: var(--green); box-shadow: 0 0 0 4px var(--green-soft); }
+  .timeline small { display: block; color: var(--muted); font-size: 0.875rem; }
+
+  /* Project visuals */
+  .visual {
+    height: 216px; border-radius: 16px; margin-bottom: 24px;
+    background: var(--raised); border: 1px solid var(--line);
+    display: grid; place-items: center; overflow: hidden; padding: 16px;
+  }
+  .token { font-size: 0.8rem; line-height: 1.7; width: 100%; word-break: break-all; }
+  .token b { font-weight: 500; }
+  .token .h { color: var(--green); }
+  .token .p { color: var(--ink); }
+  .token .s { color: var(--muted); }
+  .valid { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: var(--green-soft); color: var(--green); }
+  .valid svg { width: 14px; height: 14px; }
+  .jwt .result svg { width: 14px; height: 14px; }
+  .board {
+    --cell: 18px; position: relative; flex: none; width: calc(var(--cell) * 8); height: calc(var(--cell) * 8);
+    border-radius: 8px; overflow: hidden;
+    background: conic-gradient(var(--sq-dark) 25%, var(--sq-light) 0 50%, var(--sq-dark) 0 75%, var(--sq-light) 0) 0 0 / calc(var(--cell) * 2) calc(var(--cell) * 2);
+  }
+  .board i {
+    position: absolute; width: 12px; height: 12px; border-radius: 50%;
+    left: calc(var(--x) * var(--cell) + 3px); top: calc(var(--y) * var(--cell) + 3px);
+  }
+  .board i.w { background: #ffffff; }
+  .board i.b { background: #0c1410; outline: 1px solid rgba(255, 255, 255, 0.35); outline-offset: -1px; }
+  /* On hover or focus, white makes a capture: it jumps a black piece. */
+  /* White jumps a black piece. The white piece rises as it crosses, lands, and the black piece is lifted off. */
+  @keyframes jump {
+    0%   { left: calc(3 * var(--cell) + 3px); top: calc(2 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
+    50%  { transform: scale(1.45); box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3); }
+    100% { left: calc(5 * var(--cell) + 3px); top: calc(4 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
+  }
+  @keyframes lifted {
+    0%, 55% { opacity: 1; transform: scale(1); }
+    75%     { opacity: 1; transform: scale(1.4) translateY(-3px); }
+    100%    { opacity: 0; transform: scale(1.4) translateY(-12px); }
+  }
+  .board .mover { z-index: 2; }
+  .card:hover .board .mover, .card:focus-within .board .mover { animation: jump 560ms ease-in-out both; }
+  .card:hover .board .taken, .card:focus-within .board .taken { animation: lifted 1000ms ease-out both; }
+    .hint { font-size: 0.8rem; color: var(--muted); margin-top: 8px; text-align: center; line-height: 1.2; }
+  .visual.stack { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  .section-head { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 40px 4px 4px; }
+  .section-head h2 { font-size: 1.75rem; margin: 0; }
+  .section-head a { font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+  .section-head a:hover { color: var(--green); }
+
+  .site { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px 32px; background: var(--green-soft); border-color: transparent; box-shadow: none; }
+  .site div { flex: 1 1 320px; }
+  .site h3 { color: var(--ink); }
+  .site .docs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .site .docs a { font-size: 0.85rem; padding: 8px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .site .docs a:hover { border-color: var(--green); }
+  .target { width: 132px; height: 132px; }
+  .target circle { fill: none; stroke: var(--green); }
+
+  /* Version 2: each card answers a hover or a tap with something from the project itself */
+  @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes ripple { 50% { transform: scale(1.07); } }
+
+  /* The pull request: its three commits tick in order when the page loads */
+  .commits .tick { animation: pop 0.45s both; }
+  .commits li:nth-child(1) .tick { animation-delay: 0.5s; }
+  .commits li:nth-child(2) .tick { animation-delay: 0.9s; }
+  .commits li:nth-child(3) .tick { animation-delay: 1.3s; }
+
+  /* How I work: each step explains itself */
+  .steps li { cursor: default; padding-bottom: 4px; }
+  .node { transition: transform 150ms ease; }
+  .steps li:hover .node, .steps li:focus-visible .node { transform: scale(1.18); }
+  .card .step-note { margin-top: 20px; padding: 12px 16px; border-radius: 12px; background: var(--raised); border: 1px solid var(--line); font-size: 0.93rem; min-height: 4.2em; }
+  .card .step-note strong { color: var(--ink); font-weight: 600; }
+
+  /* JWT Validator: the token folds away and the library's four checks pass one by one */
+  .jwt { width: 100%; }
+  .jwt .token { max-height: 8.7em; overflow: hidden; transition: max-height 320ms ease, opacity 320ms ease; }
+  .jwt .checks { list-style: none; margin: 0; padding: 0; max-height: 0; overflow: hidden; font-size: 0.78rem; transition: max-height 320ms ease, margin 320ms ease; }
+  .jwt .checks li { display: flex; align-items: center; gap: 8px; line-height: 23px; color: var(--ink); }
+  .jwt .checks .tick { flex: none; width: 15px; height: 15px; border-radius: 50%; background: var(--green); color: var(--on-green); display: grid; place-items: center; opacity: 0; }
+  .jwt .checks .tick svg { width: 9px; height: 9px; }
+  .jwt .result { opacity: 0; margin-top: 8px; }
+  .jwt .hint { display: block; text-align: left; transition: opacity 200ms ease; }
+  .card:hover .jwt .token, .card:focus-within .jwt .token { max-height: 1.7em; opacity: 0.5; }
+  .card:hover .jwt .checks, .card:focus-within .jwt .checks { max-height: 96px; margin-top: 8px; }
+  .card:hover .jwt .hint, .card:focus-within .jwt .hint { display: none; }
+  .card:hover .jwt .tick, .card:focus-within .jwt .tick { opacity: 1; animation: pop 0.4s both; }
+  .card:hover .jwt li:nth-child(1) .tick, .card:focus-within .jwt li:nth-child(1) .tick { animation-delay: 0.35s; }
+  .card:hover .jwt li:nth-child(2) .tick, .card:focus-within .jwt li:nth-child(2) .tick { animation-delay: 0.6s; }
+  .card:hover .jwt li:nth-child(3) .tick, .card:focus-within .jwt li:nth-child(3) .tick { animation-delay: 0.85s; }
+  .card:hover .jwt li:nth-child(4) .tick, .card:focus-within .jwt li:nth-child(4) .tick { animation-delay: 1.1s; }
+  .card:hover .jwt .result, .card:focus-within .jwt .result { opacity: 1; animation: pop 0.45s 1.45s both; }
+
+  /* Picktime Automation: an arrow lands in the centre, and the target is booked */
+  /* The arrow is drawn pointing left, with its tip at 0,0. The outer group turns it and puts the tip on the centre. */
+  .target { overflow: visible; }
+  .target .flight { opacity: 0; transform-origin: 0 0; }
+  .target .shaft { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+  .target .point { fill: var(--ink); }
+  .target .vane { fill: var(--green); stroke: var(--surface); stroke-width: 0.6; }
+  .target .rings { transform-origin: 66px 66px; }
+  /* It flies in fast, stops dead in the centre, then the shaft quivers and settles. */
+  @keyframes flight {
+    0%   { transform: translateX(120px); opacity: 0; }
+    8%   { opacity: 1; }
+    30%  { transform: translateX(0) rotate(0deg); }
+    42%  { transform: translateX(0) rotate(5deg); }
+    54%  { transform: translateX(0) rotate(-3.5deg); }
+    66%  { transform: translateX(0) rotate(2deg); }
+    78%  { transform: translateX(0) rotate(-1deg); }
+    100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+  }
+  @keyframes impact { 0% { transform: scale(1); } 30% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  .card:hover .target .flight, .card:focus-within .target .flight { animation: flight 900ms cubic-bezier(0.5, 0, 0.9, 0.6) both; }
+  .card:hover .target .rings, .card:focus-within .target .rings { animation: impact 420ms 270ms ease-out; }
+  .visual { position: relative; }
+  .booked { position: absolute; top: 12px; right: 12px; margin: 0; opacity: 0; transform: translateY(4px); transition: opacity 250ms 520ms, transform 250ms 520ms; }
+  .card:hover .booked, .card:focus-within .booked { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .commits .tick, .jwt .tick, .jwt .result, .target .flight, .target .rings { animation: none !important; }
+    .card:hover .board .mover, .card:focus-within .board .mover { animation: none; left: calc(5 * var(--cell) + 3px); top: calc(4 * var(--cell) + 3px); }
+    .card:hover .board .taken, .card:focus-within .board .taken { animation: none; opacity: 0; }
+    .card:hover .target .flight, .card:focus-within .target .flight { opacity: 1; }
+    .booked, .node { transition: none; }
+  }
+
+  /* Testimonial */
+  blockquote { margin: 0; font-size: clamp(1.3rem, 2.4vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.015em; }
+  .who { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-soft); color: var(--green); display: grid; place-items: center; font-weight: 600; font-size: 0.85rem; }
+  .who strong { display: block; font-weight: 600; line-height: 1.3; }
+  .who span { color: var(--muted); font-size: 0.9rem; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+  /* ---- Version 3: a different skeleton. No headline-left, card-right hero. ---- */
+  nav .button { height: 38px; padding: 0 14px; font-size: 0.9rem; border-radius: 10px; }
+  @media (max-width: 640px) { nav .button { display: none; } }
+
+  /* The name is the hero. Everything is centred on it. */
+  .hero3 { text-align: center; padding: clamp(48px, 8vw, 104px) 20px 0; }
+  .hero3 .name {
+    font-size: clamp(3.3rem, 13vw, 10.5rem); font-weight: 600;
+    line-height: 0.92; letter-spacing: -0.06em;
+    margin: 28px auto 28px; max-width: none;
+  }
+  .hero3 .lede { font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 1.4; color: var(--muted); max-width: 40ch; margin: 0 auto; }
+  .hero3 .invite { margin: clamp(40px, 6vw, 72px) 0 20px; font-weight: 600; color: var(--ink); }
+
+  /* The three things to try sit directly under the name. They are the first thing to do on the page. */
+  .dock { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 900px) {
+    .dock { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  }
+  .dock .card { grid-column: auto; }
+  .dock .tags { margin-top: auto; padding-top: 16px; }
+  .dock .visual { height: 248px; }
+  .dock .board { --cell: 23px; }
+  .dock .board i { width: calc(var(--cell) - 6px); height: calc(var(--cell) - 6px); }
+  .dock .target { width: 168px; height: 168px; }
+
+  .band { padding-top: clamp(64px, 9vw, 128px); }
+  .band-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 28px; }
+  .band-head h2, .split h2, .cta h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); letter-spacing: -0.035em; line-height: 1.05; margin: 0; }
+  .band-head a { font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+  .band-head a:hover { color: var(--green); }
+
+  /* Experience drawn to scale: each block is as wide as the time it lasted. */
+  .career { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
+  .career li {
+    flex: var(--months) 1 0; min-width: 0; padding: 18px 16px; border-radius: 18px;
+    background: var(--surface); border: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 2px; min-height: 148px;
+  }
+  .career strong { font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+  .career span { color: var(--muted); font-size: 0.92rem; }
+  .career small { margin-top: auto; padding-top: 12px; color: var(--muted); font-size: 0.82rem; }
+  .career .study { background: transparent; border-style: dashed; }
+  /* PageSuite: four roles as four rising steps. Each step is as wide as the time in that role. */
+  .rungs { display: flex; align-items: flex-end; gap: 3px; height: 40px; margin-top: auto; padding-top: 12px; box-sizing: content-box; }
+  .rungs i { flex: var(--months) 1 0; height: var(--rise); min-width: 0; border-radius: 4px 4px 2px 2px; background: var(--green); opacity: var(--tone); cursor: default; transition: opacity 120ms ease; }
+  .rungs i:hover, .rungs i:focus-visible { opacity: 1; outline: 2px solid var(--ink); outline-offset: 2px; }
+  .career .rungs + small { margin-top: 8px; padding-top: 0; min-height: 2.6em; }
+  .career .now { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .career .now span, .career .now small { color: inherit; opacity: 0.85; }
+  .scale { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 2px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+  @media (max-width: 760px) {
+    .career { flex-direction: column-reverse; }
+    .career li { flex: none; min-height: 0; }
+    .scale { display: none; }
+  }
+
+  .split { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 1000px) { .split { grid-template-columns: minmax(0, 1fr) 420px; gap: 72px; } }
+  .split .kicker { font-size: 0.95rem; font-weight: 500; color: var(--green); margin: 0 0 10px; }
+  .split .about { color: var(--muted); font-size: 1.1rem; max-width: 52ch; margin: 16px 0 0; }
+  .split .step-note { margin: 20px 0 0; padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); font-size: 0.93rem; min-height: 4.2em; color: var(--muted); }
+  .split .step-note strong { color: var(--ink); font-weight: 600; }
+  .split .node { box-shadow: 0 0 0 6px var(--bg); }
+  .split .more { display: inline-block; margin-top: 24px; font-weight: 600; text-decoration: none; }
+  .split .more:hover { color: var(--green); }
+
+  /* Six colleagues, one voice at a time */
+  .voices { text-align: center; }
+  .voices blockquote { font-size: clamp(1.6rem, 3.8vw, 3rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.03em; max-width: 24ch; margin: 0 auto; min-height: 4.7em; display: grid; place-items: center; }
+  .voices .said { margin: 20px 0 0; color: var(--muted); }
+  .voices .said strong { color: var(--ink); font-weight: 600; }
+  .people { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
+  .people button { font: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; padding: 8px 14px; border-radius: 999px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); }
+  .people button:hover { color: var(--ink); }
+  .people button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+  .cta { text-align: center; padding: clamp(72px, 10vw, 136px) 20px clamp(64px, 8vw, 104px); }
+  .cta p { color: var(--muted); margin: 14px 0 28px; }
+  .cta .actions { justify-content: center; }
+
+  /* ---- Title section options. A switch at the bottom of the screen picks one. ---- */
+  .heroes > header { display: none; }
+  body[data-hero="0"] .heroes > .h0, body[data-hero="1"] .heroes > .h1,
+  body[data-hero="2"] .heroes > .h2, body[data-hero="3"] .heroes > .h3 { display: block; }
+  .switch { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 20; display: flex; gap: 4px; padding: 6px; max-width: calc(100vw - 16px); overflow-x: auto; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
+  .switch button { font: inherit; font-size: 0.85rem; font-weight: 500; white-space: nowrap; cursor: pointer; padding: 8px 14px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); }
+  .switch button[aria-pressed="true"] { background: var(--green); color: var(--on-green); }
+  .hero3 { overflow-x: clip; }
+
+  /* Option 1. Bullseye: the o in Bourne is the centre of a target, and an arrow lands in it. */
+  .bull { position: relative; display: inline-block; }
+  .bull svg { position: absolute; left: 50%; top: 59%; width: 3em; height: 3em; transform: translate(-50%, -50%); overflow: visible; pointer-events: none; }
+  .bull .ring { fill: none; stroke: var(--green); stroke-width: 2; }
+  .bull .dot { fill: var(--green); }
+  .bull .shaft { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+  .bull .point { fill: var(--ink); }
+  .bull .vane { fill: var(--green); stroke: var(--bg); stroke-width: 0.6; }
+  .bull .rings { transform-origin: 150px 150px; }
+  .bull .flight { transform-origin: 0 0; opacity: 0; }
+  .bull.shoot .flight { animation: flight 900ms 0.5s cubic-bezier(0.5, 0, 0.9, 0.6) both; }
+  .bull.shoot .rings { animation: impact 420ms 0.77s ease-out; }
+  @media (prefers-reduced-motion: reduce) {
+    .bull.shoot .flight { animation: none; opacity: 1; }
+    .bull.shoot .rings { animation: none; }
+  }
+
+  /* Option 2. Game in play: a game of draughts plays itself behind the name. */
+  .h2.hero3 { position: relative; min-height: min(760px, 92vh); display: none; padding-top: clamp(40px, 6vw, 72px); }
+  body[data-hero="2"] .heroes > .h2 { display: grid; align-content: center; }
+  .stage {
+    --size: min(600px, 88vw); --cell: calc(var(--size) / 8);
+    --square: color-mix(in srgb, var(--green) 13%, transparent);
+    position: absolute; left: 50%; top: 46%; width: var(--size); height: var(--size); transform: translate(-50%, -50%);
+    border-radius: 24px; overflow: hidden;
+    background: conic-gradient(var(--square) 25%, transparent 0 50%, var(--square) 0 75%, transparent 0) 0 0 / calc(var(--cell) * 2) calc(var(--cell) * 2);
+    -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  }
+  .stage i {
+    position: absolute; width: calc(var(--cell) * 0.6); height: calc(var(--cell) * 0.6); border-radius: 50%;
+    left: calc(var(--x) * var(--cell) + var(--cell) * 0.2); top: calc(var(--y) * var(--cell) + var(--cell) * 0.2);
+    transition: left 620ms cubic-bezier(0.3, 0.1, 0.2, 1), top 620ms cubic-bezier(0.3, 0.1, 0.2, 1), opacity 450ms ease 250ms, transform 450ms ease 250ms;
+  }
+  .stage i.w { background: var(--ink); opacity: 0.16; }
+  .stage i.b { background: var(--green); opacity: 0.38; }
+  .stage i.king { box-shadow: inset 0 0 0 calc(var(--cell) * 0.1) var(--bg); }
+  .stage i.gone { opacity: 0; transform: scale(1.6); }
+  @media (prefers-reduced-motion: reduce) { .stage i { transition: none; } }
+  .h2 .copy { position: relative; z-index: 1; }
+  .h2 .caption { margin: 22px 0 0; font-size: 0.9rem; color: var(--muted); }
+
+  /* Option 3. Masthead: the name fills the full width of the screen, like the top of a newspaper. */
+  .h3.hero3 { text-align: left; padding: clamp(24px, 4vw, 48px) 20px 0; }
+  .h3 .name { display: inline-block; margin: 0; white-space: nowrap; line-height: 0.84; letter-spacing: -0.065em; font-size: 14vw; }
+  .mast { display: grid; gap: 14px 48px; margin-top: clamp(18px, 2.6vw, 36px); padding-top: 20px; border-top: 3px solid var(--ink); }
+  @media (min-width: 760px) { .mast { grid-template-columns: 1fr 2fr; } }
+  .mast strong { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+  .mast span { color: var(--muted); }
+  .mast p { margin: 0; font-size: clamp(1.15rem, 2.1vw, 1.6rem); line-height: 1.3; letter-spacing: -0.015em; max-width: 34ch; }
+  .h3 .invite { text-align: center; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="#"><span class="mark">OB</span>Oliver Bourne</a>
+    <div class="links">
+      <a href="#">Experience</a>
+      <a href="#">Projects</a>
+      <a href="#">Claude</a>
+    </div>
+    <button id="theme" class="icon-button" type="button" aria-label="Switch theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="button primary" href="#">Message me on LinkedIn</a>
+  </nav>
+</div>
+
+<main>
+<div class="heroes">
+  <header class="wrap hero3 h0">
+    <span class="chip"><span class="dot"></span>Full Stack Developer at Logistics UK</span>
+    <h1 class="name">Oliver Bourne</h1>
+    <p class="lede">I build business systems with .NET, React and Azure, in small teams, from the database to the pipeline.</p>
+    <p class="invite">Three things I built. Hover over one, or tap it.</p>
+  </header>
+
+  <header class="wrap hero3 h1">
+    <span class="chip"><span class="dot"></span>Full Stack Developer at Logistics UK</span>
+    <h1 class="name" id="bull-name">Oliver B<span class="bull" id="bull">o<svg viewBox="0 0 300 300" aria-hidden="true">
+            <g class="rings">
+              <circle class="ring" cx="150" cy="150" r="118" opacity="0.1"/>
+              <circle class="ring" cx="150" cy="150" r="88" opacity="0.17"/>
+              <circle class="ring" cx="150" cy="150" r="58" opacity="0.28"/>
+              <circle class="dot" cx="150" cy="150" r="7"/>
+            </g>
+            <g transform="translate(150 150) rotate(-38) scale(1.9)">
+              <g class="flight">
+                <line class="shaft" x1="8" y1="0" x2="66" y2="0"/>
+                <path class="point" d="M0 0 L11 -4.2 L9 0 L11 4.2 Z"/>
+                <path class="vane" d="M48 -1 L54 -7 L66 -7 L60 -1 Z"/>
+                <path class="vane" d="M48 1 L54 7 L66 7 L60 1 Z"/>
+                <line class="shaft" x1="66" y1="-2.4" x2="66" y2="2.4"/>
+              </g>
+            </g>
+          </svg></span>urne</h1>
+    <p class="lede">I build business systems with .NET, React and Azure, in small teams, from the database to the pipeline.</p>
+    <p class="invite">Three things I built. Hover over one, or tap it.</p>
+  </header>
+
+  <header class="wrap hero3 h2">
+    <div class="stage" id="stage" aria-hidden="true"></div>
+    <div class="copy">
+      <span class="chip"><span class="dot"></span>Full Stack Developer at Logistics UK</span>
+      <h1 class="name">Oliver Bourne</h1>
+      <p class="lede">I build business systems with .NET, React and Azure, in small teams, from the database to the pipeline.</p>
+      <p class="caption">Behind my name, a game of draughts is playing itself.</p>
+      <p class="invite">Three things I built. Hover over one, or tap it.</p>
+    </div>
+  </header>
+
+  <header class="hero3 h3">
+    <h1 class="name" id="mast-name">Oliver Bourne</h1>
+    <div class="mast">
+      <div><strong>Full Stack Developer</strong><span>Logistics UK</span></div>
+      <p>I build business systems with .NET, React and Azure, in small teams, from the database to the pipeline.</p>
+    </div>
+    <p class="invite">Three things I built. Hover over one, or tap it.</p>
+  </header>
+  </div>
+
+  <div class="wrap dock">
+    <article class="card c4">
+      <div class="visual" tabindex="0">
+        <div class="jwt">
+          <div class="token mono"><b class="h">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</b>.<b class="p">eyJpc3MiOiJwb3J0Zm9saW8iLCJhdWQiOiJ5b3UiLCJleHAiOjE3OTM0NTE2MDB9</b>.<b class="s">oBO8jM4XXj3i7AkvnpSxVfS2VfOz0V-RnDhcD_U-Z74</b></div>
+          <ul class="checks mono">
+            <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>WithSigningKeyFromSecret</li>
+            <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>WithIssuer</li>
+            <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>WithAudience</li>
+            <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>WithExpiryDate</li>
+          </ul>
+          <span class="valid result"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Valid</span>
+          <span class="hint">Hover to validate</span>
+        </div>
+      </div>
+      <h3>JWT Validator</h3>
+      <p>A NuGet library that simplifies the validation and handling of JWTs in C#.</p>
+      <div class="tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">NuGet</span></div>
+    </article>
+    <article class="card c4">
+      <div class="visual stack" tabindex="0">
+        <div class="board" aria-hidden="true">
+          <i class="w" style="--x:1;--y:0"></i><i class="w" style="--x:5;--y:0"></i><i class="w" style="--x:2;--y:1"></i><i class="w" style="--x:6;--y:1"></i>
+          <i class="w mover" style="--x:3;--y:2"></i>
+          <i class="b taken" style="--x:4;--y:3"></i>
+          <i class="b" style="--x:7;--y:4"></i><i class="b" style="--x:1;--y:6"></i><i class="b" style="--x:5;--y:6"></i><i class="b" style="--x:2;--y:7"></i><i class="b" style="--x:6;--y:7"></i>
+        </div>
+        <span class="hint">Hover to see a capture</span>
+      </div>
+      <h3>Draughts Game</h3>
+      <p>Play against another person or the computer. An Azure Function chooses the computer's move.</p>
+      <div class="tags"><span class="tag">React</span><span class="tag">C#</span><span class="tag">Azure Functions</span></div>
+    </article>
+    <article class="card c4">
+      <div class="visual stack" tabindex="0">
+        <span class="valid booked">Booked</span>
+        <svg class="target" viewBox="0 0 132 132" aria-hidden="true">
+          <g class="rings">
+            <circle cx="66" cy="66" r="62" stroke-width="2" opacity="0.25"/>
+            <circle cx="66" cy="66" r="48" stroke-width="2" opacity="0.4"/>
+            <circle cx="66" cy="66" r="34" stroke-width="2" opacity="0.6"/>
+            <circle cx="66" cy="66" r="20" stroke-width="2" opacity="0.8"/>
+            <circle cx="66" cy="66" r="6" style="fill: var(--green)"/>
+          </g>
+          <g transform="translate(66 66) rotate(-38)">
+            <g class="flight">
+              <line class="shaft" x1="8" y1="0" x2="66" y2="0"/>
+              <path class="point" d="M0 0 L11 -4.2 L9 0 L11 4.2 Z"/>
+              <path class="vane" d="M48 -1 L54 -7 L66 -7 L60 -1 Z"/>
+              <path class="vane" d="M48 1 L54 7 L66 7 L60 1 Z"/>
+              <line class="shaft" x1="66" y1="-2.4" x2="66" y2="2.4"/>
+            </g>
+          </g>
+        </svg>
+        <span class="hint">Hover to book a target</span>
+      </div>
+      <h3>Picktime Automation</h3>
+      <p>Books indoor archery targets automatically, on a timer.</p>
+      <div class="tags"><span class="tag">C#</span><span class="tag">.NET 10</span><span class="tag">Azure Functions</span></div>
+    </article>
+  </div>
+
+  <section class="wrap band split">
+    <div>
+      <p class="kicker">How I work with Claude</p>
+      <h2>Agreed in writing before any code</h2>
+      <p class="about">Every project follows the same five steps. Nothing starts until the step before it is approved, and what goes wrong changes the setup for the next project.</p>
+      <ol class="steps">
+        <li tabindex="0" data-step="Specification" data-note="What we are building, and why. Agreed before any design."><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Specification</li>
+        <li tabindex="0" data-step="Plan" data-note="How we build it, and why that way."><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Plan</li>
+        <li tabindex="0" data-step="Tasks" data-note="Small steps. One task, one pull request."><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Tasks</li>
+        <li tabindex="0" data-step="Review" data-note="Independent reviews that never see the working conversation."><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Review</li>
+        <li tabindex="0" data-step="Retrospective" data-note="What went wrong changes the setup for the next project."><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Retrospective</li>
+      </ol>
+      <p class="step-note" id="step-note" aria-live="polite">Hover over a step, or tap it, to see what it decides.</p>
+      <a class="more" href="#">Read the decisions and the reasons</a>
+    </div>
+    <aside class="pr" aria-label="A real pull request from the Draughts Game function">
+      <div class="pr-head">
+        <span class="repo mono">DraughtsGameFunction</span>
+        <span class="mono">#34</span>
+        <span class="merged"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Merged</span>
+      </div>
+      <div class="pr-body">
+        <p class="pr-title">Add ComputerPlayer and the search settings</p>
+        <span class="branch mono">task/t16-computer-player</span>
+        <ol class="commits">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Add ComputerPlayer and the search settings (T16)<small>The task, built to its agreed criteria</small></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Fix the T16 review findings<small>Independent reviews, then one round of fixes</small></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Tick T16<small>Ticked only when every criterion is true</small></li>
+        </ol>
+      </div>
+      <div class="pr-foot">A real pull request from my Draughts Game function. One task, one pull request.</div>
+    </aside>
+  </section>
+
+  <section class="wrap band">
+    <div class="band-head">
+      <h2>Experience, drawn to scale</h2>
+      <a href="#">Read my experience in full</a>
+    </div>
+    <ol class="career">
+      <li style="--months: 14"><strong>Software Developer</strong><span>AXA PPP</span><small>Aug 2018 – Sep 2019</small></li>
+      <li class="study" style="--months: 8"><strong>Final year</strong><span>University of Kent</span><small>2019 – 2020</small></li>
+      <li style="--months: 34">
+        <strong>Junior Developer to Team Lead</strong><span>PageSuite</span>
+        <div class="rungs" id="rungs">
+          <i tabindex="0" style="--months: 12; --rise: 10px; --tone: 0.4" data-role="Junior Backend Developer" data-dates="June 2020 – May 2021"></i>
+          <i tabindex="0" style="--months: 7; --rise: 20px; --tone: 0.6" data-role="Backend Developer" data-dates="June 2021 – December 2021"></i>
+          <i tabindex="0" style="--months: 4; --rise: 30px; --tone: 0.8" data-role="Backend Technical Lead" data-dates="January 2022 – April 2022"></i>
+          <i tabindex="0" style="--months: 11; --rise: 40px; --tone: 1" data-role="Backend Team Lead" data-dates="May 2022 – March 2023"></i>
+        </div>
+        <small id="rung-note" aria-live="polite">Four roles, June 2020 – March 2023</small>
+      </li>
+      <li class="now" style="--months: 45"><strong>Full Stack Developer</strong><span>Logistics UK</span><small>March 2023 – now</small></li>
+    </ol>
+    <div class="scale"><span>August 2018</span><span>Today</span></div>
+  </section>
+
+  <section class="wrap band voices">
+    <blockquote id="quote"></blockquote>
+    <p class="said" id="said"></p>
+    <div class="people" id="people" role="group" aria-label="Choose a colleague"></div>
+  </section>
+
+  <section class="wrap cta">
+    <h2>Want to talk?</h2>
+    <p>LinkedIn is the best place to reach me.</p>
+    <div class="actions">
+      <a class="button primary" href="#">Message me on LinkedIn</a>
+      <a class="button" href="#">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Title section options. The wording is a draft.</span>
+    <span>Last updated 12 November 2026</span>
+  </footer>
+</div>
+
+<div class="switch" role="group" aria-label="Choose a title section">
+  <button type="button" data-hero="0">Current</button>
+  <button type="button" data-hero="1">1 Bullseye</button>
+  <button type="button" data-hero="2">2 Game in play</button>
+  <button type="button" data-hero="3">3 Masthead</button>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const button = document.getElementById("theme");
+  function setTheme(theme) { root.dataset.theme = theme; }
+  setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  button.addEventListener("click", () => setTheme(root.dataset.theme === "dark" ? "light" : "dark"));
+
+  // Each step of the way of working explains itself on hover, focus or tap.
+  const stepNote = document.getElementById("step-note");
+  function showStep(step) {
+    stepNote.innerHTML = "";
+    const name = document.createElement("strong");
+    name.textContent = step.dataset.step + ". ";
+    stepNote.append(name, step.dataset.note);
+  }
+  document.querySelectorAll(".steps li").forEach((step) => {
+    step.addEventListener("mouseenter", () => showStep(step));
+    step.addEventListener("focus", () => showStep(step));
+    step.addEventListener("click", () => showStep(step));
+  });
+
+  // Each step in the PageSuite block names its role and dates on hover, focus or tap.
+  const rungNote = document.getElementById("rung-note");
+  const rungs = document.getElementById("rungs");
+  const rungDefault = rungNote.textContent;
+  rungs.querySelectorAll("i").forEach((rung) => {
+    const show = () => { rungNote.textContent = rung.dataset.role + ", " + rung.dataset.dates; };
+    rung.addEventListener("mouseenter", show);
+    rung.addEventListener("focus", show);
+    rung.addEventListener("click", show);
+  });
+  rungs.addEventListener("mouseleave", () => { rungNote.textContent = rungDefault; });
+
+  // One exact sentence from each of the six testimonials.
+  const voices = [
+    { name: "Benjamin Loveridge-Rowe", role: "Backend Developer at PageSuite", text: "Oli is a hardworking, dedicated and highly talented developer who always brings innovative solutions to the team." },
+    { name: "Jonathon Wigmore", role: "Senior Account Manager at PageSuite", text: "Ollie has an infectious passion for development & the work that he puts into his roles." },
+    { name: "Kevin Barclay", role: "Backend Developer at PageSuite", text: "Oliver is one of the most passionate team leads I’ve come across in my years within the industry." },
+    { name: "Kieran Wrenn", role: "Software Engineer at PageSuite", text: "I would recommend Oli as a top asset for any team!" },
+    { name: "Mark Tanner", role: "Software Engineer at PageSuite", text: "The first thing that comes to mind when describing Ollie is his passion." },
+    { name: "Augustine Lau", role: "Flutter Developer at PageSuite", text: "It’s been an absolute pleasure working with Oliver." },
+  ];
+  const quote = document.getElementById("quote");
+  const said = document.getElementById("said");
+  const people = document.getElementById("people");
+  function showVoice(index) {
+    const voice = voices[index];
+    quote.textContent = "“" + voice.text + "”";
+    said.innerHTML = "";
+    const name = document.createElement("strong");
+    name.textContent = voice.name;
+    said.append(name, ", " + voice.role);
+    people.querySelectorAll("button").forEach((person, i) => person.setAttribute("aria-pressed", String(i === index)));
+  }
+  voices.forEach((voice, index) => {
+    const person = document.createElement("button");
+    person.type = "button";
+    person.textContent = voice.name;
+    person.addEventListener("click", () => showVoice(index));
+    people.appendChild(person);
+  });
+  showVoice(0);
+  // ---- Title section options ----
+// English draughts, enough to play a legal game by itself.
+// Black starts at the bottom and moves up the board. Black moves first.
+// Rules covered: play on dark squares, men move and capture forwards only,
+// kings move and capture both ways, a capture is compulsory, a piece keeps
+// jumping while it can, and a man that is crowned ends its move.
+function newGame() {
+  const pieces = [];
+  let id = 0;
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 8; x++) {
+      const dark = (x + y) % 2 === 1;
+      if (!dark) continue;
+      if (y < 3) pieces.push({ id: id++, side: "w", x, y, king: false, alive: true });
+      if (y > 4) pieces.push({ id: id++, side: "b", x, y, king: false, alive: true });
+    }
+  }
+  return { pieces, turn: "b", chain: null, plies: 0 };
+}
+
+function pieceAt(game, x, y) {
+  return game.pieces.find((piece) => piece.alive && piece.x === x && piece.y === y) || null;
+}
+
+function onBoard(x, y) {
+  return x >= 0 && x < 8 && y >= 0 && y < 8;
+}
+
+function directionsFor(piece) {
+  const forward = piece.side === "w" ? 1 : -1;
+  const rows = piece.king ? [forward, -forward] : [forward];
+  const directions = [];
+  for (const dy of rows) {
+    directions.push([-1, dy], [1, dy]);
+  }
+  return directions;
+}
+
+function jumpsFor(game, piece) {
+  const jumps = [];
+  for (const [dx, dy] of directionsFor(piece)) {
+    const over = pieceAt(game, piece.x + dx, piece.y + dy);
+    const landX = piece.x + 2 * dx;
+    const landY = piece.y + 2 * dy;
+    if (over && over.side !== piece.side && onBoard(landX, landY) && !pieceAt(game, landX, landY)) {
+      jumps.push({ piece, x: landX, y: landY, captured: over });
+    }
+  }
+  return jumps;
+}
+
+function stepsFor(game, piece) {
+  const steps = [];
+  for (const [dx, dy] of directionsFor(piece)) {
+    const x = piece.x + dx;
+    const y = piece.y + dy;
+    if (onBoard(x, y) && !pieceAt(game, x, y)) {
+      steps.push({ piece, x, y, captured: null });
+    }
+  }
+  return steps;
+}
+
+function legalMoves(game) {
+  if (game.chain) {
+    return jumpsFor(game, game.chain);
+  }
+  const mine = game.pieces.filter((piece) => piece.alive && piece.side === game.turn);
+  const jumps = mine.flatMap((piece) => jumpsFor(game, piece));
+  if (jumps.length > 0) {
+    return jumps;
+  }
+  return mine.flatMap((piece) => stepsFor(game, piece));
+}
+
+// Plays one hop and returns it, or returns null when the side to move cannot move.
+function playHop(game, random) {
+  const moves = legalMoves(game);
+  if (moves.length === 0) {
+    return null;
+  }
+  const move = moves[Math.floor(random() * moves.length)];
+  const piece = move.piece;
+  piece.x = move.x;
+  piece.y = move.y;
+  if (move.captured) {
+    move.captured.alive = false;
+  }
+
+  const lastRow = piece.side === "w" ? 7 : 0;
+  const crowned = !piece.king && piece.y === lastRow;
+  if (crowned) {
+    piece.king = true;
+  }
+
+  const canJumpAgain = move.captured && !crowned && jumpsFor(game, piece).length > 0;
+  if (canJumpAgain) {
+    game.chain = piece;
+  } else {
+    game.chain = null;
+    game.turn = game.turn === "w" ? "b" : "w";
+  }
+  game.plies++;
+  return { id: piece.id, x: piece.x, y: piece.y, capturedId: move.captured ? move.captured.id : null, crowned };
+}
+
+  // Option 1: the arrow flies when the option is shown, and again when the name is hovered.
+  const bull = document.getElementById("bull");
+  function shoot() {
+    bull.classList.remove("shoot");
+    void bull.offsetWidth;
+    bull.classList.add("shoot");
+  }
+  document.getElementById("bull-name").addEventListener("mouseenter", shoot);
+
+  // Option 2: draw the game, and play one hop at a time.
+  const stage = document.getElementById("stage");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let game = null;
+  let gameTimer = null;
+  function drawGame() {
+    stage.innerHTML = "";
+    game = newGame();
+    for (const piece of game.pieces) {
+      const disc = document.createElement("i");
+      disc.className = piece.side;
+      disc.style.setProperty("--x", piece.x);
+      disc.style.setProperty("--y", piece.y);
+      piece.disc = disc;
+      stage.appendChild(disc);
+    }
+  }
+  function playOn() {
+    const hop = game.plies < 160 ? playHop(game, Math.random) : null;
+    if (hop === null) {
+      gameTimer = setTimeout(() => { drawGame(); gameTimer = setTimeout(playOn, 1200); }, 2600);
+      return;
+    }
+    const piece = game.pieces.find((item) => item.id === hop.id);
+    piece.disc.style.setProperty("--x", hop.x);
+    piece.disc.style.setProperty("--y", hop.y);
+    if (hop.crowned) piece.disc.classList.add("king");
+    if (hop.capturedId !== null) game.pieces.find((item) => item.id === hop.capturedId).disc.classList.add("gone");
+    gameTimer = setTimeout(playOn, game.chain ? 760 : 1250);
+  }
+  function startGame() {
+    clearTimeout(gameTimer);
+    drawGame();
+    if (!still) gameTimer = setTimeout(playOn, 900);
+  }
+
+  // Option 3: size the name so that it fills the width exactly.
+  const mastName = document.getElementById("mast-name");
+  function fitMast() {
+    if (mastName.offsetParent === null) return;
+    mastName.style.fontSize = "100px";
+    const available = Math.min(mastName.parentElement.clientWidth - 44, 1800);
+    mastName.style.fontSize = (100 * available / mastName.scrollWidth) + "px";
+  }
+  window.addEventListener("resize", fitMast);
+
+  function showHero(number) {
+    document.body.dataset.hero = number;
+    document.querySelectorAll(".switch button").forEach((item) => item.setAttribute("aria-pressed", String(item.dataset.hero === String(number))));
+    clearTimeout(gameTimer);
+    if (number === 1) shoot();
+    if (number === 2) startGame();
+    if (number === 3) fitMast();
+  }
+  document.querySelectorAll(".switch button").forEach((item) => item.addEventListener("click", () => showHero(Number(item.dataset.hero))));
+  showHero(1);
+</script>
+</body>
+</html>
