@@ -3,7 +3,7 @@
 > **What this document is for:** It answers *what are we building, and why?* It is agreed before any design or code, and it is the source of truth for requirements.
 
 Status: Approved
-Last updated: 2026-11-13
+Last updated: 2026-11-18
 
 ---
 
@@ -375,7 +375,7 @@ The exact content of each row is checked against the setup at the design step.
    * The title of the home page is the owner's name, very large and centred. The "o" in Bourne is the centre of a target, and an arrow lands in it when the page loads. The owner chose this on 2026-11-12 from three rendered options, in `docs/design/mockups/hero-options.html`. Because the title uses the arrow, the Picktime Automation card shows the booking itself, not an arrow.
    * Elements in a row line up: the same top, the same height, and titles on one line.
    * The home page does not use the layout of the JWT Validator site: a headline on the left with a card on the right.
-   * The owner approved two more page designs on 2026-11-18, in the same style: the Projects page, `docs/design/mockups/projects-v3.html`, and the Claude page, `docs/design/mockups/claude.html`. The owner approved the Experience page design on 2026-11-18, `docs/design/mockups/experience.html`. The four pages link to each other, and together they are the approved design for the whole site.
+   * The owner approved two more page designs on 2026-11-18, in the same style: the Projects page, `docs/design/mockups/projects-v3.html`, and the Claude page, `docs/design/mockups/claude.html`. The owner approved the Experience page design on 2026-11-18, `docs/design/mockups/experience.html`. The four pages link to each other, and together they are the approved design for the whole site. The owner approved the not-found page design on 2026-11-18, `docs/design/mockups/not-found.html`: the 0 in 404 is the target from the home page title, and the arrow lands in the outer ring, not the centre.
    * The home page runs in this order, which the owner agreed on 2026-11-12: the owner's name and one sentence; the featured projects; how he works with Claude; experience, drawn to scale; testimonials; the LinkedIn action. The first two after the name show the work. The next two show the career.
    * The owner rejected the first three mock-ups as basic and untidy.
    * The mock-up shows the look. Its wording is a draft, and the final content and length of each page are design decisions.
