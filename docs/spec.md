@@ -220,17 +220,16 @@ Removed from the current list: Go, Erlang, NetBeans, IntelliJ, LINQ, Newtonsoft 
 #### 6.1.5 Projects
 
 1. The section lists the projects in the table below. A featured project has a full write-up and appears first. A smaller entry has a short description and its links.
-2. Each featured project is written as a short case study, with the same five parts. The owner agreed this on 2026-11-11.
+2. Each featured project is written as a short case study, with the same four parts. The owner agreed this on 2026-11-11.
 
    | Part | What it answers | Length |
    | --- | --- | --- |
    | Problem | Why the project exists | 1 to 2 sentences |
-   | What I built | What it does, in plain words | 2 to 3 sentences |
-   | Key decisions | Two or three choices, each with its reason | 1 sentence each |
-   | Result | What is true now | 1 to 2 sentences |
+   | How it's built | The main parts, what each one does, the technology of each, and how they connect | One diagram, with one sentence for each part |
+   | Result | What is true now | Up to four numbers, each saying what was counted and when |
    | Technology and links | The technology, and links to the live site, package and repository where they exist | A short list |
 
-   The decisions and results come from each project's own planning documents and repository, and the owner approves them. A smaller entry shows its name, a short description, the technology and its links.
+   The parts and results come from each project's own documents and repository, and the owner approves them. The owner replaced "What I built" and "Key decisions" with "How it's built" on 2026-11-18, because the decisions took a lot of space for little value to a reader. A smaller entry shows its name, a short description, the technology and its links.
 3. Each project shows an image or diagram where one exists. A project without an image still looks complete.
 4. Related projects are shown as related. Examples: the JWT Validator package and its site; the Draughts Game site and its function.
 5. The layout scales. Adding a project needs new content only, not a layout change.
@@ -354,6 +353,7 @@ The exact content of each row is checked against the setup at the design step.
    * The title of the home page is the owner's name, very large and centred. The "o" in Bourne is the centre of a target, and an arrow lands in it when the page loads. The owner chose this on 2026-11-12 from three rendered options, in `docs/design/mockups/hero-options.html`. Because the title uses the arrow, the Picktime Automation card shows the booking itself, not an arrow.
    * Elements in a row line up: the same top, the same height, and titles on one line.
    * The home page does not use the layout of the JWT Validator site: a headline on the left with a card on the right.
+   * The owner approved two more page designs on 2026-11-18, in the same style: the Projects page, `docs/design/mockups/projects-v3.html`, and the Claude page, `docs/design/mockups/claude.html`. The three pages link to each other. The Experience page is not designed yet.
    * The home page runs in this order, which the owner agreed on 2026-11-12: the owner's name and one sentence; the featured projects; how he works with Claude; experience, drawn to scale; testimonials; the LinkedIn action. The first two after the name show the work. The next two show the career.
    * The owner rejected the first three mock-ups as basic and untidy.
    * The mock-up shows the look. Its wording is a draft, and the final content and length of each page are design decisions.

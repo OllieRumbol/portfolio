@@ -431,21 +431,31 @@
     .card:hover .cell.book, .card:focus-within .cell.book, .card:hover .cell.skip, .card:focus-within .cell.skip { animation: none; }
     .clock b, .cell.book, .cell.book svg, .slots-foot .valid { transition: none; }
   }
+
+  /* Buttons and pills keep their shape at every width.
+     A button never wraps. A short label never wraps. A longer label may wrap,
+     as a rounded rectangle with normal line spacing, so two lines do not look squashed. */
+  .button { white-space: nowrap; }
+  .tag, .valid, .merged { white-space: nowrap; }
+  .chip, .tag, .valid, .merged, .people button { border-radius: 14px; line-height: 1.35; }
+  nav .button { gap: 0; }
+  nav .button .button-long { margin-right: 0.28em; }
+  @media (max-width: 900px) { nav .button .button-long { display: none; } }
 </style>
 </head>
 <body>
 <div class="bar">
   <nav class="wrap" aria-label="Main">
-    <a class="brand" href="#"><span class="mark">OB</span>Oliver Bourne</a>
+    <a class="brand" href="d-modern-v3.html"><span class="mark">OB</span>Oliver Bourne</a>
     <div class="links">
-      <a href="#">Experience</a>
-      <a href="#">Projects</a>
-      <a href="#">Claude</a>
+      <a href="#" title="The Experience page is not designed yet">Experience</a>
+      <a href="projects-v3.html">Projects</a>
+      <a href="claude.html">Claude</a>
     </div>
     <button id="theme" class="icon-button" type="button" aria-label="Switch theme">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
-    <a class="button primary" href="#">Message me on LinkedIn</a>
+    <a class="button primary" href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/" aria-label="Message me on LinkedIn"><span class="button-long">Message me on</span>LinkedIn</a>
   </nav>
 </div>
 
@@ -544,7 +554,7 @@
         <li tabindex="0" data-step="Retrospective" data-note="What went wrong changes the setup for the next project."><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Retrospective</li>
       </ol>
       <p class="step-note" id="step-note" aria-live="polite">Hover over a step, or tap it, to see what it decides.</p>
-      <a class="more" href="#">Read the decisions and the reasons</a>
+      <a class="more" href="claude.html">Read the decisions and the reasons</a>
     </div>
     <aside class="pr" aria-label="A real pull request from the Draughts Game function">
       <div class="pr-head">
@@ -568,7 +578,7 @@
   <section class="wrap band">
     <div class="band-head">
       <h2>Experience, drawn to scale</h2>
-      <a href="#">Read my experience in full</a>
+      <a href="#" title="The Experience page is not designed yet">Read my experience in full</a>
     </div>
     <ol class="career">
       <li style="--months: 14"><strong>Software Developer</strong><span>AXA PPP</span><small>Aug 2018 – Sep 2019</small></li>
@@ -598,8 +608,8 @@
     <h2>Want to talk?</h2>
     <p>LinkedIn is the best place to reach me.</p>
     <div class="actions">
-      <a class="button primary" href="#">Message me on LinkedIn</a>
-      <a class="button" href="#">GitHub</a>
+      <a class="button primary" href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/">Message me on LinkedIn</a>
+      <a class="button" href="https://github.com/OllieRumbol">GitHub</a>
     </div>
   </section>
 </main>
