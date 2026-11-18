@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experience page mock-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f3;
+    --surface: #ffffff;
+    --raised: #f4f6f3;
+    --line: #e2e6e1;
+    --ink: #0c1410;
+    --muted: #5a665f;
+    --green: #15803d;
+    --green-soft: #e3f3e8;
+    --on-green: #ffffff;
+    --glow: rgba(21, 128, 61, 0.14);
+    --shadow: 0 1px 2px rgba(12, 20, 16, 0.04), 0 12px 32px -16px rgba(12, 20, 16, 0.12);
+    --sq-dark: #15803d;
+    --sq-light: #e3f3e8;
+  }
+  :root[data-theme="dark"] {
+    --bg: #090c0a;
+    --surface: #111512;
+    --raised: #171c18;
+    --line: #232a25;
+    --ink: #eef3ef;
+    --muted: #98a59d;
+    --green: #4ade80;
+    --green-soft: #12301f;
+    --on-green: #06240f;
+    --glow: rgba(74, 222, 128, 0.12);
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+    --sq-dark: #1c6b3c;
+    --sq-light: #1b231e;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(900px 480px at 85% -120px, var(--glow), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 8px; }
+  .wrap { max-width: 1136px; margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: "Geist Mono", ui-monospace, Consolas, monospace; }
+
+  /* Navigation */
+  .bar {
+    position: sticky; top: 0; z-index: 5;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; margin-right: auto; }
+  .mark { width: 26px; height: 26px; border-radius: 8px; background: var(--green); color: var(--on-green); display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; }
+  .links { display: flex; gap: 24px; }
+  .links a { text-decoration: none; color: var(--muted); font-size: 0.95rem; font-weight: 500; }
+  .links a:hover { color: var(--ink); }
+  .icon-button {
+    width: 38px; height: 38px; border-radius: 10px; cursor: pointer;
+    display: grid; place-items: center; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .icon-button svg { width: 18px; height: 18px; }
+  @media (max-width: 640px) { .links { display: none; } }
+
+  /* Buttons */
+  .button {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 46px; padding: 0 20px; border-radius: 12px;
+    font-weight: 600; font-size: 0.97rem; text-decoration: none;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  .button.primary { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .button:hover { filter: brightness(1.05); }
+
+  /* Hero */
+  .hero { padding: clamp(48px, 8vw, 104px) 0 clamp(40px, 6vw, 80px); display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1000px) { .hero { grid-template-columns: minmax(0, 1fr) 420px; gap: 64px; } }
+
+  /* A real pull request, shown as evidence of the way of working */
+  .pr { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; }
+  .pr-head { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--line); font-size: 0.875rem; color: var(--muted); }
+  .pr-head .repo { margin-right: auto; }
+  .merged { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 0.8rem; background: var(--green-soft); color: var(--green); }
+  .merged svg { width: 13px; height: 13px; }
+  .pr-body { padding: 20px; }
+  .pr-title { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 8px; color: var(--ink); }
+  .branch { display: inline-block; font-size: 0.78rem; padding: 3px 8px; border-radius: 6px; background: var(--raised); border: 1px solid var(--line); color: var(--muted); }
+  .commits { list-style: none; margin: 20px 0 0; padding: 0; }
+  .commits li { position: relative; padding: 0 0 18px 30px; font-size: 0.93rem; line-height: 1.4; }
+  .commits li:last-child { padding-bottom: 0; }
+  .commits li::before { content: ""; position: absolute; left: 9px; top: 20px; bottom: -2px; width: 2px; background: var(--line); }
+  .commits li:last-child::before { display: none; }
+  .commits .tick { position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: var(--on-green); display: grid; place-items: center; }
+  .commits .tick svg { width: 11px; height: 11px; }
+  .commits small { display: block; color: var(--muted); font-size: 0.82rem; }
+  .pr-foot { padding: 14px 20px; border-top: 1px solid var(--line); background: var(--raised); font-size: 0.85rem; color: var(--muted); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px 6px 10px; border-radius: 999px;
+    font-size: 0.875rem; font-weight: 500; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-soft); }
+  h1 {
+    font-size: clamp(2.3rem, 5.2vw, 3.9rem); font-weight: 600;
+    line-height: 1.04; letter-spacing: -0.035em;
+    margin: 24px 0 24px; max-width: 16ch;
+  }
+  h1 span { display: block; color: var(--muted); }
+  .hero p { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--muted); max-width: 56ch; margin: 0 0 32px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Cards */
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; padding-bottom: 96px; }
+  .card {
+    grid-column: span 12; min-width: 0;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 24px;
+    padding: 28px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  @media (min-width: 900px) {
+    .c7 { grid-column: span 7; } .c5 { grid-column: span 5; }
+    .c4 { grid-column: span 4; } .c8 { grid-column: span 8; }
+  }
+  .card .kicker { font-size: 0.875rem; font-weight: 500; color: var(--green); margin: 0 0 6px; }
+  h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 8px; }
+  h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 4px; }
+  .card p { margin: 0; color: var(--muted); }
+  .card .link { margin-top: auto; padding-top: 24px; font-weight: 600; font-size: 0.95rem; color: var(--ink); text-decoration: none; }
+  .card .link:hover { color: var(--green); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .tag { font-size: 0.8rem; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: var(--raised); border: 1px solid var(--line); color: var(--muted); }
+
+  /* How I work: five steps, joined by one line */
+  .steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; }
+  .steps::before { content: ""; position: absolute; top: 15px; left: 10%; right: 10%; height: 2px; background: var(--line); }
+  .steps::after { content: ""; position: absolute; top: 15px; left: 10%; width: 80%; height: 2px; background: var(--green); transform-origin: left; animation: draw 1.6s 0.3s ease-out both; }
+  @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) { .steps::after { animation: none; } html { scroll-behavior: auto; } }
+  .steps li { text-align: center; font-size: 0.9rem; font-weight: 500; position: relative; z-index: 1; }
+  .node { width: 32px; height: 32px; margin: 0 auto 12px; border-radius: 50%; background: var(--green); color: var(--on-green); display: grid; place-items: center; box-shadow: 0 0 0 6px var(--surface); }
+  .node svg { width: 16px; height: 16px; }
+  @media (max-width: 560px) {
+    .steps { grid-template-columns: 1fr; gap: 14px; }
+    .steps::before, .steps::after { display: none; }
+    .steps li { display: flex; align-items: center; gap: 12px; text-align: left; }
+    .node { margin: 0; box-shadow: none; }
+  }
+
+  /* Experience timeline */
+  .timeline { list-style: none; margin: 24px 0 0; padding: 0; }
+  .timeline li { position: relative; padding: 0 0 22px 28px; }
+  .timeline li::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: -8px; width: 2px; background: var(--line); }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li:last-child::before { display: none; }
+  .timeline li::after { content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--muted); }
+  .timeline li.now::after { background: var(--green); border-color: var(--green); box-shadow: 0 0 0 4px var(--green-soft); }
+  .timeline small { display: block; color: var(--muted); font-size: 0.875rem; }
+
+  /* Project visuals */
+  .visual {
+    height: 216px; border-radius: 16px; margin-bottom: 24px;
+    background: var(--raised); border: 1px solid var(--line);
+    display: grid; place-items: center; overflow: hidden; padding: 16px;
+  }
+  .token { font-size: 0.8rem; line-height: 1.7; width: 100%; word-break: break-all; }
+  .token b { font-weight: 500; }
+  .token .h { color: var(--green); }
+  .token .p { color: var(--ink); }
+  .token .s { color: var(--muted); }
+  .valid { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: var(--green-soft); color: var(--green); }
+  .valid svg { width: 14px; height: 14px; }
+  .jwt .result svg { width: 14px; height: 14px; }
+  .board {
+    --cell: 18px; position: relative; flex: none; width: calc(var(--cell) * 8); height: calc(var(--cell) * 8);
+    border-radius: 8px; overflow: hidden;
+    background: conic-gradient(var(--sq-dark) 25%, var(--sq-light) 0 50%, var(--sq-dark) 0 75%, var(--sq-light) 0) 0 0 / calc(var(--cell) * 2) calc(var(--cell) * 2);
+  }
+  .board i {
+    position: absolute; width: 12px; height: 12px; border-radius: 50%;
+    left: calc(var(--x) * var(--cell) + 3px); top: calc(var(--y) * var(--cell) + 3px);
+  }
+  .board i.w { background: #ffffff; }
+  .board i.b { background: #0c1410; outline: 1px solid rgba(255, 255, 255, 0.35); outline-offset: -1px; }
+  /* On hover or focus, white makes a capture: it jumps a black piece. */
+  /* White jumps a black piece. The white piece rises as it crosses, lands, and the black piece is lifted off. */
+  @keyframes jump {
+    0%   { left: calc(4 * var(--cell) + 3px); top: calc(5 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
+    50%  { transform: scale(1.45); box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3); }
+    100% { left: calc(2 * var(--cell) + 3px); top: calc(3 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
+  }
+  @keyframes lifted {
+    0%, 55% { opacity: 1; transform: scale(1); }
+    75%     { opacity: 1; transform: scale(1.4) translateY(-3px); }
+    100%    { opacity: 0; transform: scale(1.4) translateY(-12px); }
+  }
+  .board .mover { z-index: 2; }
+  .card:hover .board .mover, .card:focus-within .board .mover { animation: jump 560ms ease-in-out both; }
+  .card:hover .board .taken, .card:focus-within .board .taken { animation: lifted 1000ms ease-out both; }
+    .hint { font-size: 0.8rem; color: var(--muted); margin-top: 8px; text-align: center; line-height: 1.2; }
+  .visual.stack { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  .section-head { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 40px 4px 4px; }
+  .section-head h2 { font-size: 1.75rem; margin: 0; }
+  .section-head a { font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+  .section-head a:hover { color: var(--green); }
+
+  .site { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px 32px; background: var(--green-soft); border-color: transparent; box-shadow: none; }
+  .site div { flex: 1 1 320px; }
+  .site h3 { color: var(--ink); }
+  .site .docs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .site .docs a { font-size: 0.85rem; padding: 8px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .site .docs a:hover { border-color: var(--green); }
+  .target { width: 132px; height: 132px; }
+  .target circle { fill: none; stroke: var(--green); }
+
+  /* Version 2: each card answers a hover or a tap with something from the project itself */
+  @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes ripple { 50% { transform: scale(1.07); } }
+
+  /* The pull request: its three commits tick in order when the page loads */
+  .commits .tick { animation: pop 0.45s both; }
+  .commits li:nth-child(1) .tick { animation-delay: 0.5s; }
+  .commits li:nth-child(2) .tick { animation-delay: 0.9s; }
+  .commits li:nth-child(3) .tick { animation-delay: 1.3s; }
+
+  /* How I work: each step explains itself */
+  .steps li { cursor: default; padding-bottom: 4px; }
+  .node { transition: transform 150ms ease; }
+  .steps li:hover .node, .steps li:focus-visible .node { transform: scale(1.18); }
+  .card .step-note { margin-top: 20px; padding: 12px 16px; border-radius: 12px; background: var(--raised); border: 1px solid var(--line); font-size: 0.93rem; min-height: 4.2em; }
+  .card .step-note strong { color: var(--ink); font-weight: 600; }
+
+  /* JWT Validator: the token folds away and the library's four checks pass one by one */
+  .jwt { width: 100%; }
+  .jwt .token { max-height: 8.7em; overflow: hidden; transition: max-height 320ms ease, opacity 320ms ease; }
+  .jwt .checks { list-style: none; margin: 0; padding: 0; max-height: 0; overflow: hidden; font-size: 0.78rem; transition: max-height 320ms ease, margin 320ms ease; }
+  .jwt .checks li { display: flex; align-items: center; gap: 8px; line-height: 23px; color: var(--ink); }
+  .jwt .checks .tick { flex: none; width: 15px; height: 15px; border-radius: 50%; background: var(--green); color: var(--on-green); display: grid; place-items: center; opacity: 0; }
+  .jwt .checks .tick svg { width: 9px; height: 9px; }
+  .jwt .result { opacity: 0; margin-top: 8px; }
+  .jwt .hint { display: block; text-align: left; transition: opacity 200ms ease; }
+  .card:hover .jwt .token, .card:focus-within .jwt .token { max-height: 1.7em; opacity: 0.5; }
+  .card:hover .jwt .checks, .card:focus-within .jwt .checks { max-height: 96px; margin-top: 8px; }
+  .card:hover .jwt .hint, .card:focus-within .jwt .hint { display: none; }
+  .card:hover .jwt .tick, .card:focus-within .jwt .tick { opacity: 1; animation: pop 0.4s both; }
+  .card:hover .jwt li:nth-child(1) .tick, .card:focus-within .jwt li:nth-child(1) .tick { animation-delay: 0.35s; }
+  .card:hover .jwt li:nth-child(2) .tick, .card:focus-within .jwt li:nth-child(2) .tick { animation-delay: 0.6s; }
+  .card:hover .jwt li:nth-child(3) .tick, .card:focus-within .jwt li:nth-child(3) .tick { animation-delay: 0.85s; }
+  .card:hover .jwt li:nth-child(4) .tick, .card:focus-within .jwt li:nth-child(4) .tick { animation-delay: 1.1s; }
+  .card:hover .jwt .result, .card:focus-within .jwt .result { opacity: 1; animation: pop 0.45s 1.45s both; }
+
+  /* Picktime Automation: an arrow lands in the centre, and the target is booked */
+  /* The arrow is drawn pointing left, with its tip at 0,0. The outer group turns it and puts the tip on the centre. */
+  .target { overflow: visible; }
+  .target .flight { opacity: 0; transform-origin: 0 0; }
+  .target .shaft { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+  .target .point { fill: var(--ink); }
+  .target .vane { fill: var(--green); stroke: var(--surface); stroke-width: 0.6; }
+  .target .rings { transform-origin: 66px 66px; }
+  /* It flies in fast, stops dead in the centre, then the shaft quivers and settles. */
+  @keyframes flight {
+    0%   { transform: translateX(120px); opacity: 0; }
+    8%   { opacity: 1; }
+    30%  { transform: translateX(0) rotate(0deg); }
+    42%  { transform: translateX(0) rotate(5deg); }
+    54%  { transform: translateX(0) rotate(-3.5deg); }
+    66%  { transform: translateX(0) rotate(2deg); }
+    78%  { transform: translateX(0) rotate(-1deg); }
+    100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+  }
+  @keyframes impact { 0% { transform: scale(1); } 30% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  .card:hover .target .flight, .card:focus-within .target .flight { animation: flight 900ms cubic-bezier(0.5, 0, 0.9, 0.6) both; }
+  .card:hover .target .rings, .card:focus-within .target .rings { animation: impact 420ms 270ms ease-out; }
+  .visual { position: relative; }
+  .booked { position: absolute; top: 12px; right: 12px; margin: 0; opacity: 0; transform: translateY(4px); transition: opacity 250ms 520ms, transform 250ms 520ms; }
+  .card:hover .booked, .card:focus-within .booked { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .commits .tick, .jwt .tick, .jwt .result, .target .flight, .target .rings { animation: none !important; }
+    .card:hover .board .mover, .card:focus-within .board .mover { animation: none; left: calc(2 * var(--cell) + 3px); top: calc(3 * var(--cell) + 3px); }
+    .card:hover .board .taken, .card:focus-within .board .taken { animation: none; opacity: 0; }
+    .card:hover .target .flight, .card:focus-within .target .flight { opacity: 1; }
+    .booked, .node { transition: none; }
+  }
+
+  /* Testimonial */
+  blockquote { margin: 0; font-size: clamp(1.3rem, 2.4vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.015em; }
+  .who { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-soft); color: var(--green); display: grid; place-items: center; font-weight: 600; font-size: 0.85rem; }
+  .who strong { display: block; font-weight: 600; line-height: 1.3; }
+  .who span { color: var(--muted); font-size: 0.9rem; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+  /* ---- Version 3: a different skeleton. No headline-left, card-right hero. ---- */
+  nav .button { height: 38px; padding: 0 14px; font-size: 0.9rem; border-radius: 10px; }
+  @media (max-width: 640px) { nav .button { display: none; } }
+
+  /* The name is the hero. Everything is centred on it. */
+  .hero3 { text-align: center; padding: clamp(48px, 8vw, 104px) 20px 0; }
+  .hero3 .name {
+    font-size: clamp(3.3rem, 13vw, 10.5rem); font-weight: 600;
+    line-height: 0.92; letter-spacing: -0.06em;
+    margin: 28px auto 28px; max-width: none;
+  }
+  .hero3 .lede { font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 1.4; color: var(--muted); max-width: 40ch; margin: 0 auto; }
+  .hero3 .invite { margin: clamp(72px, 10vw, 136px) 0 24px; font-weight: 600; color: var(--ink); }
+
+  /* The three things to try sit directly under the name. They are the first thing to do on the page. */
+  .dock { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 900px) {
+    .dock { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  }
+  .dock .card { grid-column: auto; }
+  .dock .tags { margin-top: auto; padding-top: 16px; }
+  .dock .visual { height: 248px; }
+  .dock .board { --cell: 23px; }
+  .dock .board i { width: calc(var(--cell) - 6px); height: calc(var(--cell) - 6px); }
+  .dock .target { width: 168px; height: 168px; }
+
+  .band { padding-top: clamp(64px, 9vw, 128px); }
+  .band-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 28px; }
+  .band-head h2, .split h2, .cta h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); letter-spacing: -0.035em; line-height: 1.05; margin: 0; }
+  .band-head a { font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+  .band-head a:hover { color: var(--green); }
+
+  /* Experience drawn to scale: each block is as wide as the time it lasted. */
+  .career { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
+  .career li {
+    flex: var(--months) 1 0; min-width: 0; padding: 18px 16px; border-radius: 18px;
+    background: var(--surface); border: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 2px; min-height: 148px;
+  }
+  .career strong { font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+  .career span { color: var(--muted); font-size: 0.92rem; }
+  .career small { margin-top: auto; padding-top: 12px; color: var(--muted); font-size: 0.82rem; }
+  .career .study { background: transparent; border-style: dashed; }
+  /* The blocks stay exactly to scale. Below 1100px the padding tightens, and the narrow final-year block uses smaller text. */
+  @media (max-width: 1100px) {
+    .career li { padding: 14px 10px; }
+    .career .study strong { font-size: 0.86rem; }
+    .career .study span, .career .study small { font-size: 0.74rem; }
+  }
+  /* PageSuite: four roles as four rising steps. Each step is as wide as the time in that role. */
+  .rungs { display: flex; align-items: flex-end; gap: 3px; height: 40px; margin-top: auto; padding-top: 12px; box-sizing: content-box; }
+  .rungs i { flex: var(--months) 1 0; height: var(--rise); min-width: 0; border-radius: 4px 4px 2px 2px; background: var(--green); opacity: var(--tone); cursor: default; transition: opacity 120ms ease; }
+  .rungs i:hover, .rungs i:focus-visible { opacity: 1; outline: 2px solid var(--ink); outline-offset: 2px; }
+  .career .rungs + small { margin-top: 8px; padding-top: 0; min-height: 2.6em; }
+  .career .now { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .career .now span, .career .now small { color: inherit; opacity: 0.85; }
+  .scale { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 2px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+  @media (max-width: 900px) {
+    .career { flex-direction: column-reverse; }
+    .career li { flex: none; min-height: 0; }
+    .scale { display: none; }
+  }
+
+  .split { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 1000px) { .split { grid-template-columns: minmax(0, 1fr) 420px; gap: 72px; } }
+  .split .kicker { font-size: 0.95rem; font-weight: 500; color: var(--green); margin: 0 0 10px; }
+  .split .about { color: var(--muted); font-size: 1.1rem; max-width: 52ch; margin: 16px 0 0; }
+  .split .step-note { margin: 20px 0 0; padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); font-size: 0.93rem; min-height: 4.2em; color: var(--muted); }
+  .split .step-note strong { color: var(--ink); font-weight: 600; }
+  .split .node { box-shadow: 0 0 0 6px var(--bg); }
+  .split .more { display: inline-block; margin-top: 24px; font-weight: 600; text-decoration: none; }
+  .split .more:hover { color: var(--green); }
+
+  /* Six colleagues, one voice at a time */
+  .voices { text-align: center; }
+  .voices blockquote { font-size: clamp(1.6rem, 3.8vw, 3rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.03em; max-width: 24ch; margin: 0 auto; min-height: 4.7em; display: grid; place-items: center; }
+  .voices .said { margin: 20px 0 0; color: var(--muted); }
+  .voices .said strong { color: var(--ink); font-weight: 600; }
+  .people { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
+  .people button { font: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; padding: 8px 14px; border-radius: 999px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); }
+  .people button:hover { color: var(--ink); }
+  .people button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+  .cta { text-align: center; padding: clamp(72px, 10vw, 136px) 20px clamp(64px, 8vw, 104px); }
+  .cta p { color: var(--muted); margin: 14px 0 28px; }
+  .cta .actions { justify-content: center; }
+
+  /* ---- The title: the o in Bourne is the centre of a target, and an arrow lands in it. ---- */
+  .hero3 { overflow-x: clip; }
+  .bull { position: relative; display: inline-block; color: inherit; }
+  .bull svg { position: absolute; left: 50%; top: 59%; width: 3em; height: 3em; transform: translate(-50%, -50%); overflow: visible; pointer-events: none; }
+  .bull .ring { fill: none; stroke: var(--green); stroke-width: 2; }
+  .bull .dot { fill: var(--green); }
+  .bull .shaft { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+  .bull .point { fill: var(--ink); }
+  .bull .vane { fill: var(--green); stroke: var(--bg); stroke-width: 0.6; }
+  .bull .rings { transform-origin: 150px 150px; }
+  .bull .flight { transform-origin: 0 0; opacity: 0; }
+  .bull.shoot .flight { animation: flight 900ms 0.5s cubic-bezier(0.5, 0, 0.9, 0.6) both; }
+  .bull.shoot .rings { animation: impact 420ms 0.77s ease-out; }
+
+  /* ---- Picktime Automation: at 00:05 the three hours are booked. Where 2b is taken, 3a is booked. ---- */
+  .slots { width: 100%; }
+  .slots-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; font-size: 0.82rem; color: var(--muted); }
+  .clock { position: relative; display: inline-block; width: 3.3em; height: 1.5em; font-size: 1.2rem; vertical-align: middle; margin-right: 6px; }
+  .clock b { position: absolute; left: 0; top: 0; font-weight: 500; color: var(--ink); transition: opacity 250ms ease, transform 250ms ease; }
+  .clock .after { opacity: 0; transform: translateY(7px); color: var(--green); }
+  .card:hover .clock .before, .card:focus-within .clock .before { opacity: 0; transform: translateY(-7px); }
+  .card:hover .clock .after, .card:focus-within .clock .after { opacity: 1; transform: none; transition-delay: 150ms; }
+  .faces { display: grid; grid-template-columns: 3.1em repeat(8, minmax(0, 1fr)); gap: 4px; align-items: center; font-size: 0.74rem; color: var(--muted); }
+  .faces .face { text-align: center; }
+  .faces .mine { color: var(--ink); font-weight: 500; }
+  .cell { height: 27px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); display: grid; place-items: center; }
+  .cell.taken { background: repeating-linear-gradient(135deg, var(--line) 0 3px, transparent 3px 6px); }
+  .cell.book { transition: background 220ms ease, border-color 220ms ease; }
+  .cell.book svg { width: 13px; height: 13px; color: var(--on-green); opacity: 0; transition: opacity 220ms ease; }
+  @keyframes bump { 50% { transform: scale(1.28); } }
+  @keyframes refused { 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+  .card:hover .cell.book, .card:focus-within .cell.book { background: var(--green); border-color: var(--green); transition-delay: var(--at); animation: bump 320ms var(--at) ease-out; }
+  .card:hover .cell.book svg, .card:focus-within .cell.book svg { opacity: 1; transition-delay: var(--at); }
+  .card:hover .cell.skip, .card:focus-within .cell.skip { animation: refused 260ms var(--at) ease-in-out; }
+  .slots-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; min-height: 26px; }
+  .slots-foot .hint { margin: 0; text-align: left; white-space: nowrap; }
+  .slots-foot .valid { margin: 0; opacity: 0; transform: translateY(4px); transition: opacity 250ms ease, transform 250ms ease; }
+  .card:hover .slots-foot .valid, .card:focus-within .slots-foot .valid { opacity: 1; transform: none; transition-delay: 2.3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bull.shoot .flight { animation: none; opacity: 1; }
+    .bull.shoot .rings { animation: none; }
+    .card:hover .cell.book, .card:focus-within .cell.book, .card:hover .cell.skip, .card:focus-within .cell.skip { animation: none; }
+    .clock b, .cell.book, .cell.book svg, .slots-foot .valid { transition: none; }
+  }
+
+  /* Buttons and pills keep their shape at every width.
+     A button never wraps. A short label never wraps. A longer label may wrap,
+     as a rounded rectangle with normal line spacing, so two lines do not look squashed. */
+  .button { white-space: nowrap; }
+  .tag, .valid, .merged { white-space: nowrap; }
+  .chip, .tag, .valid, .merged, .people button { border-radius: 14px; line-height: 1.35; }
+  nav .button { gap: 0; }
+  nav .button .button-long { margin-right: 0.28em; }
+  @media (max-width: 900px) { nav .button .button-long { display: none; } }
+
+  /* The theme button shows the theme it switches to: a moon in light theme, a sun in dark theme.
+     The two icons share one spot, and the change turns and fades. */
+  #theme { position: relative; overflow: hidden; }
+  #theme svg { position: absolute; transition: transform 300ms ease, opacity 200ms ease; }
+  #theme .theme-sun { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+  :root[data-theme="dark"] #theme .theme-moon { opacity: 0; transform: rotate(90deg) scale(0.6); }
+  :root[data-theme="dark"] #theme .theme-sun { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { #theme svg { transition: none; } }
+
+  /* ---- Experience page ---- */
+  .links a[aria-current="page"] { color: var(--ink); }
+  .ex-head { padding: clamp(48px, 7vw, 96px) 0 clamp(28px, 4vw, 40px); }
+  .ex-head h1 { font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 600; letter-spacing: -0.055em; line-height: 0.95; margin: 0 0 24px; }
+  .ex-head p { font-size: clamp(1.1rem, 1.8vw, 1.35rem); line-height: 1.45; color: var(--muted); max-width: 56ch; margin: 0; }
+
+  /* ---- The career, drawn to scale. Each block is a link to its section. ---- */
+  .ex-time { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); padding: clamp(16px, 2.6vw, 28px); }
+  .ex-bar { display: flex; gap: 6px; }
+  .ex-bar a { flex: var(--months) 1 0; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 14px; min-height: 132px; border-radius: 16px; text-decoration: none; background: var(--raised); border: 1px solid var(--line); transition: border-color 150ms ease, transform 150ms ease; }
+  .ex-bar a:hover, .ex-bar a:focus-visible { border-color: var(--green); transform: translateY(-2px); }
+  .ex-bar strong { font-weight: 600; line-height: 1.2; color: var(--ink); }
+  .ex-bar span { font-size: 0.85rem; color: var(--muted); }
+  .ex-bar small { margin-top: auto; padding-top: 10px; font-size: 0.8rem; color: var(--muted); }
+  .ex-bar .ex-study { background: transparent; border-style: dashed; }
+  @media (max-width: 1100px) {
+    .ex-bar a { padding: 12px 10px; }
+    .ex-bar .ex-study strong { font-size: 0.86rem; }
+    .ex-bar .ex-study span, .ex-bar .ex-study small { font-size: 0.74rem; }
+  }
+  .ex-bar .ex-now { background: var(--green); border-color: var(--green); }
+  .ex-bar .ex-now strong, .ex-bar .ex-now span, .ex-bar .ex-now small { color: var(--on-green); }
+  .ex-ticks { position: relative; height: 22px; margin-top: 10px; border-top: 2px solid var(--line); }
+  .ex-ticks span { position: absolute; top: 6px; transform: translateX(-50%); font-size: 0.75rem; color: var(--muted); }
+  .ex-ticks span::before { content: ""; position: absolute; left: 50%; top: -8px; width: 2px; height: 6px; background: var(--line); }
+  .ex-ticks .ex-today { color: var(--green); font-weight: 600; }
+  .ex-ticks .ex-today::before { background: var(--green); height: 8px; top: -10px; }
+  @media (max-width: 900px) {
+    .ex-bar { flex-direction: column-reverse; }
+    .ex-bar a { flex: none; min-height: 0; }
+    .ex-bar small { margin-top: 6px; padding-top: 0; }
+    .ex-ticks { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ex-bar a { transition: none; } .ex-bar a:hover { transform: none; } }
+
+  /* ---- One employer: the facts stay on screen while the story scrolls past ---- */
+  .ex-job { display: grid; gap: 28px; padding-top: clamp(64px, 9vw, 112px); scroll-margin-top: 72px; }
+  @media (min-width: 980px) { .ex-job { grid-template-columns: 300px minmax(0, 1fr); gap: 64px; align-items: start; } }
+  .ex-facts { display: grid; gap: 14px; padding: 22px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); max-width: 560px; }
+  @media (min-width: 980px) { .ex-facts { position: sticky; top: 92px; max-width: none; } }
+  .ex-facts .ex-kicker { margin: 0; font-size: 0.9rem; font-weight: 500; color: var(--green); }
+  .ex-facts h2 { margin: 0; font-size: 1.9rem; letter-spacing: -0.035em; line-height: 1.05; }
+  .ex-facts dl { margin: 0; display: grid; gap: 8px; font-size: 0.9rem; }
+  .ex-facts dl div { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 10px; }
+  .ex-facts dt { color: var(--muted); }
+  .ex-facts dd { margin: 0; color: var(--ink); }
+  .ex-facts .tags { margin-top: 0; }
+
+  .ex-story { min-width: 0; }
+  .ex-story .ex-lead { margin: 0 0 8px; font-size: clamp(1.15rem, 1.8vw, 1.35rem); line-height: 1.45; color: var(--ink); max-width: 56ch; }
+  .ex-story h3 { margin: 36px 0 12px; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+  .ex-story p { margin: 0 0 12px; max-width: 62ch; color: var(--muted); }
+  .ex-story p strong { color: var(--ink); font-weight: 600; }
+  .ex-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 62ch; }
+  .ex-list li { position: relative; padding-left: 20px; color: var(--muted); }
+  .ex-list li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .ex-list strong { color: var(--ink); font-weight: 600; }
+
+  /* Logistics UK: one tab per year. 2026 has a chart of the projects across the months. */
+  .ex-years { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .ex-years button { font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; padding: 8px 14px; border-radius: 12px; white-space: nowrap; color: var(--muted); background: var(--surface); border: 1px solid var(--line); }
+  .ex-years button:hover { color: var(--ink); }
+  .ex-years button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .js .ex-year[hidden] { display: none; }
+  .ex-year { padding: 18px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+  .ex-year-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 14px; }
+  .ex-year-head b { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+  .ex-year-head span { font-size: 0.8rem; color: var(--muted); }
+
+  .ex-gantt { position: relative; display: grid; gap: 10px; }
+  .ex-months, .ex-track { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .ex-months span { font-size: 0.72rem; color: var(--muted); text-align: center; }
+  .ex-lane { display: grid; gap: 4px; }
+  .ex-lane-name { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 0.85rem; }
+  .ex-lane-name b { font-weight: 600; color: var(--ink); }
+  .ex-lane-name span { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+  .ex-track { position: relative; height: 14px; border-radius: 999px; background: repeating-linear-gradient(90deg, var(--raised) 0 calc(100% / 12 - 2px), transparent calc(100% / 12 - 2px) calc(100% / 12)); }
+  .ex-bar-fill { grid-row: 1; height: 100%; border-radius: 999px; background: var(--green); transform-origin: left; }
+  .ex-bar-fill.ex-open { background: linear-gradient(90deg, var(--green) 70%, color-mix(in srgb, var(--green) 25%, transparent)); }
+  .ex-phases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; background: none; }
+  .ex-phases i { display: block; height: 100%; border-radius: 999px; background: var(--green); }
+  /* Today is marked inside each track only, so the line never crosses any text. Its label has its own row. */
+  .ex-track::after { content: ""; position: absolute; left: var(--now, -10px); top: -3px; bottom: -3px; width: 2px; border-radius: 2px; background: var(--ink); opacity: 0.6; pointer-events: none; }
+  .ex-now-row { position: relative; height: 16px; }
+  .ex-now-row span { position: absolute; left: var(--now, -100px); transform: translateX(-50%); font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+  @keyframes ex-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .ex-gantt.play .ex-bar-fill { animation: ex-draw 700ms ease-out both; animation-delay: var(--delay); }
+  @media (prefers-reduced-motion: reduce) { .ex-gantt.play .ex-bar-fill { animation: none; } }
+
+  .ex-cards { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 16px; }
+  @media (max-width: 640px) { .ex-cards { grid-template-columns: minmax(0, 1fr); } }
+  .ex-cards div { padding: 12px 14px; border-radius: 14px; background: var(--raised); border: 1px solid var(--line); }
+  .ex-cards b { display: block; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .ex-cards span { display: block; margin-top: 4px; font-size: 0.88rem; line-height: 1.45; color: var(--muted); }
+  .ex-cards small { display: block; margin-top: 6px; font-size: 0.78rem; color: var(--muted); }
+  .ex-cards a { color: var(--ink); }
+
+  /* PageSuite: the four roles as rising steps, to scale. Choose a step to read that role. */
+  .ex-climb { padding: 18px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+  /* Each step is a bar drawn to scale, with a short label underneath. The full title and dates are in the panel below. */
+  .ex-rungs { display: flex; align-items: flex-end; gap: 6px; }
+  .ex-rungs button { font: inherit; cursor: pointer; flex: var(--months) 1 0; min-width: 0; display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 0; border: 0; background: none; color: var(--muted); }
+  .ex-rungs i { display: block; height: var(--rise); border-radius: 10px 10px 4px 4px; background: color-mix(in srgb, var(--green) var(--tone), var(--raised)); transition: transform 150ms ease; }
+  .ex-rungs button:hover i { transform: translateY(-3px); }
+  .ex-rungs button[aria-pressed="true"] i { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .ex-rungs button[aria-pressed="true"] b { color: var(--ink); }
+  .ex-rungs b { font-size: 0.8rem; font-weight: 600; line-height: 1.25; text-align: center; white-space: nowrap; }
+  @media (prefers-reduced-motion: reduce) { .ex-rungs i { transition: none; } .ex-rungs button:hover i { transform: none; } }
+  .ex-role { margin-top: 18px; }
+  .ex-role h4 { margin: 0 0 2px; font-size: 1.05rem; font-weight: 600; }
+  .ex-role .ex-when { margin: 0 0 10px; font-size: 0.85rem; color: var(--muted); }
+  .ex-role p { margin: 0; }
+  .js .ex-role[hidden] { display: none; }
+  .ex-quote { margin: 20px 0 0; padding: 14px 16px; border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; background: var(--raised); max-width: 62ch; }
+  .ex-quote p { margin: 0 0 6px; color: var(--ink); font-size: 1rem; line-height: 1.45; }
+  .ex-quote cite { font-style: normal; font-size: 0.85rem; color: var(--muted); }
+  @media (max-width: 560px) { .ex-rungs b { font-size: 0.7rem; white-space: normal; min-height: 2.5em; } }
+
+  /* ---- Skills: choose one to see where I have used it ---- */
+  .ex-band { padding-top: clamp(64px, 9vw, 120px); scroll-margin-top: 72px; }
+  .ex-band > h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); letter-spacing: -0.035em; line-height: 1.05; margin: 0 0 8px; }
+  .ex-band > p { color: var(--muted); margin: 0 0 24px; max-width: 62ch; }
+  .ex-where { position: sticky; top: 76px; z-index: 2; display: grid; gap: 10px; padding: 14px 16px; margin-bottom: 16px; border-radius: 18px; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--line); }
+  .ex-where-line { margin: 0; font-size: 0.95rem; color: var(--muted); min-height: 1.5em; }
+  .ex-where-line b { color: var(--ink); font-weight: 600; }
+  .ex-places { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ex-places a { font-size: 0.8rem; padding: 5px 10px; border-radius: 10px; border: 1px dashed var(--line); color: var(--muted); white-space: nowrap; text-decoration: none; pointer-events: none; transition: background 150ms ease, color 150ms ease, border-color 150ms ease; }
+  .ex-places a.on { background: var(--green); border: 1px solid var(--green); color: var(--on-green); pointer-events: auto; }
+  .ex-places a.on:hover { text-decoration: underline; }
+  .ex-groups { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  @media (max-width: 1000px) { .ex-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .ex-groups { grid-template-columns: minmax(0, 1fr); } }
+  .ex-group { padding: 18px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+  .ex-group h3 { margin: 0 0 12px; font-size: 1rem; font-weight: 600; }
+  .ex-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ex-skills button, .ex-skills span { font: inherit; font-size: 0.85rem; padding: 6px 11px; border-radius: 10px; white-space: nowrap; }
+  .ex-skills button { cursor: pointer; color: var(--ink); background: var(--raised); border: 1px solid var(--line); }
+  .ex-skills button:hover { border-color: var(--green); }
+  .ex-skills button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .ex-skills span { color: var(--muted); border: 1px dashed var(--line); }
+  .ex-key { margin: 14px 0 0; font-size: 0.85rem; color: var(--muted); }
+  .ex-key span { display: inline-block; padding: 2px 8px; border-radius: 8px; border: 1px dashed var(--line); margin-right: 4px; }
+
+  /* ---- Education: the grade for each year, against the first-class mark ---- */
+  .ex-edu { display: grid; gap: 16px; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: stretch; }
+  @media (max-width: 900px) { .ex-edu { grid-template-columns: minmax(0, 1fr); } }
+  .ex-card { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); min-width: 0; }
+  .ex-card h3 { margin: 0; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; }
+  .ex-card .ex-sub { margin: 0; font-size: 0.9rem; color: var(--muted); }
+  .ex-grades { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+  .ex-grade { display: grid; grid-template-rows: auto 120px auto; gap: 6px; min-width: 0; }
+  .ex-plot { position: relative; border-bottom: 2px solid var(--line); }
+  .ex-plot::after { content: ""; position: absolute; left: -6px; right: -6px; bottom: calc((70 - 50) / 40 * 100%); border-top: 2px dashed var(--ink); opacity: 0.4; }
+  .ex-grade i { position: absolute; left: 0; right: 0; bottom: 0; height: calc((var(--mark) - 50) / 40 * 100%); border-radius: 8px 8px 3px 3px; background: var(--green); transform-origin: bottom; }
+  .ex-grade.ex-placement i { background: color-mix(in srgb, var(--green) 60%, var(--raised)); }
+  .ex-grade b { font-size: 1.1rem; font-weight: 600; text-align: center; color: var(--ink); }
+  .ex-grade span { font-size: 0.78rem; text-align: center; color: var(--muted); line-height: 1.25; min-height: 2.5em; }
+  .ex-legend { margin: 4px 0 0; font-size: 0.8rem; color: var(--muted); }
+  .ex-legend i { display: inline-block; width: 22px; vertical-align: middle; margin-right: 6px; border-top: 2px dashed var(--ink); opacity: 0.5; }
+  .ex-grades.play i { animation: ex-rise 900ms ease-out both; }
+  .ex-grades.play .ex-grade:nth-child(2) i { animation-delay: 120ms; }
+  .ex-grades.play .ex-grade:nth-child(3) i { animation-delay: 240ms; }
+  .ex-grades.play .ex-grade:nth-child(4) i { animation-delay: 360ms; }
+  @keyframes ex-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  .ex-card details { border-top: 1px solid var(--line); padding-top: 10px; }
+  .ex-card summary { cursor: pointer; font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+  .ex-card details ul { margin: 10px 0 0; padding-left: 18px; font-size: 0.88rem; color: var(--muted); columns: 2; column-gap: 24px; }
+  @media (max-width: 600px) { .ex-card details ul { columns: 1; } }
+  .ex-card details li { margin-bottom: 4px; break-inside: avoid; }
+  .ex-school { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .ex-school li { padding: 12px; border-radius: 12px; background: var(--raised); border: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
+  .ex-school b { display: block; color: var(--ink); font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { .ex-grades.play i { animation: none; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="d-modern-v3.html"><span class="mark">OB</span>Oliver Bourne</a>
+    <div class="links">
+      <a href="experience.html" aria-current="page">Experience</a>
+      <a href="projects-v3.html">Projects</a>
+      <a href="claude.html">Claude</a>
+    </div>
+    <button id="theme" class="icon-button" type="button" aria-label="Switch to dark theme">
+      <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <a class="button primary" href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/" aria-label="Message me on LinkedIn"><span class="button-long">Message me on</span>LinkedIn</a>
+  </nav>
+</div>
+
+<main class="wrap">
+  <header class="ex-head">
+    <h1>Experience</h1>
+    <p>Three companies since 2018: an industry year at AXA PPP, nearly three years at PageSuite rising from junior developer to team lead, and, since March 2023, full stack developer at Logistics UK, with dozens of projects delivered.</p>
+  </header>
+
+  <section class="ex-time" aria-label="Career, drawn to scale">
+    <div class="ex-bar">
+      <a href="#axa" style="--months: 14" data-start="2018-08" data-end="2019-09"><strong>Software Developer</strong><span>AXA PPP</span><small>Aug 2018 – Sep 2019</small></a>
+      <a href="#education" class="ex-study" style="--months: 8" data-start="2019-10" data-end="2020-05"><strong>Final year</strong><span>University of Kent</span><small>2019 – 2020</small></a>
+      <a href="#pagesuite" style="--months: 34" data-start="2020-06" data-end="2023-03"><strong>Junior Developer to Team Lead</strong><span>PageSuite</span><small>June 2020 – March 2023</small></a>
+      <a href="#logistics" class="ex-now" style="--months: 45" data-start="2023-03" data-end="now"><strong>Full Stack Developer</strong><span>Logistics UK</span><small>March 2023 – now</small></a>
+    </div>
+    <div class="ex-ticks" id="ticks" aria-hidden="true"></div>
+  </section>
+
+  <section class="ex-job" id="logistics">
+    <aside class="ex-facts">
+      <p class="ex-kicker">Now</p>
+      <h2>Logistics UK</h2>
+      <dl>
+        <div><dt>Role</dt><dd>Full Stack Developer</dd></div>
+        <div><dt>Dates</dt><dd>March 2023 – now</dd></div>
+        <div><dt>Where</dt><dd>Mostly remote. Office in Royal Tunbridge Wells.</dd></div>
+        <div><dt>Team</dt><dd>Small teams, normally two developers</dd></div>
+      </dl>
+      <div class="tags"><span class="tag">C#</span><span class="tag">Azure</span><span class="tag">YAML pipelines</span><span class="tag">SQL Server</span><span class="tag">React</span><span class="tag">React Native</span><span class="tag">Angular</span><span class="tag">Web Forms</span></div>
+    </aside>
+    <div class="ex-story">
+      <p class="ex-lead">Logistics UK is a trade association that represents and supports the UK logistics and freight sector. I design, build and maintain Vision, its platform for driver and fleet compliance, and other core products across the business.</p>
+      <p>Most of my time is project work, and I have delivered dozens of projects there: moving older systems onto newer ones, and building new products that bring new revenue to the business. As a full stack developer I work across all of it, from C# microservices and SQL Server to React websites, React Native apps and older Angular and Web Forms projects.</p>
+
+      <h3>Projects, year by year</h3>
+      <div class="ex-years" role="group" aria-label="Choose a year">
+        <button type="button" data-year="2026">2026</button>
+        <button type="button" data-year="2025">2025</button>
+        <button type="button" data-year="2024">2024</button>
+        <button type="button" data-year="earlier">Earlier</button>
+      </div>
+
+      <div class="ex-year" data-year="2026">
+        <div class="ex-year-head"><b>Five projects, several at once</b><span>Approximate months</span></div>
+        <div class="ex-gantt" id="gantt" role="img" aria-label="2026 projects by month. PCN microservice all year in three phases. Restricted access March to April. White labelling April to June. Bulk imports June to September, with more to do. Inspections migration from September into 2027.">
+          <div class="ex-months" aria-hidden="true"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+          <div class="ex-lane"><div class="ex-lane-name"><b>PCN microservice</b><span>All year, in three phases</span></div><div class="ex-track"><div class="ex-bar-fill ex-phases" style="grid-column: 1 / 13; --delay: 0ms"><i></i><i></i><i></i></div></div></div><div class="ex-lane"><div class="ex-lane-name"><b>Restricted access</b><span>March to April</span></div><div class="ex-track"><div class="ex-bar-fill" style="grid-column: 3 / 5; --delay: 150ms"></div></div></div><div class="ex-lane"><div class="ex-lane-name"><b>White labelling</b><span>April to June</span></div><div class="ex-track"><div class="ex-bar-fill" style="grid-column: 4 / 7; --delay: 300ms"></div></div></div><div class="ex-lane"><div class="ex-lane-name"><b>Bulk imports</b><span>June to September, more to do</span></div><div class="ex-track"><div class="ex-bar-fill ex-open" style="grid-column: 6 / 10; --delay: 450ms"></div></div></div><div class="ex-lane"><div class="ex-lane-name"><b>Inspections migration</b><span>September onwards, into 2027</span></div><div class="ex-track"><div class="ex-bar-fill ex-open" style="grid-column: 9 / 13; --delay: 600ms"></div></div></div>
+          <div class="ex-now-row" aria-hidden="true"><span>Now</span></div>
+        </div>
+        <div class="ex-cards"><div><b>PCN microservice</b><span>A new Penalty Charge Notice microservice, moving from the old system to the new one, with AI added to help speed up claims.</span><small>Three phases</small></div><div><b>Restricted access</b><span>Not everyone in the business needs access to Vision, so access is now restricted to the people who need it.</span></div><div><b>White labelling</b><span>Partners can sell Vision on Logistics UK’s behalf, and resellers can sell it under their own brand and manage their own accounts.</span></div><div><b>Bulk imports</b><span>Importing very large spreadsheets of data into three or four microservices. Some imports were upgraded, and some were new.</span><small>More still to do</small></div><div><b>Inspections migration</b><span>Moving inspections and related features from the old systems to the new ones, in phases.</span><small>Aiming to finish early 2027</small></div></div>
+      </div>
+      <div class="ex-year" data-year="2025">
+        <div class="ex-year-head"><b>Two new products</b><span>Both in 2025</span></div>
+        <div class="ex-cards"><div><b>Licence check</b><span>A new product that checks drivers’ licences.</span><small>Five months or more, with hard deadlines</small></div><div><b>Grey fleet check</b><span>A new product for personal vehicles used for work, which must meet the company’s grey fleet policy. It checks the licence, the vehicle’s MOT, tax and specification, and, the biggest part, the driver’s insurance.</span><small>Five months or more, with hard deadlines</small></div></div>
+      </div>
+      <div class="ex-year" data-year="2024">
+        <div class="ex-year-head"><b>Two of the year’s projects</b><span>Among others</span></div>
+        <div class="ex-cards"><div><b>Unknown driver alert</b><span>A new alert, added to the existing alert system, for when a vehicle is driven by someone who is not a driver of that company.</span><small>Earlier in the year</small></div><div><b>Asset management migration</b><span>Moving asset management, including the fleet calendar for all assets, from the old platform to the new one. Teams were combined at the end of the year to finish it.</span><small>About six months, second half of the year</small></div></div>
+      </div>
+      <div class="ex-year" data-year="earlier">
+        <div class="ex-year-head"><b>Before 2024</b><span>In summary</span></div>
+        <div class="ex-cards"><div><b>A new brochureware site</b><span>Built from scratch, on top of an older Web Forms project. <a href="https://vision.logistics.org.uk/">vision.logistics.org.uk</a></span><small>2023</small></div><div><b>Many other projects</b><span>The first years held many smaller projects across Vision and other products, alongside the brochureware site.</span><small>2023 onwards</small></div></div>
+      </div>
+
+      <h3>Beyond the code</h3>
+      <ul class="ex-list">
+        <li><strong>Introduced Dapper</strong> to the business, to replace manual mapping of data.</li>
+        <li><strong>Scrum master</strong> in the second half of 2024, before the teams were reorganised for the licence check.</li>
+        <li><strong>Mentor</strong> to new starters, and the author of new setup guides, such as how to run IIS locally.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ex-job" id="pagesuite">
+    <aside class="ex-facts">
+      <p class="ex-kicker">Four roles</p>
+      <h2>PageSuite</h2>
+      <dl>
+        <div><dt>Roles</dt><dd>Junior Backend Developer to Backend Team Lead</dd></div>
+        <div><dt>Dates</dt><dd>June 2020 – March 2023</dd></div>
+      </dl>
+      <div class="tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">.NET Framework</span><span class="tag">AWS</span><span class="tag">TypeScript</span></div>
+    </aside>
+    <div class="ex-story">
+      <p class="ex-lead">PageSuite is a digital publishing company that works with publishers around the world, with app and web products used across the industry. My work there was always backend, and I grew from my first developer job to leading three teams.</p>
+
+      <h3>Choose a step to read that role</h3>
+      <div class="ex-climb">
+        <div class="ex-rungs" role="group" aria-label="Roles at PageSuite, drawn to scale"><button type="button" data-role="0" style="--months: 12; --rise: 30px; --tone: 30%" aria-pressed="false" aria-label="Junior Backend Developer, June 2020 – May 2021"><i></i><b>Junior</b></button><button type="button" data-role="1" style="--months: 7; --rise: 56px; --tone: 50%" aria-pressed="false" aria-label="Backend Developer, June 2021 – December 2021"><i></i><b>Developer</b></button><button type="button" data-role="2" style="--months: 4; --rise: 82px; --tone: 72%" aria-pressed="false" aria-label="Backend Technical Lead, January 2022 – April 2022"><i></i><b>Tech lead</b></button><button type="button" data-role="3" style="--months: 11; --rise: 108px; --tone: 100%" aria-pressed="false" aria-label="Backend Team Lead, May 2022 – March 2023"><i></i><b>Team lead</b></button></div>
+        <div class="ex-role" data-role="0"><h4>Junior Backend Developer</h4><p class="ex-when">June 2020 – May 2021</p><p>My first developer job after university. The first months were support tickets, which taught me a wide range of products: management portals, subscription services and the HTML5 PDF reader. Then came backend work: feed wrappers, sign-in integrations with third-party APIs, web endpoints and automations.</p></div><div class="ex-role" data-role="1"><h4>Backend Developer</h4><p class="ex-when">June 2021 – December 2021</p><p>I took a bigger part in the sales process, from the technical side: breaking down customer requirements, estimating, checking feasibility and leading technical calls with major clients. I also had more say in how new features and products were built, and used it to push code quality.</p></div><div class="ex-role" data-role="2"><h4>Backend Technical Lead</h4><p class="ex-when">January 2022 – April 2022</p><p>I set the direction for our technology, to get the most value for the business. Developers moved from the .NET Framework to the latest .NET. I built general solutions, not one-off ones. The best was a single sign-on gateway that connected any third-party or custom sign-in to every PageSuite product, in hours instead of days.</p></div><div class="ex-role" data-role="3"><h4>Backend Team Lead</h4><p class="ex-when">May 2022 – March 2023</p><p>After a long period of unstable leadership, I stepped back from coding to lead the backend team. I introduced retrospectives, technical discussions, backlog refinement, one-to-ones and better documentation. After that worked, I also took on the platform team, which ran the AWS infrastructure, and the portal team, which was building a new management portal.</p></div>
+      </div>
+
+      <blockquote class="ex-quote"><p>“Ollie’s skill and determination is proven by his swift rise from a Junior Developer to a Team Lead, and his work only echoes the drive he has to succeed.”</p><cite>Jonathon Wigmore, Senior Account Manager at PageSuite</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="ex-job" id="axa">
+    <aside class="ex-facts">
+      <p class="ex-kicker">Industry year</p>
+      <h2>AXA PPP</h2>
+      <dl>
+        <div><dt>Role</dt><dd>Software Developer</dd></div>
+        <div><dt>Dates</dt><dd>August 2018 – September 2019</dd></div>
+        <div><dt>Grade</dt><dd>81% for the industry year</dd></div>
+      </dl>
+      <div class="tags"><span class="tag">.NET MVC</span><span class="tag">AngularJS</span><span class="tag">jQuery</span><span class="tag">MS Test</span><span class="tag">SpecFlow</span><span class="tag">Selenium</span></div>
+    </aside>
+    <div class="ex-story">
+      <p class="ex-lead">AXA PPP is a major private health insurer, built on Azure and .NET, with eight agile teams. I spent my university industry year there, on two teams.</p>
+      <h3>The teams</h3>
+      <ul class="ex-list">
+        <li><strong>PACE:</strong> an in-house tool that records marketing consent across the business’s products. It has an AngularJS front end and a .NET API, with IBM MDM matching records for the same person. I was one of two .NET developers, and worked across the front end, the back end and fully automated BDD and unit tests.</li>
+        <li><strong>PMA:</strong> the Provider Management Application, which manages information on providers, from small specialists to major private hospitals. It was built with .NET MVC and jQuery. Near the end of my year, I built a proof of concept showing how React could improve its performance and developer productivity.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ex-band" id="skills">
+    <h2>Skills</h2>
+    <p>Choose a skill to see where I have used it, at work and in my projects. Each place that lights up links to the work itself.</p>
+    <div class="ex-where" aria-live="polite">
+      <p class="ex-where-line" id="where-line">Choose a skill below.</p>
+      <div class="ex-places"><a data-place="Logistics UK" href="#logistics" tabindex="-1" aria-disabled="true">Logistics UK</a><a data-place="PageSuite" href="#pagesuite" tabindex="-1" aria-disabled="true">PageSuite</a><a data-place="AXA PPP" href="#axa" tabindex="-1" aria-disabled="true">AXA PPP</a><a data-place="University of Kent" href="#education" tabindex="-1" aria-disabled="true">University of Kent</a><a data-place="JWT Validator" href="projects-v3.html#jwt" tabindex="-1" aria-disabled="true">JWT Validator</a><a data-place="Draughts Game" href="projects-v3.html#draughts" tabindex="-1" aria-disabled="true">Draughts Game</a><a data-place="Picktime Automation" href="projects-v3.html#picktime" tabindex="-1" aria-disabled="true">Picktime Automation</a><a data-place="Portfolio" href="projects-v3.html#portfolio" tabindex="-1" aria-disabled="true">Portfolio</a><a data-place="Tree Calculator" href="projects-v3.html#earlier" tabindex="-1" aria-disabled="true">Tree Calculator</a><a data-place="Dynamic Vue Modal" href="projects-v3.html#earlier" tabindex="-1" aria-disabled="true">Dynamic Vue Modal</a></div>
+    </div>
+    <div class="ex-groups"><div class="ex-group"><h3>Languages</h3><div class="ex-skills"><button type="button" data-skill="C#">C#</button><button type="button" data-skill="TypeScript">TypeScript</button><button type="button" data-skill="JavaScript">JavaScript</button><span>HTML</span><span>CSS</span><button type="button" data-skill="SQL">SQL</button><button type="button" data-skill="Java">Java</button><span>Python</span></div></div><div class="ex-group"><h3>Libraries and frameworks</h3><div class="ex-skills"><button type="button" data-skill="React">React</button><button type="button" data-skill="React Native">React Native</button><button type="button" data-skill="Angular">Angular</button><button type="button" data-skill="Vue">Vue</button><button type="button" data-skill=".NET">.NET</button><span>ASP.NET Core</span><button type="button" data-skill=".NET Framework (MVC and Web Forms)">.NET Framework (MVC and Web Forms)</button><span>Entity Framework</span><span>Bootstrap</span></div></div><div class="ex-group"><h3>Automated testing</h3><div class="ex-skills"><button type="button" data-skill="MS Test">MS Test</button><span>xUnit</span><span>NUnit</span><button type="button" data-skill="Selenium">Selenium</button><button type="button" data-skill="SpecFlow">SpecFlow</button><button type="button" data-skill="Playwright">Playwright</button></div></div><div class="ex-group"><h3>Cloud and deployment</h3><div class="ex-skills"><button type="button" data-skill="Azure">Azure</button><button type="button" data-skill="Azure Functions">Azure Functions</button><button type="button" data-skill="AWS">AWS</button><button type="button" data-skill="YAML pipelines">YAML pipelines</button><button type="button" data-skill="GitHub Actions">GitHub Actions</button><button type="button" data-skill="GitHub Pages">GitHub Pages</button><button type="button" data-skill="IIS">IIS</button></div></div><div class="ex-group"><h3>Data and architecture</h3><div class="ex-skills"><button type="button" data-skill="SQL Server">SQL Server</button><span>MongoDB</span><button type="button" data-skill="Microservices">Microservices</button></div></div><div class="ex-group"><h3>Tools</h3><div class="ex-skills"><span>Visual Studio</span><span>VS Code</span><span>Git</span><span>Fork</span><span>Postman</span><span>LINQPad</span><span>Chocolatey</span><button type="button" data-skill="Claude Code">Claude Code</button></div></div></div>
+    <p class="ex-key"><span>Dashed</span> skills I have used, but not in work shown on this site.</p>
+  </section>
+
+  <section class="ex-band" id="education">
+    <h2>Education</h2>
+    <div class="ex-edu">
+      <article class="ex-card">
+        <h3>1st Class BSc in Computer Science</h3>
+        <p class="ex-sub">University of Kent, 2016 – 2020, with an industry year. Mostly Java in the first two years, with wider topics in the final year.</p>
+        <div class="ex-grades" id="grades" role="img" aria-label="Grades by year: first year 72%, second year 74%, industry year 81%, final year 73%. Every year is above the first-class mark of 70%.">
+          <div class="ex-grade"><b>72%</b><div class="ex-plot"><i style="--mark: 72"></i></div><span>First year</span></div><div class="ex-grade"><b>74%</b><div class="ex-plot"><i style="--mark: 74"></i></div><span>Second year</span></div><div class="ex-grade ex-placement"><b>81%</b><div class="ex-plot"><i style="--mark: 81"></i></div><span>Industry year</span></div><div class="ex-grade"><b>73%</b><div class="ex-plot"><i style="--mark: 73"></i></div><span>Final year</span></div>
+        </div>
+        <p class="ex-legend"><i></i>70%, the mark for a first. The bars start at 50%.</p>
+        <details><summary>First year modules, 72%</summary><ul><li>Introduction to Object-Oriented Programming</li><li>Further Object-Oriented Programming</li><li>Foundations of Computing 1</li><li>Foundations of Computing 2</li><li>Databases and the Web</li><li>Computer Systems</li><li>Human Computer Interaction</li><li>People and Computing</li></ul></details><details><summary>Second year modules, 74%</summary><ul><li>Software Engineering</li><li>Algorithms, Correctness and Efficiency</li><li>Theory of Computing</li><li>Operating Systems and Architecture</li><li>Database Systems</li><li>Web Development</li><li>Functional and Concurrent Programming</li></ul></details><details><summary>Industry year modules, 81%</summary><ul><li>Software Developer at AXA PPP</li></ul></details><details><summary>Final year modules, 73%</summary><ul><li>IT Consultancy Project (final year project)</li><li>Introduction to Intelligent Systems</li><li>Computing Law and Professional Responsibility</li><li>Computing in the Classroom</li><li>Internet of Things</li><li>Programming Language Implementation</li><li>Theory and Practice of Concurrency</li></ul></details>
+      </article>
+      <article class="ex-card">
+        <h3>John Wallis Academy, Ashford</h3>
+        <p class="ex-sub">Secondary school and sixth form, 2009 – 2016</p>
+        <ul class="ex-school">
+          <li><b>3 A levels</b>Computing (C), Geography (C), and IT BTEC (Double Distinction Star)</li>
+          <li><b>12 GCSEs and 2 BTECs</b>Grades A* to C</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Want to talk?</h2>
+    <p>LinkedIn is the best place to reach me.</p>
+    <div class="actions">
+      <a class="button primary" href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/">Message me on LinkedIn</a>
+      <a class="button" href="https://github.com/OllieRumbol">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Experience page mock-up. The wording is a draft.</span>
+    <span>Last updated 18 November 2026</span>
+  </footer>
+</div>
+
+<script>
+  document.documentElement.classList.add("js");
+  const root = document.documentElement;
+  const button = document.getElementById("theme");
+  function setTheme(theme) {
+    root.dataset.theme = theme;
+    button.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  }
+  setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  button.addEventListener("click", () => setTheme(root.dataset.theme === "dark" ? "light" : "dark"));
+
+  // Year marks: each one is placed inside the block that contains that month, measured in the browser.
+  const ticks = document.getElementById("ticks");
+  const blocks = [...document.querySelectorAll(".ex-bar a")];
+  const today = new Date();
+  function monthNumber(value) {
+    if (value === "now") return today.getFullYear() * 12 + today.getMonth();
+    const [year, month] = value.split("-").map(Number);
+    return year * 12 + month - 1;
+  }
+  function placeTicks() {
+    ticks.innerHTML = "";
+    if (getComputedStyle(ticks).display === "none") return;
+    const origin = ticks.getBoundingClientRect().left;
+    const marks = [];
+    for (let year = 2019; year <= today.getFullYear(); year++) marks.push({ month: year * 12, label: String(year) });
+    marks.push({ month: monthNumber("now"), label: "Now", today: true });
+    for (const mark of marks) {
+      const block = blocks.find((b) => mark.month >= monthNumber(b.dataset.start) && mark.month <= monthNumber(b.dataset.end));
+      if (!block) continue;
+      const start = monthNumber(block.dataset.start);
+      const length = monthNumber(block.dataset.end) - start + 1;
+      const box = block.getBoundingClientRect();
+      const fraction = mark.today ? 1 : (mark.month - start) / length;
+      const label = document.createElement("span");
+      label.textContent = mark.label;
+      if (mark.today) label.className = "ex-today";
+      label.style.left = (box.left - origin + fraction * box.width) + "px";
+      ticks.appendChild(label);
+    }
+    // A year mark that would touch the Now mark is dropped, so the labels never overlap.
+    const now = ticks.querySelector(".ex-today");
+    const last = now && now.previousElementSibling;
+    if (last && now.getBoundingClientRect().left - last.getBoundingClientRect().right < 8) last.remove();
+  }
+  placeTicks();
+  window.addEventListener("resize", placeTicks);
+
+  // Logistics UK: choosing a year shows that year. 2026 shows first.
+  const yearButtons = document.querySelectorAll(".ex-years button");
+  const years = document.querySelectorAll(".ex-year");
+  function showYear(year) {
+    yearButtons.forEach((yearButton) => yearButton.setAttribute("aria-pressed", String(yearButton.dataset.year === year)));
+    years.forEach((panel) => { panel.hidden = panel.dataset.year !== year; });
+  }
+  yearButtons.forEach((yearButton) => yearButton.addEventListener("click", () => showYear(yearButton.dataset.year)));
+  showYear("2026");
+
+  // Today's date within 2026, as a share of the year. Each track and the Now label use it.
+  const gantt = document.getElementById("gantt");
+  const yearStart = new Date(2026, 0, 1);
+  const yearEnd = new Date(2027, 0, 1);
+  const shareOfYear = Math.min(Math.max((today - yearStart) / (yearEnd - yearStart), 0), 1);
+  gantt.style.setProperty("--now", (shareOfYear * 100).toFixed(2) + "%");
+  new IntersectionObserver((entries, watcher) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("play");
+        watcher.disconnect();
+      }
+    });
+  }, { threshold: 0.4 }).observe(document.getElementById("gantt"));
+
+  // PageSuite: choosing a step shows that role. The latest role shows first.
+  const rungs = document.querySelectorAll(".ex-rungs button");
+  const roles = document.querySelectorAll(".ex-role");
+  function showRole(index) {
+    rungs.forEach((rung) => rung.setAttribute("aria-pressed", String(rung.dataset.role === String(index))));
+    roles.forEach((role) => { role.hidden = role.dataset.role !== String(index); });
+  }
+  rungs.forEach((rung) => rung.addEventListener("click", () => showRole(rung.dataset.role)));
+  showRole(rungs.length - 1);
+
+  // Skills: choosing a skill lights the places where it was used.
+  const used = {"C#": ["Logistics UK", "PageSuite", "AXA PPP", "JWT Validator", "Draughts Game", "Picktime Automation", "Tree Calculator"], "TypeScript": ["PageSuite", "JWT Validator", "Draughts Game"], "JavaScript": ["AXA PPP", "Dynamic Vue Modal"], "SQL": ["Logistics UK"], "Java": ["University of Kent"], "React": ["Logistics UK", "AXA PPP", "JWT Validator", "Draughts Game"], "React Native": ["Logistics UK"], "Angular": ["Logistics UK"], "Vue": ["Dynamic Vue Modal"], ".NET": ["Logistics UK", "PageSuite", "AXA PPP", "JWT Validator", "Draughts Game", "Picktime Automation", "Tree Calculator"], ".NET Framework (MVC and Web Forms)": ["Logistics UK", "PageSuite", "AXA PPP"], "MS Test": ["AXA PPP", "JWT Validator", "Tree Calculator"], "Selenium": ["AXA PPP"], "SpecFlow": ["AXA PPP"], "Playwright": ["JWT Validator"], "SQL Server": ["Logistics UK"], "Azure": ["Logistics UK", "AXA PPP", "Draughts Game", "Picktime Automation"], "Azure Functions": ["Draughts Game", "Picktime Automation"], "AWS": ["PageSuite", "Dynamic Vue Modal"], "YAML pipelines": ["Logistics UK"], "GitHub Actions": ["JWT Validator", "Draughts Game", "Picktime Automation", "Portfolio"], "GitHub Pages": ["JWT Validator", "Draughts Game", "Portfolio"], "IIS": ["Logistics UK"], "Microservices": ["Logistics UK"], "Claude Code": ["JWT Validator", "Draughts Game", "Picktime Automation", "Portfolio"]};
+  const places = document.querySelectorAll(".ex-places a");
+  const whereLine = document.getElementById("where-line");
+  const skillButtons = document.querySelectorAll(".ex-skills button");
+  function showSkill(skillButton) {
+    const skill = skillButton.dataset.skill;
+    const where = used[skill];
+    skillButtons.forEach((other) => other.setAttribute("aria-pressed", String(other === skillButton)));
+    places.forEach((place) => {
+      const lit = where.includes(place.dataset.place);
+      place.classList.toggle("on", lit);
+      place.tabIndex = lit ? 0 : -1;
+      place.setAttribute("aria-disabled", String(!lit));
+    });
+    whereLine.innerHTML = "";
+    const name = document.createElement("b");
+    name.textContent = skill;
+    whereLine.append(name, ": used at " + where.length + (where.length === 1 ? " place" : " places") + ".");
+  }
+  skillButtons.forEach((skillButton) => skillButton.addEventListener("click", () => showSkill(skillButton)));
+  showSkill(skillButtons[0]);
+
+  // The grade bars rise once when they come on screen.
+  const grades = document.getElementById("grades");
+  new IntersectionObserver((entries, watcher) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        grades.classList.add("play");
+        watcher.disconnect();
+      }
+    });
+  }, { threshold: 0.4 }).observe(grades);
+</script>
+</body>
+</html>

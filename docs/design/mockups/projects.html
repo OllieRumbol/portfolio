@@ -348,6 +348,12 @@
   .career span { color: var(--muted); font-size: 0.92rem; }
   .career small { margin-top: auto; padding-top: 12px; color: var(--muted); font-size: 0.82rem; }
   .career .study { background: transparent; border-style: dashed; }
+  /* The blocks stay exactly to scale. Below 1100px the padding tightens, and the narrow final-year block uses smaller text. */
+  @media (max-width: 1100px) {
+    .career li { padding: 14px 10px; }
+    .career .study strong { font-size: 0.86rem; }
+    .career .study span, .career .study small { font-size: 0.74rem; }
+  }
   /* PageSuite: four roles as four rising steps. Each step is as wide as the time in that role. */
   .rungs { display: flex; align-items: flex-end; gap: 3px; height: 40px; margin-top: auto; padding-top: 12px; box-sizing: content-box; }
   .rungs i { flex: var(--months) 1 0; height: var(--rise); min-width: 0; border-radius: 4px 4px 2px 2px; background: var(--green); opacity: var(--tone); cursor: default; transition: opacity 120ms ease; }
@@ -356,7 +362,7 @@
   .career .now { background: var(--green); border-color: var(--green); color: var(--on-green); }
   .career .now span, .career .now small { color: inherit; opacity: 0.85; }
   .scale { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 2px solid var(--line); color: var(--muted); font-size: 0.85rem; }
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
     .career { flex-direction: column-reverse; }
     .career li { flex: none; min-height: 0; }
     .scale { display: none; }
@@ -441,6 +447,15 @@
   nav .button { gap: 0; }
   nav .button .button-long { margin-right: 0.28em; }
   @media (max-width: 900px) { nav .button .button-long { display: none; } }
+
+  /* The theme button shows the theme it switches to: a moon in light theme, a sun in dark theme.
+     The two icons share one spot, and the change turns and fades. */
+  #theme { position: relative; overflow: hidden; }
+  #theme svg { position: absolute; transition: transform 300ms ease, opacity 200ms ease; }
+  #theme .theme-sun { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+  :root[data-theme="dark"] #theme .theme-moon { opacity: 0; transform: rotate(90deg) scale(0.6); }
+  :root[data-theme="dark"] #theme .theme-sun { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { #theme svg { transition: none; } }
 
   /* ---- Projects page: each drawing also plays when its case study is on screen ---- */
   .specimen.play .board .mover, .specimen.play .board .mover { animation: jump 560ms ease-in-out both; }
@@ -605,12 +620,13 @@
   <nav class="wrap" aria-label="Main">
     <a class="brand" href="d-modern-v3.html"><span class="mark">OB</span>Oliver Bourne</a>
     <div class="links">
-      <a href="#" title="The Experience page is not designed yet">Experience</a>
+      <a href="experience.html">Experience</a>
       <a href="projects-v3.html" aria-current="page">Projects</a>
       <a href="claude.html">Claude</a>
     </div>
-    <button id="theme" class="icon-button" type="button" aria-label="Switch theme">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <button id="theme" class="icon-button" type="button" aria-label="Switch to dark theme">
+      <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
     <a class="button primary" href="https://www.linkedin.com/in/oliver-bourne-a17aa91a3/" aria-label="Message me on LinkedIn"><span class="button-long">Message me on</span>LinkedIn</a>
   </nav>
@@ -914,7 +930,7 @@
     </div>
   </section>
 
-  <section class="earlier">
+  <section class="earlier" id="earlier">
     <h2>Earlier projects</h2>
     <p>Two smaller projects from before I worked this way.</p>
     <div class="pair">
@@ -971,7 +987,10 @@
 <script>
   const root = document.documentElement;
   const button = document.getElementById("theme");
-  function setTheme(theme) { root.dataset.theme = theme; }
+  function setTheme(theme) {
+    root.dataset.theme = theme;
+    button.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  }
   setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   button.addEventListener("click", () => setTheme(root.dataset.theme === "dark" ? "light" : "dark"));
 
