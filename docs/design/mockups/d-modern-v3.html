@@ -197,9 +197,9 @@
   /* On hover or focus, white makes a capture: it jumps a black piece. */
   /* White jumps a black piece. The white piece rises as it crosses, lands, and the black piece is lifted off. */
   @keyframes jump {
-    0%   { left: calc(3 * var(--cell) + 3px); top: calc(2 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
+    0%   { left: calc(4 * var(--cell) + 3px); top: calc(5 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
     50%  { transform: scale(1.45); box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3); }
-    100% { left: calc(5 * var(--cell) + 3px); top: calc(4 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
+    100% { left: calc(2 * var(--cell) + 3px); top: calc(3 * var(--cell) + 3px); transform: scale(1); box-shadow: none; }
   }
   @keyframes lifted {
     0%, 55% { opacity: 1; transform: scale(1); }
@@ -290,7 +290,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .commits .tick, .jwt .tick, .jwt .result, .target .flight, .target .rings { animation: none !important; }
-    .card:hover .board .mover, .card:focus-within .board .mover { animation: none; left: calc(5 * var(--cell) + 3px); top: calc(4 * var(--cell) + 3px); }
+    .card:hover .board .mover, .card:focus-within .board .mover { animation: none; left: calc(2 * var(--cell) + 3px); top: calc(3 * var(--cell) + 3px); }
     .card:hover .board .taken, .card:focus-within .board .taken { animation: none; opacity: 0; }
     .card:hover .target .flight, .card:focus-within .target .flight { opacity: 1; }
     .booked, .node { transition: none; }
@@ -495,10 +495,10 @@
     <article class="card c4">
       <div class="visual stack" tabindex="0">
         <div class="board" aria-hidden="true">
-          <i class="w" style="--x:1;--y:0"></i><i class="w" style="--x:5;--y:0"></i><i class="w" style="--x:2;--y:1"></i><i class="w" style="--x:6;--y:1"></i>
-          <i class="w mover" style="--x:3;--y:2"></i>
-          <i class="b taken" style="--x:4;--y:3"></i>
-          <i class="b" style="--x:7;--y:4"></i><i class="b" style="--x:1;--y:6"></i><i class="b" style="--x:5;--y:6"></i><i class="b" style="--x:2;--y:7"></i><i class="b" style="--x:6;--y:7"></i>
+          <i class="w" style="--x:6;--y:7"></i><i class="w" style="--x:2;--y:7"></i><i class="w" style="--x:5;--y:6"></i><i class="w" style="--x:1;--y:6"></i>
+          <i class="w mover" style="--x:4;--y:5"></i>
+          <i class="b taken" style="--x:3;--y:4"></i>
+          <i class="b" style="--x:0;--y:3"></i><i class="b" style="--x:6;--y:1"></i><i class="b" style="--x:2;--y:1"></i><i class="b" style="--x:5;--y:0"></i><i class="b" style="--x:1;--y:0"></i>
         </div>
         <span class="hint">Hover to see a capture</span>
       </div>
