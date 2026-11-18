@@ -253,6 +253,16 @@ Not on the site:
 * Trackpad Whiteboard, Sudoku Solver, Trading Visualizer. Not built or not finished. The owner adds each one when it works.
 * Minimal Driver API, Advent of Code 2023, the technical challenge repositories, the 2020 learning repositories and all private repositories.
 
+**Draughts Game facts.** Checked against both Draughts repositories on 2026-11-18:
+
+* The game uses the owner's family house rules, not standard English draughts. They are set out in section 2.1 of the Draughts Game specification. For example: captures are optional, a man cannot capture a king, and player 1 has the light pieces and starts at the bottom.
+* The case study says, in one sentence, that the owner built the game in memory of his grandad, using the house rules they played together. It links to the game's About page, which holds the tribute. The portfolio does not show his grandad's name or photo. The owner chose this on 2026-11-18.
+* The Draughts Game Function is finished: three levels (Easy, Normal and Hard) on .NET 10.
+* Measured strength, from the function's self-play tool over 200 games for each pairing: Hard scored 96.2% against Normal, and Normal scored 100% against Easy. The new Hard beat the old Hard in 92% of 100 games. These are results of the product, so they belong in the case study, not in the Claude section.
+* The new Draughts web app is being rebuilt, and is not released yet. The case study shows and links to the new web app.
+* The portfolio's release does not wait for the Draughts web app. The game's address, `https://ollierumbol.github.io/draughtsgame`, does not change, so the link shows whichever version is live. The owner works on one project at a time, so the new web app will probably be released first. The owner decided this on 2026-11-18.
+* Before the portfolio is released, each link into the Draughts web app is checked, because the address of a page inside it, such as the About page, can change in the rebuild.
+
 #### 6.1.6 Claude section
 
 The section explains how the owner set up Claude for development work, and why.
@@ -350,7 +360,7 @@ The exact content of each row is checked against the setup at the design step.
 6. **Unique details.** Small, unique details bring the site to life, and the owner considers them essential (2026-11-12). They are a requirement on every page, not only the home page.
    * Every page has at least one such detail.
    * Each detail comes from something real: the owner, a project, or a fact. Examples the owner approved: the arrow that lands in his name, a legal draughts capture, the real checks of the JWT library, the 00:05 booking with its fallback, and his four roles at PageSuite drawn to scale.
-   * Each detail is accurate. A draughts move is legal. A date is to scale. A method name is the real one.
+   * Each detail is accurate. A draughts move is legal under the Draughts Game's house rules (section 6.1.5). A date is to scale. A method name is the real one.
    * Each detail is finished to a high standard. An object is drawn properly, and its movement has physical detail. The owner rejected an arrow drawn as a plain line.
    * A detail that is only decoration, or that has no job on the page, is left out. The owner rejected a banner for this reason.
    * A reader who has turned motion off, or who uses a keyboard or a touch screen, still gets the information.
