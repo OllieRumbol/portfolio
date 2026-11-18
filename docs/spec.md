@@ -260,6 +260,8 @@ Not on the site:
 * The Draughts Game Function is finished: three levels (Easy, Normal and Hard) on .NET 10.
 * Measured strength, from the function's self-play tool over 200 games for each pairing: Hard scored 96.2% against Normal, and Normal scored 100% against Easy. The new Hard beat the old Hard in 92% of 100 games. These are results of the product, so they belong in the case study, not in the Claude section.
 * The new Draughts web app is being rebuilt, and is not released yet. The case study shows and links to the new web app.
+* The portfolio's release does not wait for the Draughts web app. The game's address, `https://ollierumbol.github.io/draughtsgame`, does not change, so the link shows whichever version is live. The owner works on one project at a time, so the new web app will probably be released first. The owner decided this on 2026-11-18.
+* Before the portfolio is released, each link into the Draughts web app is checked, because the address of a page inside it, such as the About page, can change in the rebuild.
 
 #### 6.1.6 Claude section
 
