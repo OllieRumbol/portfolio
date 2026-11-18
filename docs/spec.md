@@ -3,7 +3,7 @@
 > **What this document is for:** It answers *what are we building, and why?* It is agreed before any design or code, and it is the source of truth for requirements.
 
 Status: Approved
-Last updated: 2026-11-13
+Last updated: 2026-11-18
 
 ---
 
@@ -167,17 +167,39 @@ The Experience section SHALL describe the role "Full Stack Developer at Logistic
 
 * Logistics UK is a trade association that represents and supports the UK logistics and freight sector.
 * The business has several small teams. Each team normally has two developers.
-* From the owner's LinkedIn profile, supplied on 2026-11-12: the role is full-time and hybrid, based in Royal Tunbridge Wells. He designs, develops and maintains the Vision product and other core products across the business.
+* From the owner's LinkedIn profile, supplied on 2026-11-12: the role is full-time, based in Royal Tunbridge Wells. The owner added on 2026-11-18 that for the last two years he has worked mostly from home, and goes to the office about four times a year. The page says "Mostly remote". He designs, develops and maintains the Vision product and other core products across the business.
 * Most of the owner's time is project work: migrations of older systems, and new products that bring new revenue to the business.
 * Technology: Azure, YAML pipelines, C# microservices, older C# Web Forms projects, SQL Server, React websites, React Native apps, older Angular frontends.
-* Projects, in order:
-  1. A new brochureware site, built from scratch, that had to sit on top of an old Web Forms project. It is public at `https://vision.logistics.org.uk/`. Vision is Logistics UK's platform for driver and fleet compliance.
-  2. A new licence check and grey fleet check product. About one year of work.
-  3. A new Penalty Charge Notice (PCN) microservice. Start of 2026.
-* The owner introduced Dapper to Logistics UK, to replace manual mapping of data.
-* Wider duties: scrum master, mentoring new starters, and writing new setup guides, for example how to run IIS locally.
+* Projects. The owner has delivered dozens of projects at Logistics UK. The three below were the first he named, on 2026-11-11. On 2026-11-18 he said they do not do the amount of work justice, and gave the fuller picture by year:
+  * **2023.** A new brochureware site, built from scratch, that had to sit on top of an old Web Forms project. It is public at `https://vision.logistics.org.uk/`. Vision is Logistics UK's platform for driver and fleet compliance. It was a small part of the year, among many other projects that the owner does not have a full list of.
+  * **2025.** Two new products, each a project of five months or more, with hard deadlines. The owner confirmed on 2026-11-18 that both were in 2025.
+    1. **Licence check.** Checks a driver's licence.
+    2. **Grey fleet check.** Grey fleet means personal vehicles used for work, which must meet the company's grey fleet policy. The check covers the driver's licence, the vehicle's MOT, tax and specification against the company's grey fleet policy, and, the largest part, whether the driver has the right level of insurance.
+  * **2024.** The owner remembers two projects, and says there were others he cannot recall:
+    1. **Unknown driver alert.** Earlier in 2024. A new alert, added to the existing alert system, for when a vehicle is driven by someone who is not a driver of that company.
+    2. **Asset management migration.** About six months, in the second half of 2024. Moving the asset management section from the old platform to the new one, including the fleet calendar for all assets. Teams were combined at the end of the year to finish it.
+  * **Before 2024.** Shown as a summary only: the 2023 brochureware site above, among many other projects the owner does not have a full list of.
+  * **2026.** Five projects, several running at the same time:
+    1. **PCN microservice.** A new Penalty Charge Notice (PCN) microservice, moving from the old system to the new one. It added AI to help speed up claims. A three-phase project that continued through the year.
+    2. **Restricted access.** Not everyone in the business needed access to Vision, so access was restricted.
+    3. **White labelling.** Two parts: people selling Vision on Logistics UK's behalf, and resellers putting their own branding on Vision, reselling it as their own and managing their own accounts.
+    4. **Bulk imports.** Importing very large Excel files of data into three or four microservices. Some imports were upgrades of existing ones, and some were new. A large part of the summer. More are still to do.
+    5. **Inspections migration.** Moving inspections and related features from old systems to new ones. A phased project, still in progress, aiming to finish at the start of 2027.
+* Approximate months for 2026, which the owner confirmed on 2026-11-18 as close enough. The page labels them as approximate:
 
-The owner confirmed that these projects can be named, because they are public on the Vision site. The entry SHALL contain nothing else that is confidential to Logistics UK: no code, internal system names, client names or figures.
+  | Project | Months |
+  | --- | --- |
+  | PCN microservice | January to December, in three phases |
+  | Restricted access | March to April |
+  | White labelling | April to June |
+  | Bulk imports | June to September, with more still to do |
+  | Inspections migration | September to now, continuing into 2027 |
+
+* How the projects are described. The entry names each project, and describes it in general terms only, without commercially sensitive detail, so that the owner is certain nothing confidential is published. The owner decided this on 2026-11-18. The 2026 projects are shown in more detail than earlier years.
+* The owner introduced Dapper to Logistics UK, to replace manual mapping of data.
+* Wider duties: scrum master in the second half of 2024, before the teams were reorganised for the licence check; mentoring new starters; and writing new setup guides, for example how to run IIS locally.
+
+The owner confirmed on 2026-11-11 that the first three projects can be named, because they are public on the Vision site, and on 2026-11-18 that the 2026 projects can be named. The entry SHALL contain nothing else that is confidential to Logistics UK: no code, internal system names, client names or figures.
 
 The owner supplied no measured results. The entry states none.
 
@@ -220,17 +242,16 @@ Removed from the current list: Go, Erlang, NetBeans, IntelliJ, LINQ, Newtonsoft 
 #### 6.1.5 Projects
 
 1. The section lists the projects in the table below. A featured project has a full write-up and appears first. A smaller entry has a short description and its links.
-2. Each featured project is written as a short case study, with the same five parts. The owner agreed this on 2026-11-11.
+2. Each featured project is written as a short case study, with the same four parts. The owner agreed this on 2026-11-11.
 
    | Part | What it answers | Length |
    | --- | --- | --- |
    | Problem | Why the project exists | 1 to 2 sentences |
-   | What I built | What it does, in plain words | 2 to 3 sentences |
-   | Key decisions | Two or three choices, each with its reason | 1 sentence each |
-   | Result | What is true now | 1 to 2 sentences |
+   | How it's built | The main parts, what each one does, the technology of each, and how they connect | One diagram, with one sentence for each part |
+   | Result | What is true now | Up to four numbers, each saying what was counted and when |
    | Technology and links | The technology, and links to the live site, package and repository where they exist | A short list |
 
-   The decisions and results come from each project's own planning documents and repository, and the owner approves them. A smaller entry shows its name, a short description, the technology and its links.
+   The parts and results come from each project's own documents and repository, and the owner approves them. The owner replaced "What I built" and "Key decisions" with "How it's built" on 2026-11-18, because the decisions took a lot of space for little value to a reader. A smaller entry shows its name, a short description, the technology and its links.
 3. Each project shows an image or diagram where one exists. A project without an image still looks complete.
 4. Related projects are shown as related. Examples: the JWT Validator package and its site; the Draughts Game site and its function.
 5. The layout scales. Adding a project needs new content only, not a layout change.
@@ -354,6 +375,7 @@ The exact content of each row is checked against the setup at the design step.
    * The title of the home page is the owner's name, very large and centred. The "o" in Bourne is the centre of a target, and an arrow lands in it when the page loads. The owner chose this on 2026-11-12 from three rendered options, in `docs/design/mockups/hero-options.html`. Because the title uses the arrow, the Picktime Automation card shows the booking itself, not an arrow.
    * Elements in a row line up: the same top, the same height, and titles on one line.
    * The home page does not use the layout of the JWT Validator site: a headline on the left with a card on the right.
+   * The owner approved two more page designs on 2026-11-18, in the same style: the Projects page, `docs/design/mockups/projects-v3.html`, and the Claude page, `docs/design/mockups/claude.html`. The owner approved the Experience page design on 2026-11-18, `docs/design/mockups/experience.html`. The four pages link to each other, and together they are the approved design for the whole site. The owner approved the not-found page design on 2026-11-18, `docs/design/mockups/not-found.html`: the 0 in 404 is the target from the home page title, and the arrow lands in the outer ring, not the centre.
    * The home page runs in this order, which the owner agreed on 2026-11-12: the owner's name and one sentence; the featured projects; how he works with Claude; experience, drawn to scale; testimonials; the LinkedIn action. The first two after the name show the work. The next two show the career.
    * The owner rejected the first three mock-ups as basic and untidy.
    * The mock-up shows the look. Its wording is a draft, and the final content and length of each page are design decisions.
