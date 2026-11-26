@@ -2,7 +2,7 @@
 
 > **What this document is for:** It answers *what do we do next?* It splits the approved design into small, verifiable steps and tracks progress against them.
 
-Last updated: 2026-11-19
+Last updated: 2026-11-26
 
 Tests are numbered as in plan section 7.2. A task that adds a test makes it pass for the pages that exist at that point. Later tasks keep it passing.
 
@@ -44,7 +44,7 @@ Base branch: release/redesign
   - Verify: `npm run typecheck && npm run lint && npm test && npm run build && npm run e2e && npm outdated`
   - Notes:
 
-- [ ] **T3 — Add the CI and deploy workflows**
+- [ ] **T3 — Add the CI and deploy workflows and the Dependabot settings**
   - Refs: spec 4.1 defects 7 and 8, spec 6.1.2 rule 3, spec 6.1.8 items 2, 5, 6 and 7, spec 6.6 (performance); plan 6 (workflows, dependencies), plan 7.1, plan 8.2
   - Depends on: T2
   - Done when:
@@ -55,6 +55,7 @@ Base branch: release/redesign
     - Tests 13, 20 and 26 pass.
     - `deploy.yml` builds and deploys on push to `main` only, with `pages: write` and `id-token: write` on the deploy job only, and no personal access token. It is copied from the JWT Validator site.
     - Every action is first-party, at its current major version. Checkout has `persist-credentials: false`.
+    - `.github/dependabot.yml` sets the version updates and the security update group exactly as plan 6 (dependencies) says: npm and GitHub Actions, Monday 07:00 `Europe/London`, a 7-day cooldown, the groups, and the `typescript` and `@types/node` ignore rules. Each setting has a comment that says why.
     - `checks`, `e2e` and `lighthouse` pass on this task's pull request.
   - Verify: `npm run spell && npm run lighthouse && npm outdated`, then `gh pr checks <this pull request>`
   - Notes:
@@ -298,9 +299,10 @@ Goal: The new site is live, and the old deployment is gone.
   - Depends on: T22, and a few days with no problem on the live site
   - Done when:
     - With the owner's approval, the `gh-pages` branch is deleted.
-    - The owner has deleted the old `TOKEN`, `USERNAME` and `EMAIL` repository secrets, and turned on Dependabot security updates.
+    - The owner has deleted the old `TOKEN`, `USERNAME` and `EMAIL` repository secrets, and turned on Dependabot security updates and grouped security updates.
+    - Dependabot opened no pull request into `main` before the release merged.
     - The live site still works.
-  - Verify: `git ls-remote --heads origin gh-pages` prints nothing, `gh secret list` shows none of the three secrets, `gh api repos/OllieRumbol/portfolio/automated-security-fixes` shows `enabled: true`, and `npm run e2e:live` passes.
+  - Verify: `git ls-remote --heads origin gh-pages` prints nothing, `gh secret list` shows none of the three secrets, `gh api repos/OllieRumbol/portfolio/automated-security-fixes` shows `enabled: true`, `gh pr list --author app/dependabot --state all` shows no pull request created before the release merge, and `npm run e2e:live` passes.
   - Notes:
 
 ---
