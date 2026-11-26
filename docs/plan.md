@@ -2,8 +2,8 @@
 
 > **What this document is for:** It answers *how will we build it?* It turns the approved requirements in spec.md into a design, and it is agreed before any code is written.
 
-Status: Approved (2026-11-18). Review fixes approved with the tasks on 2026-11-19.
-Last updated: 2026-11-19
+Status: Approved (2026-11-18). Review fixes approved with the tasks on 2026-11-19. Dependabot version updates approved on 2026-11-26.
+Last updated: 2026-11-26
 
 ---
 
@@ -279,7 +279,7 @@ There is nothing to observe at run time: no server and no analytics (spec sectio
 | Confidential content | Only the facts in the spec, which the owner approved for publishing. Logistics UK projects are named and described in general terms only (spec section 6.1.3). The owner checks every page before release (spec section 6.1.6, item 5). |
 | External links | Open in a new tab with `rel="noopener noreferrer"`. |
 | Untrusted HTML | None. All content is typed text in the repository. No `dangerouslySetInnerHTML`. |
-| Dependencies | `npm audit --audit-level=high` runs in CI and fails the build on a high or critical finding (spec section 6.1.8, item 7). When a package is added or upgraded, `npm outdated` lists no direct dependency, apart from TypeScript (section 3.5). All packages are brought up to date again before the release. Dependabot security updates open a pull request when a package in use has a known vulnerability. No version updates and no `dependabot.yml`. Owner chose this on 2026-11-18. On 2026-11-18, Dependabot alerts and security updates were both off. The owner turns alerts on during the foundation work, and security updates on after the release: until then, `main` holds the old app, and its security pull requests could never pass the required checks. Both are checked with `gh api` (`vulnerability-alerts` and `automated-security-fixes`). |
+| Dependencies | `npm audit --audit-level=high` runs in CI and fails the build on a high or critical finding (spec section 6.1.8, item 7). When a package is added or upgraded, `npm outdated` lists no direct dependency, apart from TypeScript (section 3.5). All packages are brought up to date again before the release. After the release, Dependabot keeps them up to date in two ways. **Version updates**, set in `.github/dependabot.yml` as in the Draughts web app: npm and GitHub Actions are checked every Monday at 07:00 `Europe/London`. All minor and patch updates come as one pull request, and each major update has its own. GitHub Actions updates come as one pull request. A release must be 7 days old before it is proposed (`cooldown`), so a compromised release is usually withdrawn before it reaches the site. `typescript` 6.1 and later is ignored, because `typescript-eslint` cannot install with it (section 3.5). Major updates to `@types/node` are ignored, because they follow `.nvmrc` (section 2) and are updated by hand with it. **Security updates** open a pull request when a package in use has a known vulnerability. They ignore the cooldown. They are grouped into one pull request, by the `applies-to: security-updates` group in `dependabot.yml` and the "Grouped security updates" setting. No auto-merge: a merge into `main` deploys the site, so the owner merges each pull request. Owner chose security updates on 2026-11-18, and version updates on 2026-11-26. Dependabot reads `dependabot.yml` from the default branch, so version updates start when the release merges. On 2026-11-18, Dependabot alerts and security updates were both off. The owner turns alerts on during the foundation work, and security updates on after the release: until then, `main` holds the old app, and its security pull requests could never pass the required checks. Both are checked with `gh api` (`vulnerability-alerts` and `automated-security-fixes`). Dependabot pull requests get no Actions secrets, and `ci.yml` needs none. |
 | Content Security Policy | Not set at release. The JWT Validator site sets one as a `<meta>` tag with `script-src 'self'`. That policy would block this site's inline scripts: the theme script, the old-address script and the data script that React Router writes into each pre-rendered page. Allowing them needs a hash for each script on each page. The site takes no input and loads nothing from other origins, so the risk is low. Accepted as a gap, to revisit after the release. Owner chose this on 2026-11-18. |
 
 ---
@@ -351,6 +351,7 @@ No Azure resource is used. The total cost is zero (spec section 6.6).
 | --- | --- | --- |
 | `ci.yml` | Every pull request into `main` or `release/**`, and every push to them | `checks`: type check, lint, format check, spell check, unit and component tests, build, `npm audit`. `e2e`: Playwright with axe and the layout check. `lighthouse`: test 13. `release-check`: tests 19 and 21, only on pull requests into `main`. Job names stay stable, because the rulesets require them. The ruleset for `main` requires all four. The ruleset for `release/**` requires the first three, so unapproved extracts and placeholders do not block the tasks. |
 | `deploy.yml` | Push to `main` only | `build`, then `deploy` with `actions/upload-pages-artifact` and `actions/deploy-pages`, copied from the JWT Validator site. No manual trigger, as spec section 6.1.8, item 5 requires. |
+| `dependabot.yml` | Every Monday at 07:00 `Europe/London`, from `main` | Not a workflow. It sets Dependabot's version updates and the security update group (section 6, dependencies). Its pull requests run `ci.yml` like any other. |
 
 The old `main_deploy.yml` is deleted before any new code is built. It already fails on every run, because its token no longer works, and it is the only thing that pushes to the `gh-pages` branch. The live site keeps serving the old `gh-pages` content until the release.
 
@@ -369,7 +370,7 @@ The npm scripts the checks use: `typecheck`, `lint`, `format:check`, `spell`, `t
 3. The owner changes **Settings, Pages, Source** from "Deploy from a branch" to "GitHub Actions". GitHub's documentation does not say what the site serves after this change and before the first deployment, so steps 3 and 4 run one straight after the other, and the live site is checked between them.
 4. The release pull request merges into `main`, and `deploy.yml` publishes the site.
 5. Test 22 runs against the live site.
-6. After a few days with no problem, the `gh-pages` branch and the three old repository secrets are deleted, with the owner's approval. The owner then turns on Dependabot security updates (section 6).
+6. After a few days with no problem, the `gh-pages` branch and the three old repository secrets are deleted, with the owner's approval. The owner then turns on Dependabot security updates and grouped security updates (section 6).
 
 **Rolling back:** a fault after the release is fixed forward: a pull request into `main` reverts or fixes the faulty change, and `deploy.yml` publishes it. Reverting the whole release merge is not a rollback, because it would also remove `deploy.yml`. For a full rollback before step 6, the owner switches the Pages source back to the `gh-pages` branch. GitHub's documentation does not say that this rebuilds the site at once, so the live site is checked after the switch.
 
